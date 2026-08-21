@@ -87,8 +87,8 @@ const demoData=()=>({onboarded:true,profile:{name:'Alex',goal:'Do well this seme
 function uid(){return Math.random().toString(36).slice(2,10)}function today(){return new Date().toISOString().slice(0,10)}function add(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}function days(s){return s?Math.round((new Date(s+'T12:00:00')-new Date(today()+'T12:00:00'))/86400000):999}function fmt(s){return s?new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(s+'T12:00:00')):'—'}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function load(k){try{return JSON.parse(localStorage.getItem(k))}catch{return null}}
 /* NEXA CLOUD AUTH + DATA. Add your Supabase project URL and public publishable/anon key. Never use service_role in this file. */
-const SUPABASE_URL='YOUR_SUPABASE_PROJECT_URL';
-const SUPABASE_KEY='YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY';
+const SUPABASE_URL = 'https://qcoujplmocfldmqzwfiq.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_OfE8ammeYnzjkDCkf9th8A_md1L3VbQ';
 const CLOUD_READY=!SUPABASE_URL.startsWith('YOUR_')&&!SUPABASE_KEY.startsWith('YOUR_');
 const sb=CLOUD_READY?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
 let currentUser=null;

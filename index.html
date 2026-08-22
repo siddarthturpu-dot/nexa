@@ -5,143 +5,5906 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080B12">
 <title>NEXA — Know What's Next.</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-:root{--bg:#080B12;--surface:#101621;--surface2:#151C28;--text:#F5F7FA;--muted:#98A2B3;--dim:#697486;--line:rgba(255,255,255,.075);--accent:#7C5CFF;--soft:rgba(124,92,255,.14);--success:#35D07F;--warn:#FFB84D;--danger:#FF5C6C}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}body{overflow-x:hidden}button,input,select{font:inherit}button{cursor:pointer}
-.app{min-height:100vh}.side{position:fixed;left:0;top:0;bottom:0;width:228px;background:#0b0f17;border-right:1px solid var(--line);padding:24px 15px;z-index:50;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding:0 8px 25px}.logo{width:31px;height:31px}.brandname{font-size:15px;font-weight:800;letter-spacing:.13em}.tag{font-size:8px;letter-spacing:.1em;color:var(--dim);margin-top:3px}.navtitle{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700;margin:10px 9px 8px}.nav{display:grid;gap:5px}.nav button{border:1px solid transparent;background:transparent;color:var(--muted);border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:11px;text-align:left}.nav button:hover{background:rgba(255,255,255,.035);color:#fff}.nav button.active{background:var(--soft);border-color:rgba(124,92,255,.25);color:#fff}.nav i{width:17px}.sidefoot{margin-top:auto}.demobadge{display:none;margin-bottom:10px;border:1px solid rgba(255,184,77,.22);background:rgba(255,184,77,.07);color:#FFD58D;border-radius:10px;padding:9px;font-size:9px;font-weight:700}.demobadge.show{display:flex;align-items:center;gap:7px}.profile{border:1px solid var(--line);border-radius:14px;padding:10px;background:rgba(255,255,255,.02);display:flex;gap:9px;align-items:center}.avatar{width:33px;height:33px;border-radius:11px;background:#6950E8;display:grid;place-items:center;font-size:10px;font-weight:800}.pname{font-size:10px;font-weight:700}.pfocus{font-size:8px;color:var(--dim);margin-top:3px}
-.main{margin-left:228px;min-width:0}.topbar{height:64px;padding:0 30px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:45;background:rgba(8,11,18,.88);backdrop-filter:blur(14px)}.toptitle{font-size:12px;font-weight:700}.topsub{font-size:9px;color:var(--dim);margin-left:8px}.actions{display:flex;gap:7px}.btn{border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--muted);padding:9px 11px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{color:#fff;background:rgba(255,255,255,.05)}.primary{background:var(--accent);border-color:transparent;color:#fff;font-weight:700}.primary:hover{filter:brightness(1.05)}
-.content{padding:32px;max-width:1260px;margin:auto}.view{display:none}.view.active{display:block}.eyebrow{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#A99BFF;font-weight:700;margin-bottom:9px}.hero h1{font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-.045em;margin:0}.hero p{margin:9px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:25px}
-.label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);font-weight:700;margin:24px 0 10px}.next{position:relative;overflow:hidden;border:1px solid rgba(124,92,255,.23);background:linear-gradient(180deg,rgba(124,92,255,.09),rgba(124,92,255,.025));border-radius:24px;padding:25px}.next:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:rgba(124,92,255,.08);right:-110px;top:-115px;filter:blur(10px)}.next>*{position:relative;z-index:1}.nexttop{display:flex;justify-content:space-between;gap:10px}.nextlabel{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#B1A4FF;font-weight:700}.kicker{font-size:9px;color:var(--dim)}.nexttitle{font-size:clamp(26px,4vw,42px);line-height:1.05;letter-spacing:-.045em;font-weight:800;margin:16px 0 12px;max-width:800px}.metas{display:flex;flex-wrap:wrap;gap:7px}.meta{font-size:9px;color:var(--muted);border:1px solid var(--line);background:rgba(255,255,255,.025);padding:7px 8px;border-radius:8px}.why{border-left:2px solid var(--accent);padding-left:11px;margin:18px 0}.why span{display:block;font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:4px}.why strong{font-size:11px;line-height:1.5}.nextbuttons{display:flex;gap:8px;flex-wrap:wrap}
-.two{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.panel{border:1px solid var(--line);border-radius:17px;background:var(--surface)}.ph{padding:16px 17px 0;display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.pt{font-size:11px;font-weight:700}.ps{font-size:9px;color:var(--dim);margin-top:4px}.pb{padding:16px 17px}.tasklist{display:grid;gap:8px}.taskrow{display:grid;grid-template-columns:23px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:11px;background:rgba(255,255,255,.012)}.check{width:20px;height:20px;border:1px solid rgba(255,255,255,.16);border-radius:6px;background:transparent;color:#fff;display:grid;place-items:center}.check.done{background:var(--success);border-color:transparent}.taskrow strong{font-size:10px;display:block}.taskrow small{font-size:8px;color:var(--dim);display:block;margin-top:3px}.rmeta{font-size:8px;color:var(--muted);text-align:right}.prio{display:inline-block;margin-top:4px;font-size:7px;padding:4px 6px;border-radius:6px;border:1px solid var(--line)}.high{color:#ff9ba4;background:rgba(255,92,108,.06)}.medium{color:#ffd58d;background:rgba(255,184,77,.06)}.low{color:#82e5ac;background:rgba(53,208,127,.05)}.link{background:none;border:0;color:#A999FF;font-size:9px;font-weight:700}.timeline{display:flex;overflow:auto}.titem{min-width:140px;padding:2px 14px;border-left:1px solid var(--line)}.titem:first-child{border-left:0;padding-left:0}.ttime{font-size:8px;color:var(--dim);margin-bottom:6px}.etitle{font-size:9px;font-weight:700}.emeta{font-size:8px;color:var(--dim);margin-top:4px}.progress{display:grid;grid-template-columns:1fr 1fr;gap:9px}.pbox{border:1px solid var(--line);border-radius:12px;padding:13px}.pnum{font-size:22px;font-weight:800;letter-spacing:-.04em}.plabel{font-size:8px;color:var(--dim);margin-top:4px}.insight{display:flex;gap:10px;align-items:flex-start}.iicon{width:30px;height:30px;border-radius:9px;background:var(--soft);color:#B2A4FF;display:grid;place-items:center;flex:0 0 auto}.insight h3{font-size:10px;margin:1px 0 5px}.insight p{font-size:9px;color:var(--muted);line-height:1.6;margin:0}
-.empty{border:1px dashed var(--line);border-radius:21px;padding:50px 25px;text-align:center}.emptyicon{width:45px;height:45px;border-radius:13px;background:var(--soft);color:#B2A4FF;display:grid;place-items:center;margin:0 auto 15px}.empty h2{font-size:25px;letter-spacing:-.035em;margin:0 0 8px}.empty p{max-width:430px;margin:0 auto 20px;color:var(--muted);font-size:11px;line-height:1.65}.emptyactions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.demo{display:none;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;padding:9px 11px;border:1px solid rgba(255,184,77,.21);border-radius:10px;background:rgba(255,184,77,.055);font-size:9px;color:#FFD58D}.demo.show{display:flex}
-.toolbar{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-bottom:12px}.filters{display:flex;gap:5px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);font-size:8px;padding:7px 9px;border-radius:8px}.filter.active{background:var(--soft);color:#fff;border-color:rgba(124,92,255,.24)}.search{display:flex;align-items:center;gap:7px;border:1px solid var(--line);padding:7px 9px;border-radius:8px;background:rgba(255,255,255,.02)}.search input{border:0;outline:0;color:var(--text);background:transparent;font-size:9px;width:190px}.table{width:100%;border-collapse:collapse}.table th{font-size:7px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);text-align:left;padding:0 7px 9px}.table td{border-top:1px solid var(--line);padding:10px 7px;font-size:9px;color:var(--muted)}
-.schedule{display:grid;grid-template-columns:56px repeat(7,minmax(105px,1fr));overflow:auto;border:1px solid var(--line);border-radius:15px}.cell{min-height:72px;padding:8px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.cell:nth-child(8n){border-right:0}.headcell{min-height:auto;background:rgba(255,255,255,.02)}.day{font-size:8px;font-weight:700}.day small{display:block;color:var(--dim);margin-top:3px}.timecell{font-size:7px;color:var(--dim);text-align:right}.eblock{border-left:2px solid var(--accent);padding-left:5px;margin-bottom:4px}.eblock b{display:block;font-size:8px}.eblock small{font-size:7px;color:var(--dim)}
-.focusgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.focuscard{border:1px solid rgba(124,92,255,.23);background:linear-gradient(180deg,rgba(124,92,255,.08),rgba(124,92,255,.025));border-radius:22px;padding:27px;text-align:center}.status{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#B2A4FF;font-weight:700}.focustitle{font-size:25px;letter-spacing:-.04em;font-weight:800;margin:11px 0 4px}.focuscourse{font-size:8px;color:var(--dim)}.timer{font-size:70px;letter-spacing:-.07em;font-weight:800;margin:25px 0}.focusbuttons{display:flex;justify-content:center;gap:7px;flex-wrap:wrap}.focusnote{max-width:390px;margin:16px auto 0;color:var(--muted);font-size:9px;line-height:1.6}.queueitem{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 0;border-bottom:1px solid var(--line)}.queueitem:last-child{border-bottom:0}.qtitle{font-size:9px;font-weight:700}.qmeta{font-size:7px;color:var(--dim);margin-top:3px}
-.onboard{position:fixed;inset:0;background:var(--bg);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}.onboard.show{display:flex}.onwrap{width:min(610px,100%)}.ontop{display:flex;justify-content:space-between;align-items:center;margin-bottom:38px}.onstep{font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}.onbar{height:3px;border-radius:99px;background:#111722;overflow:hidden;margin-bottom:30px}.onbar span{display:block;height:100%;background:var(--accent);transition:.2s}.question{font-size:36px;line-height:1.05;letter-spacing:-.045em;margin:0 0 9px}.qsub{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:21px}.answer{width:100%;background:transparent;color:var(--text);border:0;border-bottom:1px solid rgba(255,255,255,.14);padding:10px 0;font-size:18px;outline:0}.answer:focus{border-color:var(--accent)}.choices{display:grid;gap:8px}.choice{border:1px solid var(--line);background:rgba(255,255,255,.015);color:var(--muted);border-radius:12px;padding:12px;text-align:left}.choice.active{background:var(--soft);border-color:rgba(124,92,255,.3);color:#fff}.onbottom{display:flex;justify-content:space-between;align-items:center;margin-top:28px}.mutedtiny{font-size:8px;color:var(--dim)}
-.modalbg{position:fixed;inset:0;z-index:150;display:none;place-items:center;background:rgba(0,0,0,.64);backdrop-filter:blur(8px);padding:14px}.modalbg.show{display:grid}.modal{width:min(500px,100%);background:#101621;border:1px solid var(--line);border-radius:18px;padding:19px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal h2{font-size:16px;margin:0}.x{border:0;background:transparent;color:var(--muted)}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:8px;color:var(--muted);font-weight:600}.control{width:100%;background:#0F151F;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 10px;outline:0;font-size:10px}.control:focus{border-color:rgba(124,92,255,.45)}.quick{display:flex;flex-wrap:wrap;gap:6px}.qbtn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:9px;padding:7px 8px;font-size:8px}.qbtn.active{background:var(--soft);color:#fff;border-color:rgba(124,92,255,.28)}.modalfoot{display:flex;justify-content:flex-end;gap:7px;margin-top:16px}
-.bottom{display:none}.toast{position:fixed;right:18px;bottom:18px;z-index:250;background:#141B27;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:9px;opacity:0;transform:translateY(6px);transition:.2s}.toast.show{opacity:1;transform:none}
-@media(max-width:980px){.side{width:205px}.main{margin-left:205px}.two,.focusgrid{grid-template-columns:1fr}.content{padding:27px 22px 48px}}@media(max-width:700px){.side{display:none}.main{margin-left:0}.topbar{padding:0 14px}.topsub{display:none}.content{padding:20px 14px 92px}.hero-row{display:block}.hero-actions{margin-top:15px}.next{padding:21px}.nexttitle{font-size:31px}.nextbuttons .btn{flex:1}.bottom{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(10,14,21,.94);backdrop-filter:blur(15px);border-top:1px solid var(--line);padding:7px 7px env(safe-area-inset-bottom)}.bottom button{border:0;background:transparent;color:var(--dim);display:grid;place-items:center;gap:4px;padding:6px 2px;font-size:7px}.bottom button.active{color:#fff}.bottom i{width:16px}.question{font-size:30px}.ontop{margin-bottom:26px}.search,.search input{width:100%}.table{display:block;overflow:auto;white-space:nowrap}}
 
-.authbg{position:fixed;inset:0;background:#080B12;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}.authbg.hide{display:none}.authbox{width:min(430px,100%);border:1px solid var(--line);background:#101621;border-radius:24px;padding:30px;box-shadow:0 24px 80px rgba(0,0,0,.45)}.authbrand{display:flex;align-items:center;gap:10px;margin-bottom:28px}.authbrand .brandname{font-size:18px}.authbox h1{font-size:30px;letter-spacing:-.04em;margin:0 0 8px}.authbox p{color:var(--muted);font-size:11px;line-height:1.6;margin:0 0 22px}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line);margin-bottom:20px}.auth-tab{border:0;background:transparent;color:var(--dim);padding:11px;font-weight:700;font-size:10px}.auth-tab.active{color:#fff;border-bottom:2px solid var(--accent)}.auth-error{color:#ff9ba4;font-size:9px;min-height:16px;margin-top:8px}.auth-note{font-size:8px!important;color:var(--dim)!important;margin-top:16px!important}.user-menu{position:absolute;right:30px;top:57px;width:180px;padding:7px;border:1px solid var(--line);background:#151B27;border-radius:12px;display:none;z-index:100;box-shadow:0 15px 40px rgba(0,0,0,.35)}.user-menu.show{display:block}.user-menu button{width:100%;border:0;background:transparent;color:var(--muted);text-align:left;padding:9px;border-radius:8px;font-size:9px}.user-menu button:hover{background:rgba(255,255,255,.05);color:#fff}@media(max-width:640px){.authbox{padding:24px}.user-menu{right:12px}}
+<style>
+:root{
+  --bg:#080B12;
+  --surface:#101621;
+  --surface2:#151C28;
+  --text:#F5F7FA;
+  --muted:#98A2B3;
+  --dim:#697486;
+  --line:rgba(255,255,255,.075);
+  --accent:#7C5CFF;
+  --soft:rgba(124,92,255,.14);
+  --success:#35D07F;
+  --warn:#FFB84D;
+  --danger:#FF5C6C;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif
+}
+
+body{overflow-x:hidden}
+
+button,input,select{font:inherit}
+button{cursor:pointer}
+
+.app{min-height:100vh}
+
+.side{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:228px;
+  background:#0b0f17;
+  border-right:1px solid var(--line);
+  padding:24px 15px;
+  z-index:50;
+  display:flex;
+  flex-direction:column
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 8px 25px
+}
+
+.logo{width:31px;height:31px}
+
+.brandname{
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:.13em
+}
+
+.tag{
+  font-size:8px;
+  letter-spacing:.1em;
+  color:var(--dim);
+  margin-top:3px
+}
+
+.navtitle{
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--dim);
+  font-weight:700;
+  margin:10px 9px 8px
+}
+
+.nav{display:grid;gap:5px}
+
+.nav button{
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--muted);
+  border-radius:12px;
+  padding:11px 12px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  text-align:left
+}
+
+.nav button:hover{
+  background:rgba(255,255,255,.035);
+  color:#fff
+}
+
+.nav button.active{
+  background:var(--soft);
+  border-color:rgba(124,92,255,.25);
+  color:#fff
+}
+
+.nav i{width:17px}
+
+.sidefoot{margin-top:auto}
+
+.profile{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+  background:rgba(255,255,255,.02);
+  display:flex;
+  gap:9px;
+  align-items:center
+}
+
+.avatar{
+  width:33px;
+  height:33px;
+  border-radius:11px;
+  background:#6950E8;
+  display:grid;
+  place-items:center;
+  font-size:10px;
+  font-weight:800
+}
+
+.pname{font-size:10px;font-weight:700}
+.pfocus{font-size:8px;color:var(--dim);margin-top:3px}
+
+.main{
+  margin-left:228px;
+  min-width:0
+}
+
+.topbar{
+  height:64px;
+  padding:0 30px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:45;
+  background:rgba(8,11,18,.88);
+  backdrop-filter:blur(14px)
+}
+
+.toptitle{font-size:12px;font-weight:700}
+.topsub{font-size:9px;color:var(--dim);margin-left:8px}
+
+.actions{display:flex;gap:7px}
+
+.btn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.02);
+  color:var(--muted);
+  padding:9px 11px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px
+}
+
+.btn:hover{
+  color:#fff;
+  background:rgba(255,255,255,.05)
+}
+
+.primary{
+  background:var(--accent);
+  border-color:transparent;
+  color:#fff;
+  font-weight:700
+}
+
+.primary:hover{filter:brightness(1.05)}
+
+.content{
+  padding:32px;
+  max-width:1260px;
+  margin:auto
+}
+
+.view{display:none}
+.view.active{display:block}
+
+.eyebrow{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#A99BFF;
+  font-weight:700;
+  margin-bottom:9px
+}
+
+.hero h1{
+  font-size:clamp(30px,4vw,44px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+  margin:0
+}
+
+.hero p{
+  margin:9px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6
+}
+
+.hero-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:25px
+}
+
+.label{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--dim);
+  font-weight:700;
+  margin:24px 0 10px
+}
+
+.next{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(124,92,255,.23);
+  background:linear-gradient(
+    180deg,
+    rgba(124,92,255,.09),
+    rgba(124,92,255,.025)
+  );
+  border-radius:24px;
+  padding:25px
+}
+
+.next>*{position:relative;z-index:1}
+
+.nexttop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px
+}
+
+.nextlabel{
+  font-size:10px;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  color:#B1A4FF;
+  font-weight:700
+}
+
+.kicker{font-size:9px;color:var(--dim)}
+
+.nexttitle{
+  font-size:clamp(26px,4vw,42px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+  font-weight:800;
+  margin:16px 0 12px;
+  max-width:800px
+}
+
+.metas{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px
+}
+
+.meta{
+  font-size:9px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  padding:7px 8px;
+  border-radius:8px
+}
+
+.why{
+  border-left:2px solid var(--accent);
+  padding-left:11px;
+  margin:18px 0
+}
+
+.why span{
+  display:block;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--dim);
+  margin-bottom:4px
+}
+
+.why strong{
+  font-size:11px;
+  line-height:1.5
+}
+
+.nextbuttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:14px
+}
+
+.panel{
+  border:1px solid var(--line);
+  border-radius:17px;
+  background:var(--surface)
+}
+
+.ph{
+  padding:16px 17px 0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start
+}
+
+.pt{font-size:11px;font-weight:700}
+.ps{font-size:9px;color:var(--dim);margin-top:4px}
+
+.pb{padding:16px 17px}
+
+.tasklist{
+  display:grid;
+  gap:8px
+}
+
+.taskrow{
+  display:grid;
+  grid-template-columns:23px 1fr auto;
+  gap:10px;
+  align-items:center;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px;
+  background:rgba(255,255,255,.012)
+}
+
+.check{
+  width:20px;
+  height:20px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:6px;
+  background:transparent;
+  color:#fff;
+  display:grid;
+  place-items:center
+}
+
+.check.done{
+  background:var(--success);
+  border-color:transparent
+}
+
+.taskrow strong{
+  font-size:10px;
+  display:block
+}
+
+.taskrow small{
+  font-size:8px;
+  color:var(--dim);
+  display:block;
+  margin-top:3px
+}
+
+.rmeta{
+  font-size:8px;
+  color:var(--muted);
+  text-align:right
+}
+
+.prio{
+  display:inline-block;
+  margin-top:4px;
+  font-size:7px;
+  padding:4px 6px;
+  border-radius:6px;
+  border:1px solid var(--line)
+}
+
+.high{
+  color:#ff9ba4;
+  background:rgba(255,92,108,.06)
+}
+
+.medium{
+  color:#ffd58d;
+  background:rgba(255,184,77,.06)
+}
+
+.low{
+  color:#82e5ac;
+  background:rgba(53,208,127,.05)
+}
+
+.link{
+  background:none;
+  border:0;
+  color:#A999FF;
+  font-size:9px;
+  font-weight:700
+}
+
+.timeline{
+  display:flex;
+  overflow:auto
+}
+
+.titem{
+  min-width:140px;
+  padding:2px 14px;
+  border-left:1px solid var(--line)
+}
+
+.titem:first-child{
+  border-left:0;
+  padding-left:0
+}
+
+.ttime{
+  font-size:8px;
+  color:var(--dim);
+  margin-bottom:6px
+}
+
+.etitle{
+  font-size:9px;
+  font-weight:700
+}
+
+.emeta{
+  font-size:8px;
+  color:var(--dim);
+  margin-top:4px
+}
+
+.progress{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px
+}
+
+.pbox{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px
+}
+
+.pnum{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-.04em
+}
+
+.plabel{
+  font-size:8px;
+  color:var(--dim);
+  margin-top:4px
+}
+
+.insight{
+  display:flex;
+  gap:10px;
+  align-items:flex-start
+}
+
+.iicon{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  background:var(--soft);
+  color:#B2A4FF;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto
+}
+
+.insight h3{
+  font-size:10px;
+  margin:1px 0 5px
+}
+
+.insight p{
+  font-size:9px;
+  color:var(--muted);
+  line-height:1.6;
+  margin:0
+}
+
+.empty{
+  border:1px dashed var(--line);
+  border-radius:21px;
+  padding:50px 25px;
+  text-align:center
+}
+
+.emptyicon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  background:var(--soft);
+  color:#B2A4FF;
+  display:grid;
+  place-items:center;
+  margin:0 auto 15px
+}
+
+.empty h2{
+  font-size:25px;
+  letter-spacing:-.035em;
+  margin:0 0 8px
+}
+
+.empty p{
+  max-width:430px;
+  margin:0 auto 20px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.65
+}
+
+.emptyactions{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.demo{
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:15px;
+  padding:9px 11px;
+  border:1px solid rgba(255,184,77,.21);
+  border-radius:10px;
+  background:rgba(255,184,77,.055);
+  font-size:9px;
+  color:#FFD58D
+}
+
+.demo.show{display:flex}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-bottom:12px
+}
+
+.filters{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap
+}
+
+.filter{
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  font-size:8px;
+  padding:7px 9px;
+  border-radius:8px
+}
+
+.filter.active{
+  background:var(--soft);
+  color:#fff;
+  border-color:rgba(124,92,255,.24)
+}
+
+.search{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid var(--line);
+  padding:7px 9px;
+  border-radius:8px;
+  background:rgba(255,255,255,.02)
+}
+
+.search input{
+  border:0;
+  outline:0;
+  color:var(--text);
+  background:transparent;
+  font-size:9px;
+  width:190px
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse
+}
+
+.table th{
+  font-size:7px;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:var(--dim);
+  text-align:left;
+  padding:0 7px 9px
+}
+
+.table td{
+  border-top:1px solid var(--line);
+  padding:10px 7px;
+  font-size:9px;
+  color:var(--muted)
+}
+
+.schedule{
+  display:grid;
+  grid-template-columns:56px repeat(7,minmax(105px,1fr));
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:15px
+}
+
+.cell{
+  min-height:72px;
+  padding:8px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+
+.headcell{
+  min-height:auto;
+  background:rgba(255,255,255,.02)
+}
+
+.day{
+  font-size:8px;
+  font-weight:700
+}
+
+.day small{
+  display:block;
+  color:var(--dim);
+  margin-top:3px
+}
+
+.timecell{
+  font-size:7px;
+  color:var(--dim);
+  text-align:right
+}
+
+.eblock{
+  border-left:2px solid var(--accent);
+  padding-left:5px;
+  margin-bottom:4px
+}
+
+.eblock b{
+  display:block;
+  font-size:8px
+}
+
+.eblock small{
+  font-size:7px;
+  color:var(--dim)
+}
+
+.focusgrid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:14px
+}
+
+.focuscard{
+  border:1px solid rgba(124,92,255,.23);
+  background:linear-gradient(
+    180deg,
+    rgba(124,92,255,.08),
+    rgba(124,92,255,.025)
+  );
+  border-radius:22px;
+  padding:27px;
+  text-align:center
+}
+
+.status{
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:#B2A4FF;
+  font-weight:700
+}
+
+.focustitle{
+  font-size:25px;
+  letter-spacing:-.04em;
+  font-weight:800;
+  margin:11px 0 4px
+}
+
+.focuscourse{
+  font-size:8px;
+  color:var(--dim)
+}
+
+.timer{
+  font-size:70px;
+  letter-spacing:-.07em;
+  font-weight:800;
+  margin:25px 0
+}
+
+.focusbuttons{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  flex-wrap:wrap
+}
+
+.focusnote{
+  max-width:390px;
+  margin:16px auto 0;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.6
+}
+
+.queueitem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:9px;
+  padding:10px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.qtitle{font-size:9px;font-weight:700}
+.qmeta{font-size:7px;color:var(--dim);margin-top:3px}
+
+.onboard{
+  position:fixed;
+  inset:0;
+  background:var(--bg);
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.onboard.show{display:flex}
+
+.onwrap{
+  width:min(610px,100%)
+}
+
+.ontop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:38px
+}
+
+.onstep{
+  font-size:8px;
+  color:var(--dim);
+  text-transform:uppercase;
+  letter-spacing:.1em
+}
+
+.onbar{
+  height:3px;
+  border-radius:99px;
+  background:#111722;
+  overflow:hidden;
+  margin-bottom:30px
+}
+
+.onbar span{
+  display:block;
+  height:100%;
+  background:var(--accent);
+  transition:.2s
+}
+
+.question{
+  font-size:36px;
+  line-height:1.05;
+  letter-spacing:-.045em;
+  margin:0 0 9px
+}
+
+.qsub{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:21px
+}
+
+.answer{
+  width:100%;
+  background:transparent;
+  color:var(--text);
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.14);
+  padding:10px 0;
+  font-size:18px;
+  outline:0
+}
+
+.answer:focus{
+  border-color:var(--accent)
+}
+
+.choices{
+  display:grid;
+  gap:8px
+}
+
+.choice{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.015);
+  color:var(--muted);
+  border-radius:12px;
+  padding:12px;
+  text-align:left
+}
+
+.choice.active{
+  background:var(--soft);
+  border-color:rgba(124,92,255,.3);
+  color:#fff
+}
+
+.onbottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:28px
+}
+
+.mutedtiny{
+  font-size:8px;
+  color:var(--dim)
+}
+
+.modalbg{
+  position:fixed;
+  inset:0;
+  z-index:150;
+  display:none;
+  place-items:center;
+  background:rgba(0,0,0,.64);
+  backdrop-filter:blur(8px);
+  padding:14px
+}
+
+.modalbg.show{display:grid}
+
+.modal{
+  width:min(500px,100%);
+  background:#101621;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:19px
+}
+
+.modalhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px
+}
+
+.modal h2{
+  font-size:16px;
+  margin:0
+}
+
+.x{
+  border:0;
+  background:transparent;
+  color:var(--muted)
+}
+
+.field{
+  display:grid;
+  gap:6px;
+  margin-bottom:12px
+}
+
+.field label{
+  font-size:8px;
+  color:var(--muted);
+  font-weight:600
+}
+
+.control{
+  width:100%;
+  background:#0F151F;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:9px 10px;
+  outline:0;
+  font-size:10px
+}
+
+.control:focus{
+  border-color:rgba(124,92,255,.45)
+}
+
+.quick{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px
+}
+
+.qbtn{
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--muted);
+  border-radius:9px;
+  padding:7px 8px;
+  font-size:8px
+}
+
+.qbtn.active{
+  background:var(--soft);
+  color:#fff;
+  border-color:rgba(124,92,255,.28)
+}
+
+.modalfoot{
+  display:flex;
+  justify-content:flex-end;
+  gap:7px;
+  margin-top:16px
+}
+
+.bottom{display:none}
+
+.toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:250;
+  background:#141B27;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 12px;
+  font-size:9px;
+  opacity:0;
+  transform:translateY(6px);
+  transition:.2s
+}
+
+.toast.show{
+  opacity:1;
+  transform:none
+}
+
+/* AUTH */
+.authbg{
+  position:fixed;
+  inset:0;
+  background:#080B12;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.authbg.hide{display:none}
+
+.authbox{
+  width:min(430px,100%);
+  border:1px solid var(--line);
+  background:#101621;
+  border-radius:24px;
+  padding:30px;
+  box-shadow:0 24px 80px rgba(0,0,0,.45)
+}
+
+.authbrand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:28px
+}
+
+.authbrand .brandname{font-size:18px}
+
+.authbox h1{
+  font-size:30px;
+  letter-spacing:-.04em;
+  margin:0 0 8px
+}
+
+.authbox p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.6;
+  margin:0 0 22px
+}
+
+.auth-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:1px solid var(--line);
+  margin-bottom:20px
+}
+
+.auth-tab{
+  border:0;
+  background:transparent;
+  color:var(--dim);
+  padding:11px;
+  font-weight:700;
+  font-size:10px
+}
+
+.auth-tab.active{
+  color:#fff;
+  border-bottom:2px solid var(--accent)
+}
+
+.auth-error{
+  color:#ff9ba4;
+  font-size:9px;
+  min-height:16px;
+  margin-top:8px
+}
+
+.auth-note{
+  font-size:8px!important;
+  color:var(--dim)!important;
+  margin-top:16px!important
+}
+
+.user-menu{
+  position:absolute;
+  right:30px;
+  top:57px;
+  width:180px;
+  padding:7px;
+  border:1px solid var(--line);
+  background:#151B27;
+  border-radius:12px;
+  display:none;
+  z-index:100;
+  box-shadow:0 15px 40px rgba(0,0,0,.35)
+}
+
+.user-menu.show{display:block}
+
+.user-menu button{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  text-align:left;
+  padding:9px;
+  border-radius:8px;
+  font-size:9px
+}
+
+.user-menu button:hover{
+  background:rgba(255,255,255,.05);
+  color:#fff
+}
+
+@media(max-width:980px){
+  .side{width:205px}
+  .main{margin-left:205px}
+  .two,.focusgrid{grid-template-columns:1fr}
+  .content{padding:27px 22px 48px}
+}
+
+@media(max-width:700px){
+  .side{display:none}
+  .main{margin-left:0}
+  .topbar{padding:0 14px}
+  .topsub{display:none}
+  .content{padding:20px 14px 92px}
+  .hero-row{display:block}
+  .hero-actions{margin-top:15px}
+  .next{padding:21px}
+  .nexttitle{font-size:31px}
+  .nextbuttons .btn{flex:1}
+  .bottom{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:60;
+    background:rgba(10,14,21,.94);
+    backdrop-filter:blur(15px);
+    border-top:1px solid var(--line);
+    padding:7px 7px env(safe-area-inset-bottom)
+  }
+  .bottom button{
+    border:0;
+    background:transparent;
+    color:var(--dim);
+    display:grid;
+    place-items:center;
+    gap:4px;
+    padding:6px 2px;
+    font-size:7px
+  }
+  .bottom button.active{color:#fff}
+  .bottom i{width:16px}
+  .question{font-size:30px}
+  .ontop{margin-bottom:26px}
+  .search,.search input{width:100%}
+  .table{
+    display:block;
+    overflow:auto;
+    white-space:nowrap
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="authbg" id="authScreen"><div class="authbox"><div id="cloudHint" style="display:none;color:#FFB84D;font-size:9px;line-height:1.5;margin-bottom:12px">Cloud authentication is not connected. Add your Supabase keys in index.html.</div><div class="authbrand"><svg class="logo" viewBox="0 0 32 32" fill="none"><path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z" fill="#7C5CFF"/></svg><div><div class="brandname">NEXA</div><div class="tag">KNOW WHAT'S NEXT.</div></div></div><div class="auth-tabs"><button class="auth-tab active" id="loginTab">Log in</button><button class="auth-tab" id="signupTab">Sign up</button></div><h1 id="authTitle">Welcome back.</h1><p id="authSubtitle">Log in to continue with your personal NEXA workspace.</p><form id="authForm"><div class="field"><label>Email address</label><input class="control" id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
-<div style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;color:#687385;font-size:9px"><span style="height:1px;background:var(--line);flex:1"></span><span>OR</span><span style="height:1px;background:var(--line);flex:1"></span></div>
-<div class="field"><label>Mobile number</label><input class="control" id="authPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210"></div><div class="field" id="authNameWrap" style="display:none"><label>Your name</label><input class="control" id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>Password</label><input class="control" id="authPassword" type="password" minlength="6" autocomplete="current-password" required placeholder="At least 6 characters"></div><div id="authOtpWrap" style="display:none;margin-top:10px"><div class="field"><label>Mobile verification code</label><input class="control" id="authOtp" inputmode="numeric" maxlength="6" placeholder="6-digit code"></div><div style="display:flex;gap:8px"><button type="button" class="btn" id="verifyOtpBtn">Verify</button><button type="button" class="btn" id="resendOtpBtn">Resend code</button></div></div><div class="auth-error" id="authError"></div><button class="btn primary" style="width:100%;margin-top:4px" id="authSubmit">Log in</button></form><p class="auth-note">Use your email OR mobile number. With Supabase connected, your NEXA data is securely synced to your account.</p></div></div>
-<div class="app">
-  <aside class="side">
-    <div class="brand"><svg class="logo" viewBox="0 0 32 32" fill="none"><path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z" fill="#7C5CFF"/></svg><div><div class="brandname">NEXA</div><div class="tag">KNOW WHAT'S NEXT.</div></div></div>
-    <div class="navtitle">Workspace</div><div class="nav">
-      <button class="active" data-view="home"><i data-lucide="house"></i>Home</button><button data-view="tasks"><i data-lucide="check-square"></i>Tasks</button><button data-view="schedule"><i data-lucide="calendar-days"></i>Schedule</button><button data-view="focus"><i data-lucide="timer"></i>Focus</button><button data-view="insights"><i data-lucide="sparkles"></i>Insights</button>
+
+<!-- AUTH -->
+<div class="authbg" id="authScreen">
+
+  <div class="authbox">
+
+    <div id="cloudHint"
+         style="display:none;color:#FFB84D;font-size:9px;line-height:1.5;margin-bottom:12px">
+      Cloud authentication is not connected.
     </div>
-    <div class="sidefoot"><div class="demobadge" id="sideDemo"><i data-lucide="flask-conical" width="13"></i>Demo mode</div><button class="profile" id="profileBtn" style="width:100%;text-align:left;color:inherit"><div class="avatar" id="avatar">?</div><div><div class="pname" id="pname">Welcome</div><div class="pfocus" id="pfocus">New workspace</div></div></button></div>
-  </aside>
-  <main class="main">
-    <header class="topbar"><div><span class="toptitle" id="topTitle">Home</span><span class="topsub">NEXA OS</span></div><div class="actions"><button class="btn" id="themeBtn" title="Toggle light/dark"><i data-lucide="sun-moon" width="14"></i></button><button class="btn" id="quickAdd"><i data-lucide="plus" width="14"></i><span>New task</span></button></div></header>
-    <section class="content">
-      <div class="demo" id="demoBanner"><span><b>Demo mode</b> — examples are isolated from your real workspace.</span><button class="btn" id="exitDemo">Exit demo</button></div>
-      <div class="view active" id="view-home">
-        <div class="empty" id="homeEmpty"><div class="emptyicon"><i data-lucide="sparkles"></i></div><h2>Welcome to NEXA.</h2><p>Let's build your day around what actually matters. Add one real task and NEXA will help you decide what comes next.</p><div class="emptyactions"><button class="btn primary" id="createFirst"><i data-lucide="plus" width="14"></i>Create my first task</button><button class="btn" id="tryDemo"><i data-lucide="play" width="14"></i>Try demo</button></div></div>
-        <div id="homeContent" style="display:none">
-          <div class="hero-row"><div class="hero"><div class="eyebrow">Today</div><h1 id="greeting">Good morning.</h1><p>Let's make today count.</p></div><div class="actions"><button class="btn" id="homeAdd"><i data-lucide="plus" width="13"></i>Add task</button></div></div>
-          <div class="label">Your next action</div>
-          <section class="next"><div class="nexttop"><div class="nextlabel">Do this now</div><div class="kicker">NEXA recommendation</div></div><div class="nexttitle" id="nextTitle">Nothing urgent right now.</div><div class="metas" id="nextMeta"></div><div class="why"><span>Why this is next</span><strong id="whyText">Add something you want to accomplish.</strong></div><div class="nextbuttons"><button class="btn primary" id="startFocus"><i data-lucide="play" width="13"></i>Start focus</button><button class="btn" id="chooseAnother"><i data-lucide="shuffle" width="13"></i>Choose another</button></div></section>
-          <div class="label">Today</div><div class="two"><section class="panel"><div class="ph"><div><div class="pt">What matters today</div><div class="ps">Only the three strongest open tasks.</div></div><button class="link" id="allTasks">View all tasks</button></div><div class="pb"><div class="tasklist" id="todayTasks"></div></div></section><section class="panel"><div class="ph"><div><div class="pt">Your day</div><div class="ps">Keep the shape simple.</div></div></div><div class="pb"><div class="timeline" id="todayTimeline"></div></div></section></div>
-          <div class="label">Quick progress</div><section class="panel"><div class="pb"><div class="progress"><div class="pbox"><div class="pnum" id="doneToday">0/0</div><div class="plabel">Tasks completed today</div></div><div class="pbox"><div class="pnum" id="focusToday">0m</div><div class="plabel">Focus time today</div></div></div></div></section>
-          <div class="label">One insight</div><section class="panel"><div class="pb" style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div class="insight" style="flex:1"><div class="iicon"><i data-lucide="sparkles" width="14"></i></div><div><h3 id="insightTitle">Build your pattern.</h3><p id="insightBody">After a little real activity, NEXA will surface a simple observation.</p></div></div><button class="btn" id="seeInsights">View insights</button></div></section>
+
+    <div class="authbrand">
+      <svg class="logo" viewBox="0 0 32 32" fill="none">
+        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
+              fill="#7C5CFF"/>
+      </svg>
+
+      <div>
+        <div class="brandname">NEXA</div>
+        <div class="tag">KNOW WHAT'S NEXT.</div>
+      </div>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab">Log in</button>
+      <button class="auth-tab" id="signupTab">Sign up</button>
+    </div>
+
+    <h1 id="authTitle">Welcome back.</h1>
+
+    <p id="authSubtitle">
+      Log in with your email or mobile number.
+    </p>
+
+    <form id="authForm">
+
+      <div class="field">
+        <label>Email address</label>
+
+        <!-- IMPORTANT: NO required attribute -->
+        <input
+          class="control"
+          id="authEmail"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com">
+      </div>
+
+      <div style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;color:#687385;font-size:9px">
+        <span style="height:1px;background:var(--line);flex:1"></span>
+        <span>OR</span>
+        <span style="height:1px;background:var(--line);flex:1"></span>
+      </div>
+
+      <div class="field">
+        <label>Mobile number</label>
+
+        <input
+          class="control"
+          id="authPhone"
+          type="tel"
+          autocomplete="tel"
+          inputmode="tel"
+          placeholder="+91 98765 43210">
+      </div>
+
+      <div class="field" id="authNameWrap" style="display:none">
+        <label>Your name</label>
+
+        <input
+          class="control"
+          id="authName"
+          autocomplete="name"
+          placeholder="Your name">
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+
+        <input
+          class="control"
+          id="authPassword"
+          type="password"
+          minlength="6"
+          autocomplete="current-password"
+          required
+          placeholder="At least 6 characters">
+      </div>
+
+      <!-- MOBILE OTP -->
+      <div id="authOtpWrap"
+           style="display:none;margin-top:10px">
+
+        <div class="field">
+
+          <label>Mobile verification code</label>
+
+          <input
+            class="control"
+            id="authOtp"
+            inputmode="numeric"
+            maxlength="6"
+            placeholder="6-digit code">
+        </div>
+
+        <div style="display:flex;gap:8px">
+
+          <button
+            type="button"
+            class="btn primary"
+            id="verifyOtpBtn">
+            Verify code
+          </button>
+
+          <button
+            type="button"
+            class="btn"
+            id="resendOtpBtn">
+            Resend
+          </button>
+
         </div>
       </div>
-      <div class="view" id="view-tasks"><div class="hero-row"><div class="hero"><div class="eyebrow">Work</div><h1>Your tasks.</h1><p>NEXA keeps task entry simple and handles the prioritizing.</p></div><button class="btn primary" id="taskAdd"><i data-lucide="plus" width="13"></i>Add task</button></div><section class="panel"><div class="ph"><div><div class="pt">Task list</div><div class="ps" id="taskSummary">0 open</div></div></div><div class="pb"><div class="toolbar"><div class="filters" id="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="open">Open</button><button class="filter" data-filter="done">Completed</button></div><div class="search"><i data-lucide="search" width="12"></i><input id="search" placeholder="Find a task"></div></div><table class="table"><thead><tr><th>Task</th><th>Due</th><th>Priority</th><th>Time</th><th>Energy</th><th></th></tr></thead><tbody id="taskBody"></tbody></table></div></section></div>
-      <div class="view" id="view-schedule"><div class="hero-row"><div class="hero"><div class="eyebrow">Schedule</div><h1>Shape the week.</h1><p>Keep planned time visible without turning NEXA into a rigid timetable.</p></div><button class="btn primary" id="eventAdd"><i data-lucide="plus" width="13"></i>Add block</button></div><section class="panel"><div class="ph"><div><div class="pt">Week</div><div class="ps">Simple planned time.</div></div></div><div class="pb"><div class="schedule" id="schedule"></div></div></section></div>
-      <div class="view" id="view-focus"><div class="hero-row"><div class="hero"><div class="eyebrow">Focus</div><h1>One thing. For now.</h1><p>Protect your attention around the task NEXA thinks matters most.</p></div></div><div class="focusgrid"><section class="focuscard"><div class="status" id="fstatus">Ready</div><div class="focustitle" id="ftitle">Choose a task</div><div class="focuscourse" id="fcourse">Your next action will appear here.</div><div class="timer" id="timer">25:00</div><div class="focusbuttons"><button class="btn primary" id="timerStart"><i data-lucide="play" width="13"></i>Start</button><button class="btn" id="timerPause">Pause</button><button class="btn" id="timerReset">Reset</button></div><div class="focusnote">Starting focus does not mark work complete. Finish the work, then complete the task.</div></section><section class="panel"><div class="ph"><div><div class="pt">Next up</div><div class="ps">NEXA's current queue.</div></div></div><div class="pb" id="queue"></div></section></div></div>
-      <div class="view" id="view-insights"><div class="hero-row"><div class="hero"><div class="eyebrow">Insights</div><h1>Patterns, not pressure.</h1><p>Statistics live here so your Home screen can stay focused on your next move.</p></div></div><div class="two"><section class="panel"><div class="ph"><div><div class="pt">Progress</div><div class="ps">Simple numbers for the week.</div></div></div><div class="pb"><div class="progress"><div class="pbox"><div class="pnum" id="weekDone">0</div><div class="plabel">Tasks completed this week</div></div><div class="pbox"><div class="pnum" id="weekFocus">0m</div><div class="plabel">Focus time this week</div></div></div><div style="height:14px"></div><canvas id="chart" height="160"></canvas></div></section><section class="panel"><div class="ph"><div><div class="pt">One useful pattern</div><div class="ps">Based on local history.</div></div></div><div class="pb"><div class="insight"><div class="iicon"><i data-lucide="brain" width="14"></i></div><div><h3 id="patternTitle">Build your pattern.</h3><p id="patternBody">Complete a few tasks and NEXA can tell you something useful about how you work.</p></div></div></div></section></div></div>
-    </section>
-  </main>
-  <nav class="bottom"><button class="active" data-view="home"><i data-lucide="house"></i><span>Home</span></button><button data-view="tasks"><i data-lucide="check-square"></i><span>Tasks</span></button><button data-view="schedule"><i data-lucide="calendar-days"></i><span>Schedule</span></button><button data-view="focus"><i data-lucide="timer"></i><span>Focus</span></button><button data-view="insights"><i data-lucide="more-horizontal"></i><span>More</span></button></nav><div class="user-menu" id="userMenu"><button id="accountEmail">Account</button><button id="logoutBtn">Log out</button></div>
+
+      <div class="auth-error" id="authError"></div>
+
+      <button
+        class="btn primary"
+        style="width:100%;margin-top:4px"
+        id="authSubmit">
+        Log in
+      </button>
+
+    </form>
+
+    <p class="auth-note">
+      Use your email OR mobile number.
+      Your NEXA workspace is connected to your account.
+    </p>
+
+  </div>
 </div>
 
-<div class="onboard" id="onboard"><div class="onwrap"><div class="ontop"><div class="brand" style="padding:0"><svg class="logo" viewBox="0 0 32 32" fill="none"><path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z" fill="#7C5CFF"/></svg><div class="brandname">NEXA</div></div><div class="onstep" id="onstep">1 / 5</div></div><div class="onbar"><span id="onfill"></span></div><div id="onbody"></div></div></div>
 
-<div class="modalbg" id="taskModal"><div class="modal"><div class="modalhead"><h2>What do you need to get done?</h2><button class="x" id="taskClose"><i data-lucide="x"></i></button></div><form id="taskForm"><div class="field"><input class="control" id="ttitle" required placeholder="e.g. Finish Mathematics assignment"></div><div class="field"><label>Optional context</label><input class="control" id="tcourse" placeholder="Course or project"></div><div class="field"><label>When is it due?</label><input class="control" id="tdue" type="date"></div><div class="field"><label>How long will it take?</label><div class="quick" id="effort"><button type="button" class="qbtn" data-v="15">15 min</button><button type="button" class="qbtn active" data-v="30">30 min</button><button type="button" class="qbtn" data-v="60">1 hour</button><button type="button" class="qbtn" data-v="90">1.5 hours</button></div></div><div class="field"><label>How important is it?</label><div class="quick" id="priority"><button type="button" class="qbtn" data-v="high">Important</button><button type="button" class="qbtn active" data-v="medium">Useful</button><button type="button" class="qbtn" data-v="low">Optional</button></div></div><div class="field"><label>How difficult does it feel?</label><div class="quick" id="energy"><button type="button" class="qbtn" data-v="low">Light</button><button type="button" class="qbtn active" data-v="medium">Medium</button><button type="button" class="qbtn" data-v="high">Heavy</button></div></div><div class="modalfoot"><button type="button" class="btn" id="taskCancel">Cancel</button><button class="btn primary">Add task</button></div></form></div></div>
-<div class="modalbg" id="eventModal"><div class="modal"><div class="modalhead"><h2>Add a time block</h2><button class="x" id="eventClose"><i data-lucide="x"></i></button></div><form id="eventForm"><div class="field"><label>What is this block for?</label><input class="control" id="etitle" required placeholder="Deep work, class, gym..."></div><div class="field"><label>Date</label><input class="control" id="edate" type="date" required></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div class="field"><label>Start</label><input class="control" id="etime" type="time" value="10:00"></div><div class="field"><label>Duration</label><select class="control" id="edur"><option value="30">30 min</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select></div></div><div class="modalfoot"><button type="button" class="btn" id="eventCancel">Cancel</button><button class="btn primary">Add block</button></div></form></div></div>
+<!-- MAIN APP -->
+<div class="app">
+
+  <aside class="side">
+
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" fill="none">
+        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
+              fill="#7C5CFF"/>
+      </svg>
+
+      <div>
+        <div class="brandname">NEXA</div>
+        <div class="tag">KNOW WHAT'S NEXT.</div>
+      </div>
+    </div>
+
+    <div class="navtitle">Workspace</div>
+
+    <div class="nav">
+      <button class="active" data-view="home">
+        <i data-lucide="house"></i>Home
+      </button>
+
+      <button data-view="tasks">
+        <i data-lucide="check-square"></i>Tasks
+      </button>
+
+      <button data-view="schedule">
+        <i data-lucide="calendar-days"></i>Schedule
+      </button>
+
+      <button data-view="focus">
+        <i data-lucide="timer"></i>Focus
+      </button>
+
+      <button data-view="insights">
+        <i data-lucide="sparkles"></i>Insights
+      </button>
+    </div>
+
+    <div class="sidefoot">
+
+      <button
+        class="profile"
+        id="profileBtn"
+        style="width:100%;text-align:left;color:inherit">
+
+        <div class="avatar" id="avatar">?</div>
+
+        <div>
+          <div class="pname" id="pname">Welcome</div>
+          <div class="pfocus" id="pfocus">New workspace</div>
+        </div>
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <div>
+        <span class="toptitle" id="topTitle">Home</span>
+        <span class="topsub">NEXA OS</span>
+      </div>
+
+      <div class="actions">
+
+        <button class="btn" id="quickAdd">
+          <i data-lucide="plus" width="14"></i>
+          <span>New task</span>
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+      <div class="demo" id="demoBanner">
+        <span>
+          <b>Demo mode</b> — examples are isolated from your real workspace.
+        </span>
+
+        <button class="btn" id="exitDemo">
+          Exit demo
+        </button>
+      </div>
+
+
+      <!-- HOME -->
+      <div class="view active" id="view-home">
+
+        <div class="empty" id="homeEmpty">
+
+          <div class="emptyicon">
+            <i data-lucide="sparkles"></i>
+          </div>
+
+          <h2>Welcome to NEXA.</h2>
+
+          <p>
+            Let's build your day around what actually matters.
+            Add one real task and NEXA will help you decide what comes next.
+          </p>
+
+          <div class="emptyactions">
+
+            <button class="btn primary" id="createFirst">
+              <i data-lucide="plus" width="14"></i>
+              Create my first task
+            </button>
+
+            <button class="btn" id="tryDemo">
+              <i data-lucide="play" width="14"></i>
+              Try demo
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div id="homeContent" style="display:none">
+
+          <div class="hero-row">
+
+            <div class="hero">
+
+              <div class="eyebrow">Today</div>
+
+              <h1 id="greeting">
+                Good morning.
+              </h1>
+
+              <p>
+                Let's make today count.
+              </p>
+
+            </div>
+
+            <div class="actions">
+
+              <button class="btn" id="homeAdd">
+                <i data-lucide="plus" width="13"></i>
+                Add task
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="label">
+            Your next action
+          </div>
+
+
+          <section class="next">
+
+            <div class="nexttop">
+
+              <div class="nextlabel">
+                Do this now
+              </div>
+
+              <div class="kicker">
+                NEXA recommendation
+              </div>
+
+            </div>
+
+            <div class="nexttitle" id="nextTitle">
+              Nothing urgent right now.
+            </div>
+
+            <div class="metas" id="nextMeta"></div>
+
+            <div class="why">
+
+              <span>
+                Why this is next
+              </span>
+
+              <strong id="whyText">
+                Add something you want to accomplish.
+              </strong>
+
+            </div>
+
+            <div class="nextbuttons">
+
+              <button class="btn primary" id="startFocus">
+                <i data-lucide="play" width="13"></i>
+                Start focus
+              </button>
+
+              <button class="btn" id="chooseAnother">
+                <i data-lucide="shuffle" width="13"></i>
+                Choose another
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <div class="label">
+            Today
+          </div>
+
+
+          <div class="two">
+
+            <section class="panel">
+
+              <div class="ph">
+
+                <div>
+                  <div class="pt">What matters today</div>
+                  <div class="ps">
+                    Only the three strongest open tasks.
+                  </div>
+                </div>
+
+                <button class="link" id="allTasks">
+                  View all tasks
+                </button>
+
+              </div>
+
+              <div class="pb">
+
+                <div class="tasklist" id="todayTasks"></div>
+
+              </div>
+
+            </section>
+
+
+            <section class="panel">
+
+              <div class="ph">
+
+                <div>
+                  <div class="pt">Your day</div>
+                  <div class="ps">
+                    Keep the shape simple.
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="pb">
+
+                <div class="timeline" id="todayTimeline"></div>
+
+              </div>
+
+            </section>
+
+          </div>
+
+
+          <div class="label">
+            Quick progress
+          </div>
+
+          <section class="panel">
+
+            <div class="pb">
+
+              <div class="progress">
+
+                <div class="pbox">
+                  <div class="pnum" id="doneToday">0/0</div>
+                  <div class="plabel">
+                    Tasks completed today
+                  </div>
+                </div>
+
+                <div class="pbox">
+                  <div class="pnum" id="focusToday">0m</div>
+                  <div class="plabel">
+                    Focus time today
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <div class="label">
+            One insight
+          </div>
+
+          <section class="panel">
+
+            <div class="pb"
+                 style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+
+              <div class="insight" style="flex:1">
+
+                <div class="iicon">
+                  <i data-lucide="sparkles" width="14"></i>
+                </div>
+
+                <div>
+
+                  <h3 id="insightTitle">
+                    Build your pattern.
+                  </h3>
+
+                  <p id="insightBody">
+                    After a little real activity,
+                    NEXA will surface a simple observation.
+                  </p>
+
+                </div>
+
+              </div>
+
+              <button class="btn" id="seeInsights">
+                View insights
+              </button>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+
+      <!-- TASKS -->
+      <div class="view" id="view-tasks">
+
+        <div class="hero-row">
+
+          <div class="hero">
+
+            <div class="eyebrow">Work</div>
+
+            <h1>Your tasks.</h1>
+
+            <p>
+              NEXA keeps task entry simple and handles the prioritizing.
+            </p>
+
+          </div>
+
+          <button class="btn primary" id="taskAdd">
+            <i data-lucide="plus" width="13"></i>
+            Add task
+          </button>
+
+        </div>
+
+
+        <section class="panel">
+
+          <div class="ph">
+
+            <div>
+
+              <div class="pt">Task list</div>
+
+              <div class="ps" id="taskSummary">
+                0 open
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="pb">
+
+            <div class="toolbar">
+
+              <div class="filters">
+
+                <button class="filter active" data-filter="all">
+                  All
+                </button>
+
+                <button class="filter" data-filter="open">
+                  Open
+                </button>
+
+                <button class="filter" data-filter="done">
+                  Completed
+                </button>
+
+              </div>
+
+              <div class="search">
+
+                <i data-lucide="search" width="12"></i>
+
+                <input
+                  id="search"
+                  placeholder="Find a task">
+
+              </div>
+
+            </div>
+
+
+            <table class="table">
+
+              <thead>
+
+                <tr>
+                  <th>Task</th>
+                  <th>Due</th>
+                  <th>Priority</th>
+                  <th>Time</th>
+                  <th>Energy</th>
+                  <th></th>
+                </tr>
+
+              </thead>
+
+              <tbody id="taskBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- SCHEDULE -->
+      <div class="view" id="view-schedule">
+
+        <div class="hero-row">
+
+          <div class="hero">
+
+            <div class="eyebrow">Schedule</div>
+
+            <h1>Shape the week.</h1>
+
+            <p>
+              Keep planned time visible without turning NEXA into a rigid timetable.
+            </p>
+
+          </div>
+
+          <button class="btn primary" id="eventAdd">
+            <i data-lucide="plus" width="13"></i>
+            Add block
+          </button>
+
+        </div>
+
+
+        <section class="panel">
+
+          <div class="ph">
+
+            <div>
+
+              <div class="pt">Week</div>
+
+              <div class="ps">
+                Simple planned time.
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="pb">
+
+            <div class="schedule" id="schedule"></div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+      <!-- FOCUS -->
+      <div class="view" id="view-focus">
+
+        <div class="hero-row">
+
+          <div class="hero">
+
+            <div class="eyebrow">Focus</div>
+
+            <h1>One thing. For now.</h1>
+
+            <p>
+              Protect your attention around the task NEXA thinks matters most.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="focusgrid">
+
+          <section class="focuscard">
+
+            <div class="status" id="fstatus">
+              Ready
+            </div>
+
+            <div class="focustitle" id="ftitle">
+              Choose a task
+            </div>
+
+            <div class="focuscourse" id="fcourse">
+              Your next action will appear here.
+            </div>
+
+            <div class="timer" id="timer">
+              25:00
+            </div>
+
+            <div class="focusbuttons">
+
+              <button class="btn primary" id="timerStart">
+                <i data-lucide="play" width="13"></i>
+                Start
+              </button>
+
+              <button class="btn" id="timerPause">
+                Pause
+              </button>
+
+              <button class="btn" id="timerReset">
+                Reset
+              </button>
+
+            </div>
+
+            <div class="focusnote">
+              Starting focus does not mark work complete.
+              Finish the work, then complete the task.
+            </div>
+
+          </section>
+
+
+          <section class="panel">
+
+            <div class="ph">
+
+              <div>
+
+                <div class="pt">Next up</div>
+
+                <div class="ps">
+                  NEXA's current queue.
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="pb" id="queue"></div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+
+      <!-- INSIGHTS -->
+      <div class="view" id="view-insights">
+
+        <div class="hero-row">
+
+          <div class="hero">
+
+            <div class="eyebrow">Insights</div>
+
+            <h1>Patterns, not pressure.</h1>
+
+            <p>
+              Statistics live here so your Home screen can stay focused on your next move.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="two">
+
+          <section class="panel">
+
+            <div class="ph">
+
+              <div>
+
+                <div class="pt">Progress</div>
+
+                <div class="ps">
+                  Simple numbers for the week.
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="pb">
+
+              <div class="progress">
+
+                <div class="pbox">
+                  <div class="pnum" id="weekDone">0</div>
+                  <div class="plabel">
+                    Tasks completed this week
+                  </div>
+                </div>
+
+                <div class="pbox">
+                  <div class="pnum" id="weekFocus">0m</div>
+                  <div class="plabel">
+                    Focus time this week
+                  </div>
+                </div>
+
+              </div>
+
+              <div style="height:14px"></div>
+
+              <canvas id="chart" height="160"></canvas>
+
+            </div>
+
+          </section>
+
+
+          <section class="panel">
+
+            <div class="ph">
+
+              <div>
+
+                <div class="pt">One useful pattern</div>
+
+                <div class="ps">
+                  Based on local history.
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="pb">
+
+              <div class="insight">
+
+                <div class="iicon">
+                  <i data-lucide="brain" width="14"></i>
+                </div>
+
+                <div>
+
+                  <h3 id="patternTitle">
+                    Build your pattern.
+                  </h3>
+
+                  <p id="patternBody">
+                    Complete a few tasks and NEXA can tell you something useful about how you work.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- MOBILE NAV -->
+  <nav class="bottom">
+
+    <button class="active" data-view="home">
+      <i data-lucide="house"></i>
+      <span>Home</span>
+    </button>
+
+    <button data-view="tasks">
+      <i data-lucide="check-square"></i>
+      <span>Tasks</span>
+    </button>
+
+    <button data-view="schedule">
+      <i data-lucide="calendar-days"></i>
+      <span>Schedule</span>
+    </button>
+
+    <button data-view="focus">
+      <i data-lucide="timer"></i>
+      <span>Focus</span>
+    </button>
+
+    <button data-view="insights">
+      <i data-lucide="more-horizontal"></i>
+      <span>More</span>
+    </button>
+
+  </nav>
+
+
+  <div class="user-menu" id="userMenu">
+
+    <button id="accountEmail">
+      Account
+    </button>
+
+    <button id="logoutBtn">
+      Log out
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ONBOARDING -->
+<div class="onboard" id="onboard">
+
+  <div class="onwrap">
+
+    <div class="ontop">
+
+      <div class="brand" style="padding:0">
+
+        <svg class="logo" viewBox="0 0 32 32" fill="none">
+          <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
+                fill="#7C5CFF"/>
+        </svg>
+
+        <div class="brandname">
+          NEXA
+        </div>
+
+      </div>
+
+      <div class="onstep" id="onstep">
+        1 / 5
+      </div>
+
+    </div>
+
+    <div class="onbar">
+      <span id="onfill"></span>
+    </div>
+
+    <div id="onbody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- TASK MODAL -->
+<div class="modalbg" id="taskModal">
+
+  <div class="modal">
+
+    <div class="modalhead">
+
+      <h2>
+        What do you need to get done?
+      </h2>
+
+      <button class="x" id="taskClose">
+        <i data-lucide="x"></i>
+      </button>
+
+    </div>
+
+
+    <form id="taskForm">
+
+      <div class="field">
+
+        <input
+          class="control"
+          id="ttitle"
+          required
+          placeholder="e.g. Finish Mathematics assignment">
+
+      </div>
+
+      <div class="field">
+
+        <label>Optional context</label>
+
+        <input
+          class="control"
+          id="tcourse"
+          placeholder="Course or project">
+
+      </div>
+
+      <div class="field">
+
+        <label>When is it due?</label>
+
+        <input
+          class="control"
+          id="tdue"
+          type="date">
+
+      </div>
+
+      <div class="field">
+
+        <label>How long will it take?</label>
+
+        <div class="quick" id="effort">
+
+          <button type="button" class="qbtn" data-v="15">
+            15 min
+          </button>
+
+          <button type="button" class="qbtn active" data-v="30">
+            30 min
+          </button>
+
+          <button type="button" class="qbtn" data-v="60">
+            1 hour
+          </button>
+
+          <button type="button" class="qbtn" data-v="90">
+            1.5 hours
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>How important is it?</label>
+
+        <div class="quick" id="priority">
+
+          <button type="button" class="qbtn" data-v="high">
+            Important
+          </button>
+
+          <button type="button" class="qbtn active" data-v="medium">
+            Useful
+          </button>
+
+          <button type="button" class="qbtn" data-v="low">
+            Optional
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>How difficult does it feel?</label>
+
+        <div class="quick" id="energy">
+
+          <button type="button" class="qbtn" data-v="low">
+            Light
+          </button>
+
+          <button type="button" class="qbtn active" data-v="medium">
+            Medium
+          </button>
+
+          <button type="button" class="qbtn" data-v="high">
+            Heavy
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="modalfoot">
+
+        <button type="button" class="btn" id="taskCancel">
+          Cancel
+        </button>
+
+        <button class="btn primary">
+          Add task
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- EVENT MODAL -->
+<div class="modalbg" id="eventModal">
+
+  <div class="modal">
+
+    <div class="modalhead">
+
+      <h2>
+        Add a time block
+      </h2>
+
+      <button class="x" id="eventClose">
+        <i data-lucide="x"></i>
+      </button>
+
+    </div>
+
+
+    <form id="eventForm">
+
+      <div class="field">
+
+        <label>What is this block for?</label>
+
+        <input
+          class="control"
+          id="etitle"
+          required
+          placeholder="Deep work, class, gym...">
+
+      </div>
+
+      <div class="field">
+
+        <label>Date</label>
+
+        <input
+          class="control"
+          id="edate"
+          type="date"
+          required>
+
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+        <div class="field">
+
+          <label>Start</label>
+
+          <input
+            class="control"
+            id="etime"
+            type="time"
+            value="10:00">
+
+        </div>
+
+        <div class="field">
+
+          <label>Duration</label>
+
+          <select class="control" id="edur">
+
+            <option value="30">
+              30 min
+            </option>
+
+            <option value="60" selected>
+              1 hour
+            </option>
+
+            <option value="90">
+              1.5 hours
+            </option>
+
+            <option value="120">
+              2 hours
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="modalfoot">
+
+        <button type="button" class="btn" id="eventCancel">
+          Cancel
+        </button>
+
+        <button class="btn primary">
+          Add block
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
 <div class="toast" id="toast"></div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script>
-const REAL='nexa-real-v3',DEMO='nexa-demo-v3',ON='nexa-onboarding-v3';
-let demoMode=location.hash==='#demo';
-let selected=null;let chart=null;let timer=null,tsec=1500;
-const blank=()=>({onboarded:false,profile:{name:'',goal:'',day:'',focus:'30',mainGoal:''},tasks:[],events:[],focusLog:[],history:[]});
-const demoData=()=>({onboarded:true,profile:{name:'Alex',goal:'Do well this semester',day:'Balanced',focus:'60',mainGoal:'Finish my core coursework'},tasks:[
-{id:uid(),title:'Finish Mathematics Assignment',course:'Mathematics',due:add(1),effort:60,priority:'high',energy:'high',postponed:0,done:false,created:today()},
-{id:uid(),title:'Review Operating Systems notes',course:'Operating Systems',due:add(2),effort:30,priority:'medium',energy:'medium',postponed:0,done:false,created:today()},
-{id:uid(),title:'Plan Web Engineering project',course:'Web Engineering',due:add(4),effort:45,priority:'medium',energy:'medium',postponed:0,done:false,created:today()},
-{id:uid(),title:'Read Distributed Systems chapter',course:'Distributed Systems',due:add(5),effort:30,priority:'low',energy:'low',postponed:0,done:false,created:today()}],events:[
-{id:uid(),title:'Mathematics',date:today(),time:'09:00',duration:60},{id:uid(),title:'Deep work',date:today(),time:'16:30',duration:60},{id:uid(),title:'Operating Systems',date:add(1),time:'10:00',duration:60},{id:uid(),title:'Project block',date:add(2),time:'17:00',duration:90}],focusLog:[],history:[]});
-function uid(){return Math.random().toString(36).slice(2,10)}function today(){return new Date().toISOString().slice(0,10)}function add(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)}function days(s){return s?Math.round((new Date(s+'T12:00:00')-new Date(today()+'T12:00:00'))/86400000):999}function fmt(s){return s?new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(s+'T12:00:00')):'—'}function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function load(k){try{return JSON.parse(localStorage.getItem(k))}catch{return null}}
-/* NEXA CLOUD AUTH + DATA. Add your Supabase project URL and public publishable/anon key. Never use service_role in this file. */
-const SUPABASE_URL = 'https://qcoujplmocfldmqzwfiq.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_OfE8ammeYnzjkDCkf9th8A_md1L3VbQ';
-const CLOUD_READY=!SUPABASE_URL.startsWith('YOUR_')&&!SUPABASE_KEY.startsWith('YOUR_');
-const sb=CLOUD_READY?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
-let currentUser=null;
-let state=demoMode?(load(DEMO)||demoData()):blank();
-let cloudSaveTimer=null;
-function showAuth(){document.getElementById('authScreen').classList.remove('hide')}function hideAuth(){document.getElementById('authScreen').classList.add('hide')}
-function authMessage(msg,isError=true){const el=document.getElementById('authError');el.textContent=msg||'';el.style.color=isError?'#FF9BA4':'#82E5AC'}
-function normalizeIdentifier(v){const raw=v.trim();if(raw.includes('@'))return{type:'email',value:raw.toLowerCase()};const digits=raw.replace(/[\s().-]/g,'');if(/^\+?[0-9]{8,15}$/.test(digits))return{type:'phone',value:digits.startsWith('+')?digits:'+'+digits};return null}
-async function cloudLoad(){if(!sb||!currentUser)return blank();const {data,error}=await sb.from('nexa_user_data').select('data').eq('user_id',currentUser.id).maybeSingle();if(error)throw error;return data?.data||blank()}
-async function cloudSave(){if(!sb||!currentUser||demoMode)return;clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(async()=>{const {error}=await sb.from('nexa_user_data').upsert({user_id:currentUser.id,data:state,updated_at:new Date().toISOString()},{onConflict:'user_id'});if(error)console.error('NEXA cloud save:',error)},250)}
-function save(){if(demoMode)localStorage.setItem(DEMO,JSON.stringify(state));else cloudSave();renderAll()}
-async function loadCloudUser(user){currentUser=user;try{state=await cloudLoad();state.profile=state.profile||blank().profile;if(!state.profile.name&&user.user_metadata?.name){state.profile.name=user.user_metadata.name;await cloudSave()}}catch(e){console.error(e);state=blank();toast('Could not load your cloud data')}hideAuth();onboard();renderAll()}
-async function logout(){if(demoMode){demoMode=false;localStorage.removeItem(DEMO);history.replaceState(null,'',location.pathname+location.search);state=blank();renderAll();return}if(sb)await sb.auth.signOut();currentUser=null;state=blank();hideAuth();showAuth();document.getElementById('authForm').reset();toast('Logged out')}
-function toast(m){const x=document.getElementById('toast');x.textContent=m;x.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>x.classList.remove('show'),2100)}
-function nav(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+v));document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===v));document.getElementById('topTitle').textContent=v[0].toUpperCase()+v.slice(1);if(v==='insights')setTimeout(renderInsights,10);scrollTo({top:0,behavior:'smooth'})}document.addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)nav(b.dataset.view)});
-function rank(t,available=60){if(t.done)return-1;const d=days(t.due);let s=d<0?110:d===0?95:d===1?80:d===2?62:d<=4?40:18;s+=({high:35,medium:20,low:7}[t.priority]||0);s+=Math.max(0,13-(t.effort||30)/8);s+=({high:8,medium:4,low:1}[t.energy]||0);s+=Math.min(15,(t.postponed||0)*6);if((t.effort||30)<=available)s+=6;return s}
-function openTasks(){return state.tasks.filter(t=>!t.done).sort((a,b)=>rank(b)-rank(a))}function nextTask(){return openTasks()[0]||null}function why(t){if(!t)return'Add something you want to accomplish.';const r=[];if(t.priority==='high')r.push('high priority');const d=days(t.due);if(d<0)r.push('overdue');else if(d===0)r.push('due today');else if(d===1)r.push('due tomorrow');else if(d<=2)r.push('due soon');if((t.postponed||0)>0)r.push('you’ve postponed it before');if(t.effort<=30)r.push('it fits a short focus block');return'Recommended because it is '+(r.slice(0,2).join(' and ')||'the strongest next step from your current queue')+'.'}
-function renderShell(){const name=state.profile.name||'Welcome';document.getElementById('pname').textContent=name;document.getElementById('pfocus').textContent=state.profile.goal||'New workspace';document.getElementById('avatar').textContent=name==='Welcome'?'?':name.split(/\s+/).map(x=>x[0]).slice(0,2).join('').toUpperCase();document.getElementById('demoBanner').classList.toggle('show',demoMode);document.getElementById('sideDemo').classList.toggle('show',demoMode)}
-function taskHTML(t){const d=days(t.due),dl=d<0?'Overdue':d===0?'Today':d===1?'Tomorrow':fmt(t.due);return`<div class="taskrow"><button class="check" data-tog="${t.id}"></button><div><strong>${esc(t.title)}</strong><small>${t.effort} min · ${esc(t.course||'General')}</small></div><div class="rmeta">${dl}<br><span class="prio ${t.priority}">${t.priority}</span></div></div>`}
-function insight(){const done=state.tasks.filter(t=>t.done&&t.completedAt).length;if(done<3)return['Build your pattern.','Complete a few real tasks and NEXA will surface an observation about how you work.'];const early=state.history.filter(h=>h.hour<11).length;if(early>=2)return['You often finish difficult work early.','Your recent completions suggest mornings may be a strong window for demanding work.'];return['Consistency is building.','You’re completing meaningful work. Keep the next action small enough to start without debate.']}
-function renderHome(){const empty=document.getElementById('homeEmpty'),content=document.getElementById('homeContent');if(!state.onboarded||!state.tasks.length){empty.style.display='block';content.style.display='none';return}empty.style.display='none';content.style.display='block';document.getElementById('greeting').textContent=`${new Date().getHours()<12?'Good morning':new Date().getHours()<18?'Good afternoon':'Good evening'}, ${state.profile.name}.`;const t=nextTask();selected=t?.id||null;document.getElementById('nextTitle').textContent=t?t.title:'Nothing urgent right now.';document.getElementById('nextMeta').innerHTML=t?`<span class="meta">${days(t.due)<0?'Overdue':days(t.due)===0?'Due today':days(t.due)===1?'Due tomorrow':'Due '+fmt(t.due)}</span><span class="meta">${t.effort} minutes</span><span class="meta">${t.priority==='high'?'High priority':t.priority==='medium'?'Medium priority':'Low priority'}</span>`:'<span class="meta">Your queue is clear</span>';document.getElementById('whyText').textContent=why(t);document.getElementById('todayTasks').innerHTML=openTasks().slice(0,3).map(taskHTML).join('')||'<div style="font-size:10px;color:var(--muted);padding:10px 2px">Nothing is waiting for you.</div>';const es=state.events.filter(e=>e.date===today()).sort((a,b)=>a.time.localeCompare(b.time));document.getElementById('todayTimeline').innerHTML=es.slice(0,4).map(e=>`<div class="titem"><div class="ttime">${e.time}</div><div class="etitle">${esc(e.title)}</div><div class="emeta">${e.duration} min</div></div>`).join('')||'<div style="font-size:10px;color:var(--muted)">No planned blocks. Keep it flexible.</div>';const done=state.tasks.filter(x=>x.done&&x.completedAt===today()).length;const target=Math.max(done,state.tasks.filter(x=>x.created===today()||x.due===today()).length);document.getElementById('doneToday').textContent=`${done}/${target}`;const mins=state.focusLog.filter(x=>x.date===today()).reduce((a,x)=>a+x.minutes,0);document.getElementById('focusToday').textContent=mins>=60?`${Math.floor(mins/60)}h ${mins%60?' '+mins%60+'m':''}`:`${mins}m`;const i=insight();document.getElementById('insightTitle').textContent=i[0];document.getElementById('insightBody').textContent=i[1]}
-function renderTasks(){let arr=[...state.tasks],f=document.querySelector('.filter.active')?.dataset.f||'all',q=(document.getElementById('search')?.value||'').toLowerCase();if(f==='open')arr=arr.filter(t=>!t.done);if(f==='done')arr=arr.filter(t=>t.done);if(q)arr=arr.filter(t=>(t.title+' '+(t.course||'')).toLowerCase().includes(q));arr.sort((a,b)=>(a.done-b.done)||rank(b)-rank(a));document.getElementById('taskSummary').textContent=`${state.tasks.filter(t=>!t.done).length} open · ${state.tasks.filter(t=>t.done).length} completed`;document.getElementById('taskBody').innerHTML=arr.map(t=>`<tr><td><div style="display:flex;align-items:center;gap:8px"><button class="check ${t.done?'done':''}" data-tog="${t.id}">${t.done?'<i data-lucide="check" width="11"></i>':''}</button><div><b style="font-size:9px;${t.done?'text-decoration:line-through;opacity:.5':''}">${esc(t.title)}</b><div style="font-size:7px;color:var(--dim);margin-top:3px">${esc(t.course||'General')}</div></div></div></td><td>${fmt(t.due)}</td><td><span class="prio ${t.priority}">${t.priority}</span></td><td>${t.effort} min</td><td>${t.energy}</td><td><button class="btn" style="padding:6px" data-del="${t.id}"><i data-lucide="trash-2" width="11"></i></button></td></tr>`).join('')||'<tr><td colspan="6"><div style="text-align:center;padding:30px;color:var(--dim);font-size:9px">No tasks here.</div></td></tr>'}
-function renderSchedule(){const base=new Date();base.setDate(base.getDate()-((base.getDay()+6)%7));const ds=Array.from({length:7},(_,i)=>{const d=new Date(base);d.setDate(base.getDate()+i);return{d,s:d.toISOString().slice(0,10)}}),times=['08:00','10:00','12:00','14:00','16:00','18:00'];let h='<div class="cell headcell"><div class="timecell">TIME</div></div>'+ds.map(x=>`<div class="cell headcell"><div class="day">${new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(x.d)}<small>${x.d.getDate()}</small></div></div>`).join('');for(const tm of times){h+=`<div class="cell"><div class="timecell">${tm}</div></div>`;for(const d of ds){const items=state.events.filter(e=>e.date===d.s&&Math.abs(parseInt(e.time)-parseInt(tm))<2);h+=`<div class="cell">${items.map(e=>`<div class="eblock"><b>${esc(e.title)}</b><small>${e.time} · ${e.duration}m</small></div>`).join('')}</div>`}}document.getElementById('schedule').innerHTML=h}
-function renderFocus(){const t=state.tasks.find(x=>x.id===selected)||nextTask();document.getElementById('ftitle').textContent=t?t.title:'Choose a task';document.getElementById('fcourse').textContent=t?`${t.course||'General'} · ${t.effort} min · ${t.energy} energy`:'Your next action will appear here.';document.getElementById('fstatus').textContent=timer?'Focusing':'Ready';document.getElementById('queue').innerHTML=openTasks().slice(0,5).map(x=>`<div class="queueitem"><div><div class="qtitle">${esc(x.title)}</div><div class="qmeta">${x.effort} min · ${x.priority}</div></div><button class="link" data-pick="${x.id}">Choose</button></div>`).join('')||'<div style="font-size:9px;color:var(--muted)">No open tasks.</div>'}
-function renderInsights(){const done=state.tasks.filter(t=>t.done&&t.completedAt>=add(-6)).length,mins=state.focusLog.filter(x=>x.date>=add(-6)).reduce((a,x)=>a+x.minutes,0);document.getElementById('weekDone').textContent=done;document.getElementById('weekFocus').textContent=mins>=60?`${Math.floor(mins/60)}h ${mins%60?' '+mins%60+'m':''}`:`${mins}m`;const i=insight();document.getElementById('patternTitle').textContent=i[0];document.getElementById('patternBody').textContent=i[1];if(window.Chart){const labels=[],vals=[];for(let n=6;n>=0;n--){const d=add(-n);labels.push(new Intl.DateTimeFormat(undefined,{weekday:'short'}).format(new Date(d+'T12:00:00')));vals.push(state.tasks.filter(t=>t.done&&t.completedAt===d).length)}chart?.destroy();chart=new Chart(document.getElementById('chart'),{type:'line',data:{labels,datasets:[{data:vals,borderColor:'#7C5CFF',backgroundColor:'rgba(124,92,255,.08)',fill:true,tension:.35,pointRadius:3}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#697486',font:{size:8}}},y:{beginAtZero:true,ticks:{color:'#697486',font:{size:8},precision:0},grid:{color:'rgba(255,255,255,.04)'}}}}})}}
-function renderAll(){renderShell();renderHome();renderTasks();renderSchedule();renderFocus();renderInsights();lucide.createIcons();updateTimer()}
-function openTask(){document.getElementById('taskModal').classList.add('show');document.getElementById('tdue').value=today();setTimeout(()=>document.getElementById('ttitle').focus(),40)}function closeTask(){document.getElementById('taskModal').classList.remove('show')}
-function openEvent(){document.getElementById('eventModal').classList.add('show');document.getElementById('edate').value=today();setTimeout(()=>document.getElementById('etitle').focus(),40)}function closeEvent(){document.getElementById('eventModal').classList.remove('show')}
-function bindQuick(id){document.querySelectorAll('#'+id+' .qbtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' .qbtn').forEach(x=>x.classList.remove('active'));b.classList.add('active')})}
-bindQuick('effort');bindQuick('priority');bindQuick('energy');document.getElementById('quickAdd').onclick=openTask;document.getElementById('homeAdd').onclick=openTask;document.getElementById('taskAdd').onclick=openTask;document.getElementById('createFirst').onclick=openTask;document.getElementById('taskClose').onclick=closeTask;document.getElementById('taskCancel').onclick=closeTask;document.getElementById('eventAdd').onclick=openEvent;document.getElementById('eventClose').onclick=closeEvent;document.getElementById('eventCancel').onclick=closeEvent;document.getElementById('allTasks').onclick=()=>nav('tasks');document.getElementById('seeInsights').onclick=()=>nav('insights');document.getElementById('startFocus').onclick=()=>{if(!selected){toast('Add a task first');return}nav('focus')};document.getElementById('search').oninput=renderTasks;document.querySelectorAll('.filter').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTasks()});
-document.getElementById('taskForm').onsubmit=e=>{e.preventDefault();const pick=id=>document.querySelector('#'+id+' .qbtn.active')?.dataset.v;state.tasks.push({id:uid(),title:document.getElementById('ttitle').value.trim(),course:document.getElementById('tcourse').value.trim(),due:document.getElementById('tdue').value,effort:+(pick('effort')||30),priority:pick('priority')||'medium',energy:pick('energy')||'medium',postponed:0,done:false,created:today()});closeTask();save();toast('Task added');nav('home')};document.getElementById('eventForm').onsubmit=e=>{e.preventDefault();state.events.push({id:uid(),title:document.getElementById('etitle').value.trim(),date:document.getElementById('edate').value,time:document.getElementById('etime').value,duration:+document.getElementById('edur').value});closeEvent();save();toast('Time block added')};
-document.addEventListener('click',e=>{const b=e.target.closest('[data-tog]');if(b){const t=state.tasks.find(x=>x.id===b.dataset.tog);t.done=!t.done;t.completedAt=t.done?today():null;if(t.done){state.history.push({taskId:t.id,hour:new Date().getHours()})}save();toast(t.done?'Task completed':'Task reopened');nav('home')}const d=e.target.closest('[data-del]');if(d){state.tasks=state.tasks.filter(x=>x.id!==d.dataset.del);save();toast('Task deleted')}const p=e.target.closest('[data-pick]');if(p){selected=p.dataset.pick;renderFocus();nav('focus')}});
-document.getElementById('chooseAnother').onclick=()=>{const a=openTasks();if(a.length<2){toast('There is only one open task');return}const current=state.tasks.find(x=>x.id===selected);if(current)current.postponed=(current.postponed||0)+1;const next=a.find(x=>x.id!==selected);selected=next?.id||selected;save();toast('Showing another next action')};
-function updateTimer(){document.getElementById('timer').textContent=`${String(Math.floor(tsec/60)).padStart(2,'0')}:${String(tsec%60).padStart(2,'0')}`}document.getElementById('timerStart').onclick=()=>{const t=state.tasks.find(x=>x.id===selected)||nextTask();if(!t){toast('Add a task first');nav('tasks');return}selected=t.id;if(timer)return;timer=setInterval(()=>{tsec--;updateTimer();if(tsec<=0){clearInterval(timer);timer=null;const minutes=Math.max(1,Math.ceil((t.effort||25)));state.focusLog.push({date:today(),minutes,taskId:t.id});save();toast('Focus block complete')}},1000);renderFocus()};document.getElementById('timerPause').onclick=()=>{if(timer){clearInterval(timer);timer=null;renderFocus()}};document.getElementById('timerReset').onclick=()=>{clearInterval(timer);timer=null;tsec=1500;renderFocus();updateTimer()};
-document.getElementById('tryDemo').onclick=()=>{demoMode=true;state=demoData();localStorage.setItem(DEMO,JSON.stringify(state));location.hash='demo';renderAll();toast('Demo mode started')};document.getElementById('exitDemo').onclick=()=>{demoMode=false;localStorage.removeItem(DEMO);history.replaceState(null,'',location.pathname+location.search);state=load(REAL)||blank();renderAll();nav('home');toast('Demo mode exited')};
-document.getElementById('themeBtn').onclick=()=>{const light=document.documentElement.dataset.theme==='light';document.documentElement.dataset.theme=light?'light-off':'light';let s=document.getElementById('light');if(!s){s=document.createElement('style');s.id='light';document.head.appendChild(s)}s.textContent=light?'':`:root[data-theme="light"]{--bg:#F5F7FB;--surface:#fff;--text:#161B27;--muted:#5F697A;--dim:#7C8694;--line:rgba(20,25,38,.10)}:root[data-theme="light"] .side{background:#FBFCFF}:root[data-theme="light"] .topbar{background:rgba(245,247,251,.9)}:root[data-theme="light"] .modal{background:#fff}:root[data-theme="light"] .control{background:#fff}`};
-// onboarding
-function onboard(){if(state.onboarded||demoMode){document.getElementById('onboard').classList.remove('show');return}document.getElementById('onboard').classList.add('show');const saved=load(ON)||{step:1,a:{}};const steps=[
-['What’s your name?','Just first name is enough.','input','name','e.g. Siddarth'],
-['What are you working toward?','A broad goal is perfect.','input','goal','e.g. Do well this semester'],
-['What does your typical day look like?','Pick the rhythm that feels closest.','choices','day',['Structured','Balanced','Flexible']],
-['How long can you usually focus?','This helps NEXA recommend realistic work.','choices','focus',['15 minutes','30 minutes','60 minutes','90+ minutes']],
-['What’s the most important thing you want to accomplish?','This becomes your first north star.','input','mainGoal','e.g. Finish my core coursework']];const [q,sub,type,key,opt]=steps[saved.step-1];document.getElementById('onstep').textContent=`${saved.step} / 5`;document.getElementById('onfill').style.width=(saved.step/5*100)+'%';let h=`<h1 class="question">${q}</h1><div class="qsub">${sub}</div>`;if(type==='input')h+=`<input autofocus id="oninput" class="answer" value="${esc(saved.a[key]||'')}" placeholder="${opt}">`;else h+=`<div class="choices">${opt.map(x=>`<button class="choice ${saved.a[key]===x?'active':''}" data-choice="${esc(x)}">${x}</button>`).join('')}</div>`;h+=`<div class="onbottom"><span class="mutedtiny">${saved.step===1?'You can change this later.':''}</span><div style="display:flex;gap:7px">${saved.step>1?'<button class="btn" id="back">Back</button>':''}<button class="btn primary" id="next">${saved.step===5?'Finish':'Continue'}<i data-lucide="arrow-right" width="13"></i></button></div></div>`;document.getElementById('onbody').innerHTML=h;lucide.createIcons();document.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{saved.a[key]=b.dataset.choice;localStorage.setItem(ON,JSON.stringify(saved));onboard()});document.getElementById('next').onclick=()=>{if(type==='input'){const v=document.getElementById('oninput').value.trim();if(!v){toast('A quick answer is enough');return}saved.a[key]=v}if(saved.step===5){state.onboarded=true;state.profile={...state.profile,...saved.a};localStorage.removeItem(ON);save();document.getElementById('onboard').classList.remove('show');toast('Your NEXA is ready');return}saved.step++;localStorage.setItem(ON,JSON.stringify(saved));onboard()};if(document.getElementById('back'))document.getElementById('back').onclick=()=>{saved.step--;localStorage.setItem(ON,JSON.stringify(saved));onboard()}}
 
-let authMode='login',pendingPhone=null;
-function setAuthMode(mode){authMode=mode;document.getElementById('loginTab').classList.toggle('active',mode==='login');document.getElementById('signupTab').classList.toggle('active',mode==='signup');document.getElementById('authTitle').textContent=mode==='login'?'Welcome back.':'Create your NEXA.';document.getElementById('authSubtitle').textContent=mode==='login'?'Log in with your email or mobile number.':'Create your account with email or mobile number.';document.getElementById('authNameWrap').style.display=mode==='signup'?'block':'none';document.getElementById('authSubmit').textContent=mode==='login'?'Log in':'Create account';document.getElementById('authError').textContent='';document.getElementById('authOtpWrap').style.display='none'}
-document.getElementById('loginTab').onclick=()=>setAuthMode('login');document.getElementById('signupTab').onclick=()=>setAuthMode('signup');
-document.getElementById('authForm').onsubmit=async e=>{e.preventDefault();if(!CLOUD_READY){authMessage('Connect NEXA to Supabase first. Add your Project URL and public publishable/anon key in index.html.');return}const email=document.getElementById('authEmail').value.trim().toLowerCase();const phone=document.getElementById('authPhone').value.trim();const password=document.getElementById('authPassword').value;const name=document.getElementById('authName').value.trim();if(!email&&!phone){authMessage('Enter your email or mobile number.');return}if(email&&phone){authMessage('Please use either email or mobile number, not both.');return}if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){authMessage('Enter a valid email address.');return}if(phone&&!/^\+?[0-9\s().-]{8,18}$/.test(phone)){authMessage('Enter a valid mobile number, preferably with country code.');return}if(password.length<6){authMessage('Password must be at least 6 characters.');return}if(authMode==='signup'&&!name){authMessage('Please enter your name.');return}const submit=document.getElementById('authSubmit');submit.disabled=true;authMessage('Working…',false);try{if(authMode==='signup'){const creds=email?{email,password,options:{data:{name}}}:{phone:phone.replace(/[\s().-]/g,''),password,options:{channel:'sms',data:{name}}};const {data,error}=await sb.auth.signUp(creds);if(error)throw error;if(phone){pendingPhone=phone.replace(/[\s().-]/g,'');document.getElementById('authOtpWrap').style.display='block';authMessage('We sent a 6-digit verification code to your mobile number.',false)}else if(data.session){await loadCloudUser(data.user);toast('Account created')}else authMessage('Check your email to verify your account, then log in.',false)}else{const creds=email?{email,password}:{phone:phone.replace(/[\s().-]/g,''),password};const {data,error}=await sb.auth.signInWithPassword(creds);if(error)throw error;await loadCloudUser(data.user);toast('Welcome back')}}catch(err){console.error(err);authMessage(err.message||'Authentication failed.')}finally{submit.disabled=false}};
-document.getElementById('verifyOtpBtn').onclick=async()=>{if(!sb||!pendingPhone)return;const token=document.getElementById('authOtp').value.trim();if(!/^\d{6}$/.test(token)){authMessage('Enter the 6-digit verification code.');return}try{const {data,error}=await sb.auth.verifyOtp({phone:pendingPhone,token,type:'sms'});if(error)throw error;await loadCloudUser(data.user);toast('Mobile number verified')}catch(err){authMessage(err.message||'Could not verify the code.')}};
-document.getElementById('resendOtpBtn').onclick=async()=>{if(!sb||!pendingPhone)return;try{const {error}=await sb.auth.signInWithOtp({phone:pendingPhone});if(error)throw error;authMessage('A new verification code was sent.',false)}catch(err){authMessage(err.message||'Could not resend the code.')}};
-document.getElementById('profileBtn').onclick=()=>document.getElementById('userMenu').classList.toggle('show');document.getElementById('logoutBtn').onclick=logout;document.addEventListener('click',e=>{if(!e.target.closest('#profileBtn')&&!e.target.closest('#userMenu'))document.getElementById('userMenu').classList.remove('show')});document.getElementById('accountEmail').onclick=()=>toast(currentUser?.email||currentUser?.phone||'Cloud account');
-if(!CLOUD_READY){document.getElementById('cloudHint').style.display='block'}
-if(demoMode){hideAuth();renderAll();onboard()}else if(sb){sb.auth.getSession().then(async({data})=>{if(data.session)await loadCloudUser(data.session.user);else{showAuth();renderAll()}});sb.auth.onAuthStateChange(async(event,session)=>{if(session&&!currentUser)await loadCloudUser(session.user);if(!session&&!demoMode){currentUser=null;state=blank();showAuth();renderAll()}})}else{showAuth();renderAll()}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<script>
+
+/* =========================================================
+   NEXA SUPABASE CONFIGURATION
+   ========================================================= */
+
+const SUPABASE_URL =
+  'https://qcoujplmocfldmqzwfiq.supabase.co';
+
+const SUPABASE_KEY =
+  'sb_publishable_OfE8ammeYnzjkDCkf9th8A_md1L3VbQ';
+
+const NEXA_SITE_URL =
+  'https://siddarthturpu-dot.github.io/nexa/';
+
+const CLOUD_READY =
+  Boolean(SUPABASE_URL && SUPABASE_KEY);
+
+const sb =
+  CLOUD_READY
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY,
+        {
+          auth:{
+            persistSession:true,
+            autoRefreshToken:true,
+            detectSessionInUrl:true
+          }
+        }
+      )
+    : null;
+
+
+/* =========================================================
+   STORAGE / STATE
+   ========================================================= */
+
+const REAL = 'nexa-real-v4';
+const DEMO = 'nexa-demo-v4';
+const ON = 'nexa-onboarding-v4';
+
+let demoMode = location.hash === '#demo';
+let selected = null;
+let chart = null;
+let timer = null;
+let tsec = 1500;
+let currentUser = null;
+let pendingPhone = null;
+let authMode = 'login';
+let cloudSaveTimer = null;
+
+
+function blank(){
+  return {
+    onboarded:false,
+
+    profile:{
+      name:'',
+      goal:'',
+      day:'',
+      focus:'30',
+      mainGoal:''
+    },
+
+    tasks:[],
+    events:[],
+    focusLog:[],
+    history:[]
+  };
+}
+
+
+function uid(){
+  return Math.random()
+    .toString(36)
+    .slice(2,10);
+}
+
+
+function today(){
+  return new Date()
+    .toISOString()
+    .slice(0,10);
+}
+
+
+function add(n){
+  const d = new Date();
+
+  d.setDate(
+    d.getDate()+n
+  );
+
+  return d
+    .toISOString()
+    .slice(0,10);
+}
+
+
+function days(date){
+  if(!date) return 999;
+
+  return Math.round(
+    (
+      new Date(date+'T12:00:00') -
+      new Date(today()+'T12:00:00')
+    ) / 86400000
+  );
+}
+
+
+function fmt(date){
+  if(!date) return '—';
+
+  return new Intl.DateTimeFormat(
+    undefined,
+    {
+      month:'short',
+      day:'numeric'
+    }
+  ).format(
+    new Date(date+'T12:00:00')
+  );
+}
+
+
+function esc(value){
+  return String(value ?? '')
+    .replace(
+      /[&<>"']/g,
+      m => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m])
+    );
+}
+
+
+function load(key){
+  try{
+    return JSON.parse(
+      localStorage.getItem(key)
+    );
+  }catch{
+    return null;
+  }
+}
+
+
+/* =========================================================
+   DEMO
+   ========================================================= */
+
+function demoData(){
+
+  return {
+    onboarded:true,
+
+    profile:{
+      name:'Alex',
+      goal:'Do well this semester',
+      day:'Balanced',
+      focus:'60',
+      mainGoal:'Finish my core coursework'
+    },
+
+    tasks:[
+      {
+        id:uid(),
+        title:'Finish Mathematics Assignment',
+        course:'Mathematics',
+        due:add(1),
+        effort:60,
+        priority:'high',
+        energy:'high',
+        postponed:0,
+        done:false,
+        created:today()
+      },
+
+      {
+        id:uid(),
+        title:'Review Operating Systems notes',
+        course:'Operating Systems',
+        due:add(2),
+        effort:30,
+        priority:'medium',
+        energy:'medium',
+        postponed:0,
+        done:false,
+        created:today()
+      },
+
+      {
+        id:uid(),
+        title:'Plan Web Engineering project',
+        course:'Web Engineering',
+        due:add(4),
+        effort:45,
+        priority:'medium',
+        energy:'medium',
+        postponed:0,
+        done:false,
+        created:today()
+      }
+    ],
+
+    events:[
+      {
+        id:uid(),
+        title:'Mathematics',
+        date:today(),
+        time:'09:00',
+        duration:60
+      },
+
+      {
+        id:uid(),
+        title:'Deep work',
+        date:today(),
+        time:'16:30',
+        duration:60
+      }
+    ],
+
+    focusLog:[],
+    history:[]
+  };
+}
+
+
+let state =
+  demoMode
+    ? (load(DEMO) || demoData())
+    : blank();
+
+
+/* =========================================================
+   AUTH UI
+   ========================================================= */
+
+function showAuth(){
+  document
+    .getElementById('authScreen')
+    .classList.remove('hide');
+}
+
+
+function hideAuth(){
+  document
+    .getElementById('authScreen')
+    .classList.add('hide');
+}
+
+
+function authMessage(
+  message,
+  error = true
+){
+
+  const el =
+    document.getElementById('authError');
+
+  el.textContent =
+    message || '';
+
+  el.style.color =
+    error
+      ? '#FF9BA4'
+      : '#82E5AC';
+}
+
+
+function setAuthMode(mode){
+
+  authMode = mode;
+
+  document
+    .getElementById('loginTab')
+    .classList
+    .toggle('active',mode === 'login');
+
+  document
+    .getElementById('signupTab')
+    .classList
+    .toggle('active',mode === 'signup');
+
+  document
+    .getElementById('authTitle')
+    .textContent =
+      mode === 'login'
+        ? 'Welcome back.'
+        : 'Create your NEXA.';
+
+  document
+    .getElementById('authSubtitle')
+    .textContent =
+      mode === 'login'
+        ? 'Log in with your email or mobile number.'
+        : 'Create your account with email or mobile number.';
+
+  document
+    .getElementById('authNameWrap')
+    .style.display =
+      mode === 'signup'
+        ? 'block'
+        : 'none';
+
+  document
+    .getElementById('authSubmit')
+    .textContent =
+      mode === 'login'
+        ? 'Log in'
+        : 'Create account';
+
+  document
+    .getElementById('authOtpWrap')
+    .style.display =
+      'none';
+
+  authMessage('');
+}
+
+
+document
+  .getElementById('loginTab')
+  .onclick =
+    () => setAuthMode('login');
+
+
+document
+  .getElementById('signupTab')
+  .onclick =
+    () => setAuthMode('signup');
+
+
+/* =========================================================
+   IDENTIFIER VALIDATION
+   ========================================================= */
+
+function normalizePhone(value){
+
+  let phone =
+    value
+      .trim()
+      .replace(/[\s().-]/g,'');
+
+  if(phone.startsWith('00')){
+    phone =
+      '+' + phone.slice(2);
+  }
+
+  if(!phone.startsWith('+')){
+    phone = '+' + phone;
+  }
+
+  return phone;
+}
+
+
+function validPhone(value){
+
+  const phone =
+    normalizePhone(value);
+
+  return /^\+[0-9]{8,15}$/.test(phone);
+}
+
+
+/* =========================================================
+   AUTH SUBMIT
+   ========================================================= */
+
+document
+  .getElementById('authForm')
+  .onsubmit = async function(e){
+
+    e.preventDefault();
+
+    if(!CLOUD_READY){
+
+      authMessage(
+        'Supabase is not connected.'
+      );
+
+      return;
+    }
+
+
+    const email =
+      document
+        .getElementById('authEmail')
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const phoneInput =
+      document
+        .getElementById('authPhone')
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById('authPassword')
+        .value;
+
+
+    const name =
+      document
+        .getElementById('authName')
+        .value
+        .trim();
+
+
+    /*
+      IMPORTANT:
+
+      Email is NOT required.
+
+      Mobile is NOT required.
+
+      Exactly one must be entered.
+    */
+
+    if(!email && !phoneInput){
+
+      authMessage(
+        'Enter your email OR mobile number.'
+      );
+
+      return;
+    }
+
+
+    if(email && phoneInput){
+
+      authMessage(
+        'Please use either email or mobile number, not both.'
+      );
+
+      return;
+    }
+
+
+    if(
+      email &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    ){
+
+      authMessage(
+        'Enter a valid email address.'
+      );
+
+      return;
+    }
+
+
+    if(
+      phoneInput &&
+      !validPhone(phoneInput)
+    ){
+
+      authMessage(
+        'Enter a valid mobile number with country code, for example +919876543210.'
+      );
+
+      return;
+    }
+
+
+    if(password.length < 6){
+
+      authMessage(
+        'Password must be at least 6 characters.'
+      );
+
+      return;
+    }
+
+
+    if(
+      authMode === 'signup' &&
+      !name
+    ){
+
+      authMessage(
+        'Please enter your name.'
+      );
+
+      return;
+    }
+
+
+    const submit =
+      document.getElementById('authSubmit');
+
+    submit.disabled = true;
+
+    authMessage(
+      'Working…',
+      false
+    );
+
+
+    try{
+
+      /* =========================
+         SIGN UP
+         ========================= */
+
+      if(authMode === 'signup'){
+
+        if(email){
+
+          /*
+            EMAIL SIGNUP
+
+            The confirmation link will
+            return to GitHub Pages.
+          */
+
+          const {data,error} =
+            await sb.auth.signUp({
+
+              email:email,
+
+              password:password,
+
+              options:{
+                emailRedirectTo:NEXA_SITE_URL,
+
+                data:{
+                  name:name
+                }
+              }
+
+            });
+
+
+          if(error) throw error;
+
+
+          if(data.session){
+
+            await loadCloudUser(
+              data.user
+            );
+
+            toast(
+              'Account created'
+            );
+
+          }else{
+
+            authMessage(
+              'Account created. Check your email and click Confirm Email. You will return to NEXA.',
+              false
+            );
+
+          }
+
+        }else{
+
+          /*
+            PHONE SIGNUP
+
+            Supabase sends the SMS OTP
+            when Phone Auth is enabled.
+          */
+
+          const phone =
+            normalizePhone(phoneInput);
+
+
+          const {data,error} =
+            await sb.auth.signUp({
+
+              phone:phone,
+
+              password:password,
+
+              options:{
+                data:{
+                  name:name
+                }
+              }
+
+            });
+
+
+          if(error) throw error;
+
+
+          pendingPhone = phone;
+
+
+          document
+            .getElementById('authOtpWrap')
+            .style.display = 'block';
+
+
+          authMessage(
+            'A verification code was sent to your mobile number.',
+            false
+          );
+
+        }
+
+      }
+
+      /* =========================
+         LOGIN
+         ========================= */
+
+      else{
+
+        let data;
+        let error;
+
+
+        if(email){
+
+          ({
+            data,
+            error
+          } =
+            await sb.auth.signInWithPassword({
+
+              email:email,
+              password:password
+
+            }));
+
+        }else{
+
+          const phone =
+            normalizePhone(phoneInput);
+
+
+          ({
+            data,
+            error
+          } =
+            await sb.auth.signInWithPassword({
+
+              phone:phone,
+              password:password
+
+            }));
+
+        }
+
+
+        if(error) throw error;
+
+
+        await loadCloudUser(
+          data.user
+        );
+
+
+        toast(
+          'Welcome back'
+        );
+
+      }
+
+    }catch(err){
+
+      console.error(err);
+
+      authMessage(
+        err.message ||
+        'Authentication failed.'
+      );
+
+    }finally{
+
+      submit.disabled = false;
+
+    }
+
+  };
+
+
+/* =========================================================
+   PHONE OTP VERIFY
+   ========================================================= */
+
+document
+  .getElementById('verifyOtpBtn')
+  .onclick = async function(){
+
+    if(!sb || !pendingPhone){
+
+      authMessage(
+        'Enter your mobile number first.'
+      );
+
+      return;
+    }
+
+
+    const token =
+      document
+        .getElementById('authOtp')
+        .value
+        .trim();
+
+
+    if(!/^\d{6}$/.test(token)){
+
+      authMessage(
+        'Enter the 6-digit verification code.'
+      );
+
+      return;
+    }
+
+
+    try{
+
+      const {data,error} =
+        await sb.auth.verifyOtp({
+
+          phone:pendingPhone,
+
+          token:token,
+
+          type:'sms'
+
+        });
+
+
+      if(error) throw error;
+
+
+      await loadCloudUser(
+        data.user
+      );
+
+
+      toast(
+        'Mobile number verified'
+      );
+
+
+    }catch(err){
+
+      console.error(err);
+
+      authMessage(
+        err.message ||
+        'Could not verify the code.'
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   RESEND SMS
+   ========================================================= */
+
+document
+  .getElementById('resendOtpBtn')
+  .onclick = async function(){
+
+    if(!sb || !pendingPhone){
+
+      authMessage(
+        'Enter your mobile number first.'
+      );
+
+      return;
+    }
+
+
+    try{
+
+      const {error} =
+        await sb.auth.resend({
+
+          type:'sms',
+
+          phone:pendingPhone
+
+        });
+
+
+      if(error) throw error;
+
+
+      authMessage(
+        'A new verification code was sent.',
+        false
+      );
+
+
+    }catch(err){
+
+      console.error(err);
+
+      authMessage(
+        err.message ||
+        'Could not resend the code.'
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   CLOUD DATA
+   ========================================================= */
+
+async function cloudLoad(){
+
+  if(!sb || !currentUser){
+    return blank();
+  }
+
+
+  const {data,error} =
+    await sb
+      .from('nexa_user_data')
+      .select('data')
+      .eq('user_id',currentUser.id)
+      .maybeSingle();
+
+
+  if(error) throw error;
+
+
+  return data?.data || blank();
+}
+
+
+async function cloudSave(){
+
+  if(
+    !sb ||
+    !currentUser ||
+    demoMode
+  ){
+    return;
+  }
+
+
+  clearTimeout(
+    cloudSaveTimer
+  );
+
+
+  cloudSaveTimer =
+    setTimeout(
+      async function(){
+
+        const {error} =
+          await sb
+            .from('nexa_user_data')
+            .upsert(
+              {
+                user_id:currentUser.id,
+                data:state,
+                updated_at:new Date().toISOString()
+              },
+              {
+                onConflict:'user_id'
+              }
+            );
+
+
+        if(error){
+
+          console.error(
+            'NEXA cloud save:',
+            error
+          );
+
+        }
+
+      },
+      300
+    );
+}
+
+
+async function loadCloudUser(user){
+
+  currentUser = user;
+
+
+  try{
+
+    state =
+      await cloudLoad();
+
+
+    state.profile =
+      state.profile ||
+      blank().profile;
+
+
+    if(
+      !state.profile.name &&
+      user.user_metadata?.name
+    ){
+
+      state.profile.name =
+        user.user_metadata.name;
+
+      await cloudSave();
+
+    }
+
+
+  }catch(err){
+
+    console.error(err);
+
+    state = blank();
+
+    toast(
+      'Cloud data could not be loaded. Make sure the NEXA database table exists.'
+    );
+
+  }
+
+
+  hideAuth();
+
+  onboard();
+
+  renderAll();
+}
+
+
+async function logout(){
+
+  if(demoMode){
+
+    demoMode = false;
+
+    localStorage.removeItem(DEMO);
+
+    history.replaceState(
+      null,
+      '',
+      location.pathname +
+      location.search
+    );
+
+    state = blank();
+
+    renderAll();
+
+    return;
+  }
+
+
+  if(sb){
+    await sb.auth.signOut();
+  }
+
+
+  currentUser = null;
+
+  state = blank();
+
+  showAuth();
+
+  document
+    .getElementById('authForm')
+    .reset();
+
+  setAuthMode('login');
+
+  toast('Logged out');
+}
+
+
+/* =========================================================
+   SAVE
+   ========================================================= */
+
+function save(){
+
+  if(demoMode){
+
+    localStorage.setItem(
+      DEMO,
+      JSON.stringify(state)
+    );
+
+  }else{
+
+    cloudSave();
+
+  }
+
+  renderAll();
+}
+
+
+/* =========================================================
+   UI HELPERS
+   ========================================================= */
+
+function toast(message){
+
+  const el =
+    document.getElementById('toast');
+
+  el.textContent =
+    message;
+
+  el.classList.add('show');
+
+  clearTimeout(
+    toast.timer
+  );
+
+  toast.timer =
+    setTimeout(
+      () => el.classList.remove('show'),
+      2200
+    );
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function nav(view){
+
+  document
+    .querySelectorAll('.view')
+    .forEach(
+      el =>
+        el.classList.toggle(
+          'active',
+          el.id === 'view-' + view
+        )
+    );
+
+
+  document
+    .querySelectorAll('[data-view]')
+    .forEach(
+      el =>
+        el.classList.toggle(
+          'active',
+          el.dataset.view === view
+        )
+    );
+
+
+  document
+    .getElementById('topTitle')
+    .textContent =
+      view.charAt(0).toUpperCase() +
+      view.slice(1);
+
+
+  if(view === 'insights'){
+    setTimeout(
+      renderInsights,
+      20
+    );
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+document.addEventListener(
+  'click',
+  function(e){
+
+    const button =
+      e.target.closest('[data-view]');
+
+    if(button){
+
+      nav(
+        button.dataset.view
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   NEXT ACTION ENGINE
+   ========================================================= */
+
+function rank(task,available=60){
+
+  if(task.done){
+    return -1;
+  }
+
+
+  const d =
+    days(task.due);
+
+
+  let score;
+
+
+  if(d < 0){
+    score = 110;
+  }else if(d === 0){
+    score = 95;
+  }else if(d === 1){
+    score = 80;
+  }else if(d === 2){
+    score = 62;
+  }else if(d <= 4){
+    score = 40;
+  }else{
+    score = 18;
+  }
+
+
+  score +=
+    ({
+      high:35,
+      medium:20,
+      low:7
+    }[task.priority] || 0);
+
+
+  score +=
+    Math.max(
+      0,
+      13 - (task.effort || 30) / 8
+    );
+
+
+  score +=
+    ({
+      high:8,
+      medium:4,
+      low:1
+    }[task.energy] || 0);
+
+
+  score +=
+    Math.min(
+      15,
+      (task.postponed || 0) * 6
+    );
+
+
+  if(
+    (task.effort || 30) <= available
+  ){
+
+    score += 6;
+
+  }
+
+
+  return score;
+}
+
+
+function openTasks(){
+
+  return state.tasks
+    .filter(
+      task => !task.done
+    )
+    .sort(
+      (a,b) =>
+        rank(b) - rank(a)
+    );
+
+}
+
+
+function nextTask(){
+
+  return openTasks()[0] || null;
+
+}
+
+
+function why(task){
+
+  if(!task){
+
+    return 'Add something you want to accomplish.';
+
+  }
+
+
+  const reasons = [];
+
+
+  if(task.priority === 'high'){
+    reasons.push('high priority');
+  }
+
+
+  const d =
+    days(task.due);
+
+
+  if(d < 0){
+    reasons.push('overdue');
+  }else if(d === 0){
+    reasons.push('due today');
+  }else if(d === 1){
+    reasons.push('due tomorrow');
+  }else if(d <= 2){
+    reasons.push('due soon');
+  }
+
+
+  if(
+    (task.postponed || 0) > 0
+  ){
+    reasons.push(
+      'you postponed it before'
+    );
+  }
+
+
+  if(
+    task.effort <= 30
+  ){
+    reasons.push(
+      'it fits a short focus block'
+    );
+  }
+
+
+  if(!reasons.length){
+
+    return 'Recommended because it is the strongest next step from your current queue.';
+
+  }
+
+
+  return (
+    'Recommended because it is ' +
+    reasons.slice(0,2).join(' and ') +
+    '.'
+  );
+
+}
+
+
+/* =========================================================
+   SHELL
+   ========================================================= */
+
+function renderShell(){
+
+  const name =
+    state.profile.name ||
+    'Welcome';
+
+
+  document
+    .getElementById('pname')
+    .textContent =
+      name;
+
+
+  document
+    .getElementById('pfocus')
+    .textContent =
+      state.profile.goal ||
+      'New workspace';
+
+
+  document
+    .getElementById('avatar')
+    .textContent =
+      name === 'Welcome'
+        ? '?'
+        : name
+            .split(/\s+/)
+            .map(x => x[0])
+            .slice(0,2)
+            .join('')
+            .toUpperCase();
+
+
+  document
+    .getElementById('demoBanner')
+    .classList
+    .toggle(
+      'show',
+      demoMode
+    );
+
+}
+
+
+/* =========================================================
+   TASK HTML
+   ========================================================= */
+
+function taskHTML(task){
+
+  const d =
+    days(task.due);
+
+
+  const deadline =
+    d < 0
+      ? 'Overdue'
+      : d === 0
+        ? 'Today'
+        : d === 1
+          ? 'Tomorrow'
+          : fmt(task.due);
+
+
+  return `
+    <div class="taskrow">
+
+      <button
+        class="check ${task.done ? 'done' : ''}"
+        data-tog="${task.id}">
+
+        ${
+          task.done
+            ? '<i data-lucide="check" width="11"></i>'
+            : ''
+        }
+
+      </button>
+
+      <div>
+
+        <strong>
+          ${esc(task.title)}
+        </strong>
+
+        <small>
+          ${task.effort} min ·
+          ${esc(task.course || 'General')}
+        </small>
+
+      </div>
+
+      <div class="rmeta">
+
+        ${deadline}
+
+        <br>
+
+        <span class="prio ${task.priority}">
+          ${task.priority}
+        </span>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   INSIGHT
+   ========================================================= */
+
+function insight(){
+
+  const done =
+    state.tasks.filter(
+      task =>
+        task.done &&
+        task.completedAt
+    ).length;
+
+
+  if(done < 3){
+
+    return [
+      'Build your pattern.',
+      'Complete a few real tasks and NEXA will surface an observation about how you work.'
+    ];
+
+  }
+
+
+  const early =
+    state.history.filter(
+      item =>
+        item.hour < 11
+    ).length;
+
+
+  if(early >= 2){
+
+    return [
+      'You often finish difficult work early.',
+      'Your recent completions suggest mornings may be a strong window for demanding work.'
+    ];
+
+  }
+
+
+  return [
+    'Consistency is building.',
+    'You are completing meaningful work. Keep the next action small enough to start without debate.'
+  ];
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+function renderHome(){
+
+  const empty =
+    document.getElementById(
+      'homeEmpty'
+    );
+
+
+  const content =
+    document.getElementById(
+      'homeContent'
+    );
+
+
+  /*
+    Brand-new users do not get
+    fake tasks.
+  */
+
+  if(
+    !state.onboarded ||
+    !state.tasks.length
+  ){
+
+    empty.style.display =
+      'block';
+
+    content.style.display =
+      'none';
+
+    return;
+
+  }
+
+
+  empty.style.display =
+    'none';
+
+  content.style.display =
+    'block';
+
+
+  const hour =
+    new Date().getHours();
+
+
+  const greeting =
+    hour < 12
+      ? 'Good morning'
+      : hour < 18
+        ? 'Good afternoon'
+        : 'Good evening';
+
+
+  document
+    .getElementById('greeting')
+    .textContent =
+      `${greeting}, ${state.profile.name || 'there'}.`;
+
+
+  const task =
+    nextTask();
+
+
+  selected =
+    task?.id || null;
+
+
+  document
+    .getElementById('nextTitle')
+    .textContent =
+      task
+        ? task.title
+        : 'Nothing urgent right now.';
+
+
+  if(task){
+
+    const d =
+      days(task.due);
+
+
+    const deadline =
+      d < 0
+        ? 'Overdue'
+        : d === 0
+          ? 'Due today'
+          : d === 1
+            ? 'Due tomorrow'
+            : `Due ${fmt(task.due)}`;
+
+
+    document
+      .getElementById('nextMeta')
+      .innerHTML = `
+
+        <span class="meta">
+          ${deadline}
+        </span>
+
+        <span class="meta">
+          ${task.effort} minutes
+        </span>
+
+        <span class="meta">
+          ${
+            task.priority === 'high'
+              ? 'High priority'
+              : task.priority === 'medium'
+                ? 'Medium priority'
+                : 'Low priority'
+          }
+        </span>
+
+      `;
+
+
+  }else{
+
+    document
+      .getElementById('nextMeta')
+      .innerHTML =
+        '<span class="meta">Your queue is clear</span>';
+
+  }
+
+
+  document
+    .getElementById('whyText')
+    .textContent =
+      why(task);
+
+
+  document
+    .getElementById('todayTasks')
+    .innerHTML =
+      openTasks()
+        .slice(0,3)
+        .map(taskHTML)
+        .join('') ||
+      `
+        <div style="font-size:10px;color:var(--muted);padding:10px 2px">
+          Nothing is waiting for you.
+        </div>
+      `;
+
+
+  const events =
+    state.events
+      .filter(
+        event =>
+          event.date === today()
+      )
+      .sort(
+        (a,b) =>
+          a.time.localeCompare(b.time)
+      );
+
+
+  document
+    .getElementById('todayTimeline')
+    .innerHTML =
+      events
+        .slice(0,4)
+        .map(
+          event => `
+            <div class="titem">
+
+              <div class="ttime">
+                ${event.time}
+              </div>
+
+              <div class="etitle">
+                ${esc(event.title)}
+              </div>
+
+              <div class="emeta">
+                ${event.duration} min
+              </div>
+
+            </div>
+          `
+        )
+        .join('') ||
+      `
+        <div style="font-size:10px;color:var(--muted)">
+          No planned blocks. Keep it flexible.
+        </div>
+      `;
+
+
+  const done =
+    state.tasks.filter(
+      task =>
+        task.done &&
+        task.completedAt === today()
+    ).length;
+
+
+  const target =
+    Math.max(
+      done,
+      state.tasks.filter(
+        task =>
+          task.created === today() ||
+          task.due === today()
+      ).length
+    );
+
+
+  document
+    .getElementById('doneToday')
+    .textContent =
+      `${done}/${target}`;
+
+
+  const focusMinutes =
+    state.focusLog
+      .filter(
+        item =>
+          item.date === today()
+      )
+      .reduce(
+        (sum,item) =>
+          sum + item.minutes,
+        0
+      );
+
+
+  document
+    .getElementById('focusToday')
+    .textContent =
+      formatMinutes(focusMinutes);
+
+
+  const i =
+    insight();
+
+
+  document
+    .getElementById('insightTitle')
+    .textContent =
+      i[0];
+
+
+  document
+    .getElementById('insightBody')
+    .textContent =
+      i[1];
+
+}
+
+
+/* =========================================================
+   FORMAT MINUTES
+   ========================================================= */
+
+function formatMinutes(minutes){
+
+  if(minutes >= 60){
+
+    const hours =
+      Math.floor(minutes / 60);
+
+    const rest =
+      minutes % 60;
+
+    return rest
+      ? `${hours}h ${rest}m`
+      : `${hours}h`;
+
+  }
+
+  return `${minutes}m`;
+
+}
+
+
+/* =========================================================
+   TASKS
+   ========================================================= */
+
+function renderTasks(){
+
+  let tasks =
+    [...state.tasks];
+
+
+  const activeFilter =
+    document
+      .querySelector('.filter.active')
+      ?.dataset.filter ||
+    'all';
+
+
+  const query =
+    document
+      .getElementById('search')
+      ?.value
+      .toLowerCase() ||
+    '';
+
+
+  if(activeFilter === 'open'){
+
+    tasks =
+      tasks.filter(
+        task => !task.done
+      );
+
+  }
+
+
+  if(activeFilter === 'done'){
+
+    tasks =
+      tasks.filter(
+        task => task.done
+      );
+
+  }
+
+
+  if(query){
+
+    tasks =
+      tasks.filter(
+        task =>
+          (
+            task.title +
+            ' ' +
+            (task.course || '')
+          )
+          .toLowerCase()
+          .includes(query)
+      );
+
+  }
+
+
+  tasks.sort(
+    (a,b) =>
+      (a.done - b.done) ||
+      (rank(b) - rank(a))
+  );
+
+
+  const openCount =
+    state.tasks.filter(
+      task => !task.done
+    ).length;
+
+
+  const doneCount =
+    state.tasks.filter(
+      task => task.done
+    ).length;
+
+
+  document
+    .getElementById('taskSummary')
+    .textContent =
+      `${openCount} open · ${doneCount} completed`;
+
+
+  document
+    .getElementById('taskBody')
+    .innerHTML =
+      tasks.map(
+        task => `
+
+          <tr>
+
+            <td>
+
+              <div style="display:flex;align-items:center;gap:8px">
+
+                <button
+                  class="check ${task.done ? 'done' : ''}"
+                  data-tog="${task.id}">
+
+                  ${
+                    task.done
+                      ? '<i data-lucide="check" width="11"></i>'
+                      : ''
+                  }
+
+                </button>
+
+                <div>
+
+                  <b style="
+                    font-size:9px;
+                    ${
+                      task.done
+                        ? 'text-decoration:line-through;opacity:.5'
+                        : ''
+                    }
+                  ">
+                    ${esc(task.title)}
+                  </b>
+
+                  <div style="
+                    font-size:7px;
+                    color:var(--dim);
+                    margin-top:3px
+                  ">
+                    ${esc(task.course || 'General')}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </td>
+
+            <td>
+              ${fmt(task.due)}
+            </td>
+
+            <td>
+              <span class="prio ${task.priority}">
+                ${task.priority}
+              </span>
+            </td>
+
+            <td>
+              ${task.effort} min
+            </td>
+
+            <td>
+              ${task.energy}
+            </td>
+
+            <td>
+
+              <button
+                class="btn"
+                style="padding:6px"
+                data-del="${task.id}">
+
+                <i data-lucide="trash-2" width="11"></i>
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        `
+      )
+      .join('') ||
+      `
+        <tr>
+          <td colspan="6">
+
+            <div style="
+              text-align:center;
+              padding:30px;
+              color:var(--dim);
+              font-size:9px
+            ">
+              No tasks here.
+            </div>
+
+          </td>
+        </tr>
+      `;
+
+}
+
+
+/* =========================================================
+   SCHEDULE
+   ========================================================= */
+
+function renderSchedule(){
+
+  const base =
+    new Date();
+
+
+  base.setDate(
+    base.getDate() -
+    ((base.getDay()+6)%7)
+  );
+
+
+  const dates =
+    Array.from(
+      {length:7},
+      (_,index)=>{
+
+        const d =
+          new Date(base);
+
+        d.setDate(
+          base.getDate()+index
+        );
+
+        return {
+          date:d,
+          value:d
+            .toISOString()
+            .slice(0,10)
+        };
+
+      }
+    );
+
+
+  const times = [
+    '08:00',
+    '10:00',
+    '12:00',
+    '14:00',
+    '16:00',
+    '18:00'
+  ];
+
+
+  let html =
+    `
+      <div class="cell headcell">
+        <div class="timecell">
+          TIME
+        </div>
+      </div>
+    `;
+
+
+  html +=
+    dates
+      .map(
+        item => `
+          <div class="cell headcell">
+
+            <div class="day">
+
+              ${new Intl.DateTimeFormat(
+                undefined,
+                {weekday:'short'}
+              ).format(item.date)}
+
+              <small>
+                ${item.date.getDate()}
+              </small>
+
+            </div>
+
+          </div>
+        `
+      )
+      .join('');
+
+
+  for(const time of times){
+
+    html += `
+      <div class="cell">
+        <div class="timecell">
+          ${time}
+        </div>
+      </div>
+    `;
+
+
+    for(const day of dates){
+
+      const items =
+        state.events.filter(
+          event =>
+            event.date === day.value &&
+            event.time.slice(0,2) === time.slice(0,2)
+        );
+
+
+      html += `
+        <div class="cell">
+
+          ${
+            items
+              .map(
+                event => `
+                  <div class="eblock">
+
+                    <b>
+                      ${esc(event.title)}
+                    </b>
+
+                    <small>
+                      ${event.time} · ${event.duration}m
+                    </small>
+
+                  </div>
+                `
+              )
+              .join('')
+          }
+
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  document
+    .getElementById('schedule')
+    .innerHTML =
+      html;
+
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+function renderFocus(){
+
+  const task =
+    state.tasks.find(
+      item =>
+        item.id === selected
+    ) ||
+    nextTask();
+
+
+  document
+    .getElementById('ftitle')
+    .textContent =
+      task
+        ? task.title
+        : 'Choose a task';
+
+
+  document
+    .getElementById('fcourse')
+    .textContent =
+      task
+        ? `${task.course || 'General'} · ${task.effort} min · ${task.energy} energy`
+        : 'Your next action will appear here.';
+
+
+  document
+    .getElementById('fstatus')
+    .textContent =
+      timer
+        ? 'Focusing'
+        : 'Ready';
+
+
+  document
+    .getElementById('queue')
+    .innerHTML =
+      openTasks()
+        .slice(0,5)
+        .map(
+          task => `
+
+            <div class="queueitem">
+
+              <div>
+
+                <div class="qtitle">
+                  ${esc(task.title)}
+                </div>
+
+                <div class="qmeta">
+                  ${task.effort} min · ${task.priority}
+                </div>
+
+              </div>
+
+              <button
+                class="link"
+                data-pick="${task.id}">
+                Choose
+              </button>
+
+            </div>
+
+          `
+        )
+        .join('') ||
+      `
+        <div style="
+          font-size:9px;
+          color:var(--muted)
+        ">
+          No open tasks.
+        </div>
+      `;
+
+}
+
+
+/* =========================================================
+   INSIGHTS
+   ========================================================= */
+
+function renderInsights(){
+
+  const weekDone =
+    state.tasks.filter(
+      task =>
+        task.done &&
+        task.completedAt >= add(-6)
+    ).length;
+
+
+  const weekFocus =
+    state.focusLog
+      .filter(
+        item =>
+          item.date >= add(-6)
+      )
+      .reduce(
+        (sum,item) =>
+          sum + item.minutes,
+        0
+      );
+
+
+  document
+    .getElementById('weekDone')
+    .textContent =
+      weekDone;
+
+
+  document
+    .getElementById('weekFocus')
+    .textContent =
+      formatMinutes(weekFocus);
+
+
+  const i =
+    insight();
+
+
+  document
+    .getElementById('patternTitle')
+    .textContent =
+      i[0];
+
+
+  document
+    .getElementById('patternBody')
+    .textContent =
+      i[1];
+
+
+  if(window.Chart){
+
+    const labels = [];
+    const values = [];
+
+
+    for(let n=6;n>=0;n--){
+
+      const date =
+        add(-n);
+
+
+      labels.push(
+        new Intl.DateTimeFormat(
+          undefined,
+          {weekday:'short'}
+        ).format(
+          new Date(
+            date+'T12:00:00'
+          )
+        )
+      );
+
+
+      values.push(
+        state.tasks.filter(
+          task =>
+            task.done &&
+            task.completedAt === date
+        ).length
+      );
+
+    }
+
+
+    chart?.destroy();
+
+
+    chart =
+      new Chart(
+        document.getElementById('chart'),
+        {
+          type:'line',
+
+          data:{
+            labels:labels,
+
+            datasets:[
+              {
+                data:values,
+                borderColor:'#7C5CFF',
+                backgroundColor:'rgba(124,92,255,.08)',
+                fill:true,
+                tension:.35,
+                pointRadius:3
+              }
+            ]
+          },
+
+          options:{
+            responsive:true,
+
+            plugins:{
+              legend:{
+                display:false
+              }
+            },
+
+            scales:{
+              x:{
+                grid:{
+                  display:false
+                },
+
+                ticks:{
+                  color:'#697486',
+                  font:{
+                    size:8
+                  }
+                }
+              },
+
+              y:{
+                beginAtZero:true,
+
+                ticks:{
+                  color:'#697486',
+                  font:{
+                    size:8
+                  },
+                  precision:0
+                },
+
+                grid:{
+                  color:'rgba(255,255,255,.04)'
+                }
+              }
+            }
+          }
+
+        }
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER ALL
+   ========================================================= */
+
+function renderAll(){
+
+  renderShell();
+  renderHome();
+  renderTasks();
+  renderSchedule();
+  renderFocus();
+  renderInsights();
+
+  lucide.createIcons();
+
+  updateTimer();
+
+}
+
+
+/* =========================================================
+   TASK MODAL
+   ========================================================= */
+
+function openTask(){
+
+  document
+    .getElementById('taskModal')
+    .classList
+    .add('show');
+
+
+  document
+    .getElementById('tdue')
+    .value =
+      today();
+
+
+  setTimeout(
+    () =>
+      document
+        .getElementById('ttitle')
+        .focus(),
+    40
+  );
+
+}
+
+
+function closeTask(){
+
+  document
+    .getElementById('taskModal')
+    .classList
+    .remove('show');
+
+}
+
+
+function openEvent(){
+
+  document
+    .getElementById('eventModal')
+    .classList
+    .add('show');
+
+
+  document
+    .getElementById('edate')
+    .value =
+      today();
+
+}
+
+
+function closeEvent(){
+
+  document
+    .getElementById('eventModal')
+    .classList
+    .remove('show');
+
+}
+
+
+/* =========================================================
+   QUICK BUTTONS
+   ========================================================= */
+
+function bindQuick(id){
+
+  document
+    .querySelectorAll(
+      '#' + id + ' .qbtn'
+    )
+    .forEach(
+      button => {
+
+        button.onclick =
+          () => {
+
+            document
+              .querySelectorAll(
+                '#' + id + ' .qbtn'
+              )
+              .forEach(
+                item =>
+                  item.classList
+                    .remove('active')
+              );
+
+
+            button
+              .classList
+              .add('active');
+
+          };
+
+      }
+    );
+
+}
+
+
+bindQuick('effort');
+bindQuick('priority');
+bindQuick('energy');
+
+
+/* =========================================================
+   BUTTON EVENTS
+   ========================================================= */
+
+document
+  .getElementById('quickAdd')
+  .onclick =
+    openTask;
+
+
+document
+  .getElementById('homeAdd')
+  .onclick =
+    openTask;
+
+
+document
+  .getElementById('taskAdd')
+  .onclick =
+    openTask;
+
+
+document
+  .getElementById('createFirst')
+  .onclick =
+    openTask;
+
+
+document
+  .getElementById('taskClose')
+  .onclick =
+    closeTask;
+
+
+document
+  .getElementById('taskCancel')
+  .onclick =
+    closeTask;
+
+
+document
+  .getElementById('eventAdd')
+  .onclick =
+    openEvent;
+
+
+document
+  .getElementById('eventClose')
+  .onclick =
+    closeEvent;
+
+
+document
+  .getElementById('eventCancel')
+  .onclick =
+    closeEvent;
+
+
+document
+  .getElementById('allTasks')
+  .onclick =
+    () => nav('tasks');
+
+
+document
+  .getElementById('seeInsights')
+  .onclick =
+    () => nav('insights');
+
+
+document
+  .getElementById('startFocus')
+  .onclick =
+    () => {
+
+      if(!selected){
+
+        toast(
+          'Add a task first'
+        );
+
+        return;
+      }
+
+      nav('focus');
+
+    };
+
+
+document
+  .getElementById('search')
+  .oninput =
+    renderTasks;
+
+
+document
+  .querySelectorAll('.filter')
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          document
+            .querySelectorAll('.filter')
+            .forEach(
+              item =>
+                item.classList
+                  .remove('active')
+            );
+
+
+          button
+            .classList
+            .add('active');
+
+
+          renderTasks();
+
+        };
+
+    }
+  );
+
+
+/* =========================================================
+   CREATE TASK
+   ========================================================= */
+
+document
+  .getElementById('taskForm')
+  .onsubmit =
+    function(e){
+
+      e.preventDefault();
+
+
+      const pick =
+        id =>
+          document
+            .querySelector(
+              '#' + id + ' .qbtn.active'
+            )
+            ?.dataset
+            .v;
+
+
+      state.tasks.push({
+
+        id:uid(),
+
+        title:
+          document
+            .getElementById('ttitle')
+            .value
+            .trim(),
+
+        course:
+          document
+            .getElementById('tcourse')
+            .value
+            .trim(),
+
+        due:
+          document
+            .getElementById('tdue')
+            .value,
+
+        effort:
+          Number(
+            pick('effort') ||
+            30
+          ),
+
+        priority:
+          pick('priority') ||
+          'medium',
+
+        energy:
+          pick('energy') ||
+          'medium',
+
+        postponed:0,
+
+        done:false,
+
+        created:today()
+
+      });
+
+
+      state.onboarded = true;
+
+
+      closeTask();
+
+      save();
+
+      toast(
+        'Task added'
+      );
+
+      nav('home');
+
+    };
+
+
+/* =========================================================
+   CREATE EVENT
+   ========================================================= */
+
+document
+  .getElementById('eventForm')
+  .onsubmit =
+    function(e){
+
+      e.preventDefault();
+
+
+      state.events.push({
+
+        id:uid(),
+
+        title:
+          document
+            .getElementById('etitle')
+            .value
+            .trim(),
+
+        date:
+          document
+            .getElementById('edate')
+            .value,
+
+        time:
+          document
+            .getElementById('etime')
+            .value,
+
+        duration:
+          Number(
+            document
+              .getElementById('edur')
+              .value
+          )
+
+      });
+
+
+      closeEvent();
+
+      save();
+
+      toast(
+        'Time block added'
+      );
+
+    };
+
+
+/* =========================================================
+   TASK COMPLETE / DELETE / CHOOSE
+   ========================================================= */
+
+document.addEventListener(
+  'click',
+  function(e){
+
+    const toggle =
+      e.target.closest('[data-tog]');
+
+
+    if(toggle){
+
+      const task =
+        state.tasks.find(
+          item =>
+            item.id === toggle.dataset.tog
+        );
+
+
+      if(!task) return;
+
+
+      task.done =
+        !task.done;
+
+
+      task.completedAt =
+        task.done
+          ? today()
+          : null;
+
+
+      if(task.done){
+
+        state.history.push({
+          taskId:task.id,
+          hour:new Date().getHours()
+        });
+
+      }
+
+
+      save();
+
+
+      toast(
+        task.done
+          ? 'Task completed'
+          : 'Task reopened'
+      );
+
+
+      nav('home');
+
+      return;
+
+    }
+
+
+    const del =
+      e.target.closest('[data-del]');
+
+
+    if(del){
+
+      state.tasks =
+        state.tasks.filter(
+          task =>
+            task.id !== del.dataset.del
+        );
+
+
+      save();
+
+      toast(
+        'Task deleted'
+      );
+
+      return;
+
+    }
+
+
+    const pick =
+      e.target.closest('[data-pick]');
+
+
+    if(pick){
+
+      selected =
+        pick.dataset.pick;
+
+      renderFocus();
+
+      nav('focus');
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CHOOSE ANOTHER
+   ========================================================= */
+
+document
+  .getElementById('chooseAnother')
+  .onclick =
+    function(){
+
+      const tasks =
+        openTasks();
+
+
+      if(tasks.length < 2){
+
+        toast(
+          'There is only one open task'
+        );
+
+        return;
+      }
+
+
+      const current =
+        state.tasks.find(
+          task =>
+            task.id === selected
+        );
+
+
+      if(current){
+
+        current.postponed =
+          (current.postponed || 0) + 1;
+
+      }
+
+
+      const next =
+        tasks.find(
+          task =>
+            task.id !== selected
+        );
+
+
+      selected =
+        next?.id ||
+        selected;
+
+
+      save();
+
+      toast(
+        'Showing another next action'
+      );
+
+    };
+
+
+/* =========================================================
+   FOCUS TIMER
+   ========================================================= */
+
+function updateTimer(){
+
+  const minutes =
+    String(
+      Math.floor(tsec / 60)
+    ).padStart(2,'0');
+
+
+  const seconds =
+    String(
+      tsec % 60
+    ).padStart(2,'0');
+
+
+  document
+    .getElementById('timer')
+    .textContent =
+      `${minutes}:${seconds}`;
+
+}
+
+
+document
+  .getElementById('timerStart')
+  .onclick =
+    function(){
+
+      const task =
+        state.tasks.find(
+          item =>
+            item.id === selected
+        ) ||
+        nextTask();
+
+
+      if(!task){
+
+        toast(
+          'Add a task first'
+        );
+
+        nav('tasks');
+
+        return;
+
+      }
+
+
+      selected =
+        task.id;
+
+
+      if(timer) return;
+
+
+      timer =
+        setInterval(
+          () => {
+
+            tsec--;
+
+            updateTimer();
+
+
+            if(tsec <= 0){
+
+              clearInterval(timer);
+
+              timer = null;
+
+
+              const minutes =
+                Math.max(
+                  1,
+                  Math.min(
+                    25,
+                    task.effort || 25
+                  )
+                );
+
+
+              state.focusLog.push({
+
+                date:today(),
+
+                minutes:minutes,
+
+                taskId:task.id
+
+              });
+
+
+              save();
+
+
+              toast(
+                'Focus block complete'
+              );
+
+            }
+
+          },
+          1000
+        );
+
+
+      renderFocus();
+
+    };
+
+
+document
+  .getElementById('timerPause')
+  .onclick =
+    function(){
+
+      if(timer){
+
+        clearInterval(timer);
+
+        timer = null;
+
+        renderFocus();
+
+      }
+
+    };
+
+
+document
+  .getElementById('timerReset')
+  .onclick =
+    function(){
+
+      clearInterval(timer);
+
+      timer = null;
+
+      tsec = 1500;
+
+      updateTimer();
+
+      renderFocus();
+
+    };
+
+
+/* =========================================================
+   DEMO MODE
+   ========================================================= */
+
+document
+  .getElementById('tryDemo')
+  .onclick =
+    function(){
+
+      demoMode = true;
+
+      state =
+        demoData();
+
+
+      localStorage.setItem(
+        DEMO,
+        JSON.stringify(state)
+      );
+
+
+      location.hash =
+        'demo';
+
+
+      hideAuth();
+
+      renderAll();
+
+      toast(
+        'Demo mode started'
+      );
+
+    };
+
+
+document
+  .getElementById('exitDemo')
+  .onclick =
+    function(){
+
+      demoMode = false;
+
+      localStorage.removeItem(
+        DEMO
+      );
+
+
+      history.replaceState(
+        null,
+        '',
+        location.pathname +
+        location.search
+      );
+
+
+      state =
+        blank();
+
+
+      currentUser = null;
+
+      renderAll();
+
+      showAuth();
+
+      toast(
+        'Demo mode exited'
+      );
+
+    };
+
+
+/* =========================================================
+   PROFILE MENU
+   ========================================================= */
+
+document
+  .getElementById('profileBtn')
+  .onclick =
+    () =>
+      document
+        .getElementById('userMenu')
+        .classList
+        .toggle('show');
+
+
+document
+  .getElementById('logoutBtn')
+  .onclick =
+    logout;
+
+
+document.addEventListener(
+  'click',
+  function(e){
+
+    if(
+      !e.target.closest('#profileBtn') &&
+      !e.target.closest('#userMenu')
+    ){
+
+      document
+        .getElementById('userMenu')
+        .classList
+        .remove('show');
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ONBOARDING
+   ========================================================= */
+
+function onboard(){
+
+  if(
+    state.onboarded ||
+    demoMode
+  ){
+
+    document
+      .getElementById('onboard')
+      .classList
+      .remove('show');
+
+    return;
+
+  }
+
+
+  document
+    .getElementById('onboard')
+    .classList
+    .add('show');
+
+
+  const saved =
+    load(ON) ||
+    {
+      step:1,
+      a:{}
+    };
+
+
+  const steps = [
+
+    [
+      "What's your name?",
+      "Just first name is enough.",
+      "input",
+      "name",
+      "e.g. Siddarth"
+    ],
+
+    [
+      "What are you working toward?",
+      "A broad goal is perfect.",
+      "input",
+      "goal",
+      "e.g. Do well this semester"
+    ],
+
+    [
+      "What does your typical day look like?",
+      "Pick the rhythm that feels closest.",
+      "choices",
+      "day",
+      [
+        "Structured",
+        "Balanced",
+        "Flexible"
+      ]
+    ],
+
+    [
+      "How long can you usually focus?",
+      "This helps NEXA recommend realistic work.",
+      "choices",
+      "focus",
+      [
+        "15 minutes",
+        "30 minutes",
+        "60 minutes",
+        "90+ minutes"
+      ]
+    ],
+
+    [
+      "What's the most important thing you want to accomplish?",
+      "This becomes your first north star.",
+      "input",
+      "mainGoal",
+      "e.g. Finish my core coursework"
+    ]
+
+  ];
+
+
+  const step =
+    steps[
+      saved.step - 1
+    ];
+
+
+  const q = step[0];
+  const sub = step[1];
+  const type = step[2];
+  const key = step[3];
+  const options = step[4];
+
+
+  document
+    .getElementById('onstep')
+    .textContent =
+      `${saved.step} / 5`;
+
+
+  document
+    .getElementById('onfill')
+    .style.width =
+      `${saved.step / 5 * 100}%`;
+
+
+  let html = `
+
+    <h1 class="question">
+      ${q}
+    </h1>
+
+    <div class="qsub">
+      ${sub}
+    </div>
+
+  `;
+
+
+  if(type === 'input'){
+
+    html += `
+
+      <input
+        autofocus
+        id="oninput"
+        class="answer"
+        value="${esc(saved.a[key] || '')}"
+        placeholder="${esc(options)}">
+
+    `;
+
+  }else{
+
+    html += `
+
+      <div class="choices">
+
+        ${options
+          .map(
+            option => `
+
+              <button
+                class="choice ${
+                  saved.a[key] === option
+                    ? 'active'
+                    : ''
+                }"
+                data-choice="${esc(option)}">
+
+                ${esc(option)}
+
+              </button>
+
+            `
+          )
+          .join('')}
+
+      </div>
+
+    `;
+
+  }
+
+
+  html += `
+
+    <div class="onbottom">
+
+      <span class="mutedtiny">
+        ${
+          saved.step === 1
+            ? 'You can change this later.'
+            : ''
+        }
+      </span>
+
+      <div style="display:flex;gap:7px">
+
+        ${
+          saved.step > 1
+            ? '<button class="btn" id="back">Back</button>'
+            : ''
+        }
+
+        <button
+          class="btn primary"
+          id="next">
+
+          ${
+            saved.step === 5
+              ? 'Finish'
+              : 'Continue'
+          }
+
+          <i
+            data-lucide="arrow-right"
+            width="13">
+          </i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById('onbody')
+    .innerHTML =
+      html;
+
+
+  lucide.createIcons();
+
+
+  document
+    .querySelectorAll('[data-choice]')
+    .forEach(
+      button => {
+
+        button.onclick =
+          () => {
+
+            saved.a[key] =
+              button.dataset.choice;
+
+
+            localStorage.setItem(
+              ON,
+              JSON.stringify(saved)
+            );
+
+
+            onboard();
+
+          };
+
+      }
+    );
+
+
+  document
+    .getElementById('next')
+    .onclick =
+      function(){
+
+        if(type === 'input'){
+
+          const value =
+            document
+              .getElementById('oninput')
+              .value
+              .trim();
+
+
+          if(!value){
+
+            toast(
+              'A quick answer is enough'
+            );
+
+            return;
+
+          }
+
+
+          saved.a[key] =
+            value;
+
+        }
+
+
+        if(saved.step === 5){
+
+          state.onboarded =
+            true;
+
+
+          state.profile =
+            {
+              ...state.profile,
+              ...saved.a
+            };
+
+
+          localStorage.removeItem(
+            ON
+          );
+
+
+          save();
+
+
+          document
+            .getElementById('onboard')
+            .classList
+            .remove('show');
+
+
+          toast(
+            'Your NEXA is ready'
+          );
+
+
+          return;
+
+        }
+
+
+        saved.step++;
+
+
+        localStorage.setItem(
+          ON,
+          JSON.stringify(saved)
+        );
+
+
+        onboard();
+
+      };
+
+
+  const back =
+    document.getElementById('back');
+
+
+  if(back){
+
+    back.onclick =
+      () => {
+
+        saved.step--;
+
+        localStorage.setItem(
+          ON,
+          JSON.stringify(saved)
+        );
+
+        onboard();
+
+      };
+
+  }
+
+}
+
+
+/* =========================================================
+   INITIAL AUTH SESSION
+   ========================================================= */
+
+if(demoMode){
+
+  hideAuth();
+
+  renderAll();
+
+}else if(sb){
+
+  sb.auth
+    .getSession()
+    .then(
+      async ({data}) => {
+
+        if(data.session){
+
+          await loadCloudUser(
+            data.session.user
+          );
+
+        }else{
+
+          showAuth();
+
+          renderAll();
+
+        }
+
+      }
+    );
+
+
+  sb.auth.onAuthStateChange(
+    async (event,session) => {
+
+      if(
+        session &&
+        !currentUser
+      ){
+
+        await loadCloudUser(
+          session.user
+        );
+
+      }
+
+
+      if(
+        !session &&
+        !demoMode
+      ){
+
+        currentUser = null;
+
+        state = blank();
+
+        showAuth();
+
+        renderAll();
+
+      }
+
+    }
+  );
+
+}else{
+
+  showAuth();
+
+  renderAll();
+
+}
+
+
+/* =========================================================
+   INITIAL ICONS
+   ========================================================= */
+
+lucide.createIcons();
+
+updateTimer();
 
 </script>
-</body></html>
+
+</body>
+</html>

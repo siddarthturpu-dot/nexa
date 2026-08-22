@@ -18,6 +18,7 @@
   --bg:#080B12;
   --surface:#101621;
   --surface2:#151C28;
+  --elevated:#1B2230;
   --text:#F5F7FA;
   --muted:#98A2B3;
   --dim:#697486;
@@ -36,7 +37,7 @@ html,body{
   min-height:100%;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui,sans-serif
+  font-family:Inter,system-ui,sans-serif;
 }
 
 body{overflow-x:hidden}
@@ -44,7 +45,9 @@ body{overflow-x:hidden}
 button,input,select{font:inherit}
 button{cursor:pointer}
 
-.app{min-height:100vh}
+.app{
+  min-height:100vh;
+}
 
 .side{
   position:fixed;
@@ -57,29 +60,32 @@ button{cursor:pointer}
   padding:24px 15px;
   z-index:50;
   display:flex;
-  flex-direction:column
+  flex-direction:column;
 }
 
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
-  padding:0 8px 25px
+  padding:0 8px 25px;
 }
 
-.logo{width:31px;height:31px}
+.logo{
+  width:31px;
+  height:31px;
+}
 
 .brandname{
   font-size:15px;
   font-weight:800;
-  letter-spacing:.13em
+  letter-spacing:.13em;
 }
 
 .tag{
   font-size:8px;
   letter-spacing:.1em;
   color:var(--dim);
-  margin-top:3px
+  margin-top:3px;
 }
 
 .navtitle{
@@ -88,10 +94,13 @@ button{cursor:pointer}
   text-transform:uppercase;
   color:var(--dim);
   font-weight:700;
-  margin:10px 9px 8px
+  margin:10px 9px 8px;
 }
 
-.nav{display:grid;gap:5px}
+.nav{
+  display:grid;
+  gap:5px;
+}
 
 .nav button{
   border:1px solid transparent;
@@ -102,23 +111,45 @@ button{cursor:pointer}
   display:flex;
   align-items:center;
   gap:11px;
-  text-align:left
+  text-align:left;
 }
 
 .nav button:hover{
   background:rgba(255,255,255,.035);
-  color:#fff
+  color:#fff;
 }
 
 .nav button.active{
   background:var(--soft);
   border-color:rgba(124,92,255,.25);
-  color:#fff
+  color:#fff;
 }
 
-.nav i{width:17px}
+.nav i{
+  width:17px;
+}
 
-.sidefoot{margin-top:auto}
+.sidefoot{
+  margin-top:auto;
+}
+
+.demobadge{
+  display:none;
+  margin-bottom:10px;
+  border:1px solid rgba(255,184,77,.22);
+  background:rgba(255,184,77,.07);
+  color:#FFD58D;
+  border-radius:10px;
+  padding:9px;
+  font-size:9px;
+  font-weight:700;
+}
+
+.demobadge.show{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
 
 .profile{
   border:1px solid var(--line);
@@ -127,7 +158,7 @@ button{cursor:pointer}
   background:rgba(255,255,255,.02);
   display:flex;
   gap:9px;
-  align-items:center
+  align-items:center;
 }
 
 .avatar{
@@ -138,15 +169,23 @@ button{cursor:pointer}
   display:grid;
   place-items:center;
   font-size:10px;
-  font-weight:800
+  font-weight:800;
 }
 
-.pname{font-size:10px;font-weight:700}
-.pfocus{font-size:8px;color:var(--dim);margin-top:3px}
+.pname{
+  font-size:10px;
+  font-weight:700;
+}
+
+.pfocus{
+  font-size:8px;
+  color:var(--dim);
+  margin-top:3px;
+}
 
 .main{
   margin-left:228px;
-  min-width:0
+  min-width:0;
 }
 
 .topbar{
@@ -160,13 +199,24 @@ button{cursor:pointer}
   top:0;
   z-index:45;
   background:rgba(8,11,18,.88);
-  backdrop-filter:blur(14px)
+  backdrop-filter:blur(14px);
 }
 
-.toptitle{font-size:12px;font-weight:700}
-.topsub{font-size:9px;color:var(--dim);margin-left:8px}
+.toptitle{
+  font-size:12px;
+  font-weight:700;
+}
 
-.actions{display:flex;gap:7px}
+.topsub{
+  font-size:9px;
+  color:var(--dim);
+  margin-left:8px;
+}
+
+.actions{
+  display:flex;
+  gap:7px;
+}
 
 .btn{
   border:1px solid var(--line);
@@ -177,31 +227,43 @@ button{cursor:pointer}
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:7px
+  gap:7px;
 }
 
 .btn:hover{
   color:#fff;
-  background:rgba(255,255,255,.05)
+  background:rgba(255,255,255,.05);
 }
 
-.primary{
+.btn.primary{
   background:var(--accent);
   border-color:transparent;
   color:#fff;
-  font-weight:700
+  font-weight:700;
 }
 
-.primary:hover{filter:brightness(1.05)}
+.btn.primary:hover{
+  filter:brightness(1.05);
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
 
 .content{
   padding:32px;
   max-width:1260px;
-  margin:auto
+  margin:auto;
 }
 
-.view{display:none}
-.view.active{display:block}
+.view{
+  display:none;
+}
+
+.view.active{
+  display:block;
+}
 
 .eyebrow{
   font-size:9px;
@@ -209,21 +271,21 @@ button{cursor:pointer}
   letter-spacing:.12em;
   color:#A99BFF;
   font-weight:700;
-  margin-bottom:9px
+  margin-bottom:9px;
 }
 
 .hero h1{
   font-size:clamp(30px,4vw,44px);
   line-height:1.05;
   letter-spacing:-.045em;
-  margin:0
+  margin:0;
 }
 
 .hero p{
   margin:9px 0 0;
   color:var(--muted);
   font-size:12px;
-  line-height:1.6
+  line-height:1.6;
 }
 
 .hero-row{
@@ -231,7 +293,7 @@ button{cursor:pointer}
   align-items:flex-end;
   justify-content:space-between;
   gap:18px;
-  margin-bottom:25px
+  margin-bottom:25px;
 }
 
 .label{
@@ -240,7 +302,7 @@ button{cursor:pointer}
   letter-spacing:.12em;
   color:var(--dim);
   font-weight:700;
-  margin:24px 0 10px
+  margin:24px 0 10px;
 }
 
 .next{
@@ -253,15 +315,18 @@ button{cursor:pointer}
     rgba(124,92,255,.025)
   );
   border-radius:24px;
-  padding:25px
+  padding:25px;
 }
 
-.next>*{position:relative;z-index:1}
+.next>*{
+  position:relative;
+  z-index:1;
+}
 
 .nexttop{
   display:flex;
   justify-content:space-between;
-  gap:10px
+  gap:10px;
 }
 
 .nextlabel{
@@ -269,10 +334,13 @@ button{cursor:pointer}
   letter-spacing:.11em;
   text-transform:uppercase;
   color:#B1A4FF;
-  font-weight:700
+  font-weight:700;
 }
 
-.kicker{font-size:9px;color:var(--dim)}
+.kicker{
+  font-size:9px;
+  color:var(--dim);
+}
 
 .nexttitle{
   font-size:clamp(26px,4vw,42px);
@@ -280,13 +348,13 @@ button{cursor:pointer}
   letter-spacing:-.045em;
   font-weight:800;
   margin:16px 0 12px;
-  max-width:800px
+  max-width:800px;
 }
 
 .metas{
   display:flex;
   flex-wrap:wrap;
-  gap:7px
+  gap:7px;
 }
 
 .meta{
@@ -295,13 +363,13 @@ button{cursor:pointer}
   border:1px solid var(--line);
   background:rgba(255,255,255,.025);
   padding:7px 8px;
-  border-radius:8px
+  border-radius:8px;
 }
 
 .why{
   border-left:2px solid var(--accent);
   padding-left:11px;
-  margin:18px 0
+  margin:18px 0;
 }
 
 .why span{
@@ -310,30 +378,30 @@ button{cursor:pointer}
   text-transform:uppercase;
   letter-spacing:.08em;
   color:var(--dim);
-  margin-bottom:4px
+  margin-bottom:4px;
 }
 
 .why strong{
   font-size:11px;
-  line-height:1.5
+  line-height:1.5;
 }
 
 .nextbuttons{
   display:flex;
   gap:8px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .two{
   display:grid;
   grid-template-columns:1.15fr .85fr;
-  gap:14px
+  gap:14px;
 }
 
 .panel{
   border:1px solid var(--line);
   border-radius:17px;
-  background:var(--surface)
+  background:var(--surface);
 }
 
 .ph{
@@ -341,17 +409,27 @@ button{cursor:pointer}
   display:flex;
   justify-content:space-between;
   gap:10px;
-  align-items:flex-start
+  align-items:flex-start;
 }
 
-.pt{font-size:11px;font-weight:700}
-.ps{font-size:9px;color:var(--dim);margin-top:4px}
+.pt{
+  font-size:11px;
+  font-weight:700;
+}
 
-.pb{padding:16px 17px}
+.ps{
+  font-size:9px;
+  color:var(--dim);
+  margin-top:4px;
+}
+
+.pb{
+  padding:16px 17px;
+}
 
 .tasklist{
   display:grid;
-  gap:8px
+  gap:8px;
 }
 
 .taskrow{
@@ -362,7 +440,7 @@ button{cursor:pointer}
   border:1px solid var(--line);
   border-radius:12px;
   padding:11px;
-  background:rgba(255,255,255,.012)
+  background:rgba(255,255,255,.012);
 }
 
 .check{
@@ -373,30 +451,30 @@ button{cursor:pointer}
   background:transparent;
   color:#fff;
   display:grid;
-  place-items:center
+  place-items:center;
 }
 
 .check.done{
   background:var(--success);
-  border-color:transparent
+  border-color:transparent;
 }
 
 .taskrow strong{
   font-size:10px;
-  display:block
+  display:block;
 }
 
 .taskrow small{
   font-size:8px;
   color:var(--dim);
   display:block;
-  margin-top:3px
+  margin-top:3px;
 }
 
 .rmeta{
   font-size:8px;
   color:var(--muted);
-  text-align:right
+  text-align:right;
 }
 
 .prio{
@@ -405,22 +483,22 @@ button{cursor:pointer}
   font-size:7px;
   padding:4px 6px;
   border-radius:6px;
-  border:1px solid var(--line)
+  border:1px solid var(--line);
 }
 
 .high{
   color:#ff9ba4;
-  background:rgba(255,92,108,.06)
+  background:rgba(255,92,108,.06);
 }
 
 .medium{
   color:#ffd58d;
-  background:rgba(255,184,77,.06)
+  background:rgba(255,184,77,.06);
 }
 
 .low{
   color:#82e5ac;
-  background:rgba(53,208,127,.05)
+  background:rgba(53,208,127,.05);
 }
 
 .link{
@@ -428,70 +506,70 @@ button{cursor:pointer}
   border:0;
   color:#A999FF;
   font-size:9px;
-  font-weight:700
+  font-weight:700;
 }
 
 .timeline{
   display:flex;
-  overflow:auto
+  overflow:auto;
 }
 
 .titem{
   min-width:140px;
   padding:2px 14px;
-  border-left:1px solid var(--line)
+  border-left:1px solid var(--line);
 }
 
 .titem:first-child{
   border-left:0;
-  padding-left:0
+  padding-left:0;
 }
 
 .ttime{
   font-size:8px;
   color:var(--dim);
-  margin-bottom:6px
+  margin-bottom:6px;
 }
 
 .etitle{
   font-size:9px;
-  font-weight:700
+  font-weight:700;
 }
 
 .emeta{
   font-size:8px;
   color:var(--dim);
-  margin-top:4px
+  margin-top:4px;
 }
 
 .progress{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px
+  gap:9px;
 }
 
 .pbox{
   border:1px solid var(--line);
   border-radius:12px;
-  padding:13px
+  padding:13px;
 }
 
 .pnum{
   font-size:22px;
   font-weight:800;
-  letter-spacing:-.04em
+  letter-spacing:-.04em;
 }
 
 .plabel{
   font-size:8px;
   color:var(--dim);
-  margin-top:4px
+  margin-top:4px;
 }
 
 .insight{
   display:flex;
   gap:10px;
-  align-items:flex-start
+  align-items:flex-start;
 }
 
 .iicon{
@@ -502,26 +580,26 @@ button{cursor:pointer}
   color:#B2A4FF;
   display:grid;
   place-items:center;
-  flex:0 0 auto
+  flex:0 0 auto;
 }
 
 .insight h3{
   font-size:10px;
-  margin:1px 0 5px
+  margin:1px 0 5px;
 }
 
 .insight p{
   font-size:9px;
   color:var(--muted);
   line-height:1.6;
-  margin:0
+  margin:0;
 }
 
 .empty{
   border:1px dashed var(--line);
   border-radius:21px;
   padding:50px 25px;
-  text-align:center
+  text-align:center;
 }
 
 .emptyicon{
@@ -532,13 +610,13 @@ button{cursor:pointer}
   color:#B2A4FF;
   display:grid;
   place-items:center;
-  margin:0 auto 15px
+  margin:0 auto 15px;
 }
 
 .empty h2{
   font-size:25px;
   letter-spacing:-.035em;
-  margin:0 0 8px
+  margin:0 0 8px;
 }
 
 .empty p{
@@ -546,14 +624,14 @@ button{cursor:pointer}
   margin:0 auto 20px;
   color:var(--muted);
   font-size:11px;
-  line-height:1.65
+  line-height:1.65;
 }
 
 .emptyactions{
   display:flex;
   justify-content:center;
   gap:8px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .demo{
@@ -567,23 +645,25 @@ button{cursor:pointer}
   border-radius:10px;
   background:rgba(255,184,77,.055);
   font-size:9px;
-  color:#FFD58D
+  color:#FFD58D;
 }
 
-.demo.show{display:flex}
+.demo.show{
+  display:flex;
+}
 
 .toolbar{
   display:flex;
   justify-content:space-between;
   gap:9px;
   flex-wrap:wrap;
-  margin-bottom:12px
+  margin-bottom:12px;
 }
 
 .filters{
   display:flex;
   gap:5px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .filter{
@@ -592,13 +672,13 @@ button{cursor:pointer}
   color:var(--muted);
   font-size:8px;
   padding:7px 9px;
-  border-radius:8px
+  border-radius:8px;
 }
 
 .filter.active{
   background:var(--soft);
   color:#fff;
-  border-color:rgba(124,92,255,.24)
+  border-color:rgba(124,92,255,.24);
 }
 
 .search{
@@ -608,7 +688,7 @@ button{cursor:pointer}
   border:1px solid var(--line);
   padding:7px 9px;
   border-radius:8px;
-  background:rgba(255,255,255,.02)
+  background:rgba(255,255,255,.02);
 }
 
 .search input{
@@ -617,12 +697,12 @@ button{cursor:pointer}
   color:var(--text);
   background:transparent;
   font-size:9px;
-  width:190px
+  width:190px;
 }
 
 .table{
   width:100%;
-  border-collapse:collapse
+  border-collapse:collapse;
 }
 
 .table th{
@@ -631,14 +711,14 @@ button{cursor:pointer}
   letter-spacing:.09em;
   color:var(--dim);
   text-align:left;
-  padding:0 7px 9px
+  padding:0 7px 9px;
 }
 
 .table td{
   border-top:1px solid var(--line);
   padding:10px 7px;
   font-size:9px;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .schedule{
@@ -646,58 +726,58 @@ button{cursor:pointer}
   grid-template-columns:56px repeat(7,minmax(105px,1fr));
   overflow:auto;
   border:1px solid var(--line);
-  border-radius:15px
+  border-radius:15px;
 }
 
 .cell{
   min-height:72px;
   padding:8px;
   border-right:1px solid var(--line);
-  border-bottom:1px solid var(--line)
+  border-bottom:1px solid var(--line);
 }
 
 .headcell{
   min-height:auto;
-  background:rgba(255,255,255,.02)
+  background:rgba(255,255,255,.02);
 }
 
 .day{
   font-size:8px;
-  font-weight:700
+  font-weight:700;
 }
 
 .day small{
   display:block;
   color:var(--dim);
-  margin-top:3px
+  margin-top:3px;
 }
 
 .timecell{
   font-size:7px;
   color:var(--dim);
-  text-align:right
+  text-align:right;
 }
 
 .eblock{
   border-left:2px solid var(--accent);
   padding-left:5px;
-  margin-bottom:4px
+  margin-bottom:4px;
 }
 
 .eblock b{
   display:block;
-  font-size:8px
+  font-size:8px;
 }
 
 .eblock small{
   font-size:7px;
-  color:var(--dim)
+  color:var(--dim);
 }
 
 .focusgrid{
   display:grid;
   grid-template-columns:1.1fr .9fr;
-  gap:14px
+  gap:14px;
 }
 
 .focuscard{
@@ -709,7 +789,7 @@ button{cursor:pointer}
   );
   border-radius:22px;
   padding:27px;
-  text-align:center
+  text-align:center;
 }
 
 .status{
@@ -717,33 +797,33 @@ button{cursor:pointer}
   text-transform:uppercase;
   letter-spacing:.1em;
   color:#B2A4FF;
-  font-weight:700
+  font-weight:700;
 }
 
 .focustitle{
   font-size:25px;
   letter-spacing:-.04em;
   font-weight:800;
-  margin:11px 0 4px
+  margin:11px 0 4px;
 }
 
 .focuscourse{
   font-size:8px;
-  color:var(--dim)
+  color:var(--dim);
 }
 
 .timer{
   font-size:70px;
   letter-spacing:-.07em;
   font-weight:800;
-  margin:25px 0
+  margin:25px 0;
 }
 
 .focusbuttons{
   display:flex;
   justify-content:center;
   gap:7px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .focusnote{
@@ -751,7 +831,7 @@ button{cursor:pointer}
   margin:16px auto 0;
   color:var(--muted);
   font-size:9px;
-  line-height:1.6
+  line-height:1.6;
 }
 
 .queueitem{
@@ -760,11 +840,23 @@ button{cursor:pointer}
   justify-content:space-between;
   gap:9px;
   padding:10px 0;
-  border-bottom:1px solid var(--line)
+  border-bottom:1px solid var(--line);
 }
 
-.qtitle{font-size:9px;font-weight:700}
-.qmeta{font-size:7px;color:var(--dim);margin-top:3px}
+.queueitem:last-child{
+  border-bottom:0;
+}
+
+.qtitle{
+  font-size:9px;
+  font-weight:700;
+}
+
+.qmeta{
+  font-size:7px;
+  color:var(--dim);
+  margin-top:3px;
+}
 
 .onboard{
   position:fixed;
@@ -774,27 +866,29 @@ button{cursor:pointer}
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px
+  padding:20px;
 }
 
-.onboard.show{display:flex}
+.onboard.show{
+  display:flex;
+}
 
 .onwrap{
-  width:min(610px,100%)
+  width:min(610px,100%);
 }
 
 .ontop{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:38px
+  margin-bottom:38px;
 }
 
 .onstep{
   font-size:8px;
   color:var(--dim);
   text-transform:uppercase;
-  letter-spacing:.1em
+  letter-spacing:.1em;
 }
 
 .onbar{
@@ -802,28 +896,28 @@ button{cursor:pointer}
   border-radius:99px;
   background:#111722;
   overflow:hidden;
-  margin-bottom:30px
+  margin-bottom:30px;
 }
 
 .onbar span{
   display:block;
   height:100%;
   background:var(--accent);
-  transition:.2s
+  transition:.2s;
 }
 
 .question{
   font-size:36px;
   line-height:1.05;
   letter-spacing:-.045em;
-  margin:0 0 9px
+  margin:0 0 9px;
 }
 
 .qsub{
   font-size:11px;
   color:var(--muted);
   line-height:1.6;
-  margin-bottom:21px
+  margin-bottom:21px;
 }
 
 .answer{
@@ -834,16 +928,16 @@ button{cursor:pointer}
   border-bottom:1px solid rgba(255,255,255,.14);
   padding:10px 0;
   font-size:18px;
-  outline:0
+  outline:0;
 }
 
 .answer:focus{
-  border-color:var(--accent)
+  border-color:var(--accent);
 }
 
 .choices{
   display:grid;
-  gap:8px
+  gap:8px;
 }
 
 .choice{
@@ -852,25 +946,25 @@ button{cursor:pointer}
   color:var(--muted);
   border-radius:12px;
   padding:12px;
-  text-align:left
+  text-align:left;
 }
 
 .choice.active{
   background:var(--soft);
   border-color:rgba(124,92,255,.3);
-  color:#fff
+  color:#fff;
 }
 
 .onbottom{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-top:28px
+  margin-top:28px;
 }
 
 .mutedtiny{
   font-size:8px;
-  color:var(--dim)
+  color:var(--dim);
 }
 
 .modalbg{
@@ -881,47 +975,51 @@ button{cursor:pointer}
   place-items:center;
   background:rgba(0,0,0,.64);
   backdrop-filter:blur(8px);
-  padding:14px
+  padding:14px;
 }
 
-.modalbg.show{display:grid}
+.modalbg.show{
+  display:grid;
+}
 
 .modal{
   width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
   background:#101621;
   border:1px solid var(--line);
   border-radius:18px;
-  padding:19px
+  padding:19px;
 }
 
 .modalhead{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:14px
+  margin-bottom:14px;
 }
 
 .modal h2{
   font-size:16px;
-  margin:0
+  margin:0;
 }
 
 .x{
   border:0;
   background:transparent;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .field{
   display:grid;
   gap:6px;
-  margin-bottom:12px
+  margin-bottom:12px;
 }
 
 .field label{
   font-size:8px;
   color:var(--muted);
-  font-weight:600
+  font-weight:600;
 }
 
 .control{
@@ -932,17 +1030,22 @@ button{cursor:pointer}
   border-radius:9px;
   padding:9px 10px;
   outline:0;
-  font-size:10px
+  font-size:10px;
 }
 
 .control:focus{
-  border-color:rgba(124,92,255,.45)
+  border-color:rgba(124,92,255,.45);
+}
+
+.control:disabled{
+  opacity:.35;
+  cursor:not-allowed;
 }
 
 .quick{
   display:flex;
   flex-wrap:wrap;
-  gap:6px
+  gap:6px;
 }
 
 .qbtn{
@@ -951,23 +1054,25 @@ button{cursor:pointer}
   color:var(--muted);
   border-radius:9px;
   padding:7px 8px;
-  font-size:8px
+  font-size:8px;
 }
 
 .qbtn.active{
   background:var(--soft);
   color:#fff;
-  border-color:rgba(124,92,255,.28)
+  border-color:rgba(124,92,255,.28);
 }
 
 .modalfoot{
   display:flex;
   justify-content:flex-end;
   gap:7px;
-  margin-top:16px
+  margin-top:16px;
 }
 
-.bottom{display:none}
+.bottom{
+  display:none;
+}
 
 .toast{
   position:fixed;
@@ -981,15 +1086,15 @@ button{cursor:pointer}
   font-size:9px;
   opacity:0;
   transform:translateY(6px);
-  transition:.2s
+  transition:.2s;
+  pointer-events:none;
 }
 
 .toast.show{
   opacity:1;
-  transform:none
+  transform:none;
 }
 
-/* AUTH */
 .authbg{
   position:fixed;
   inset:0;
@@ -998,47 +1103,52 @@ button{cursor:pointer}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px
+  padding:20px;
+  overflow:auto;
 }
 
-.authbg.hide{display:none}
+.authbg.hide{
+  display:none;
+}
 
 .authbox{
-  width:min(430px,100%);
+  width:min(440px,100%);
   border:1px solid var(--line);
   background:#101621;
   border-radius:24px;
   padding:30px;
-  box-shadow:0 24px 80px rgba(0,0,0,.45)
+  box-shadow:0 24px 80px rgba(0,0,0,.45);
 }
 
 .authbrand{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-bottom:28px
+  margin-bottom:28px;
 }
 
-.authbrand .brandname{font-size:18px}
+.authbrand .brandname{
+  font-size:18px;
+}
 
 .authbox h1{
   font-size:30px;
   letter-spacing:-.04em;
-  margin:0 0 8px
+  margin:0 0 8px;
 }
 
 .authbox p{
   color:var(--muted);
   font-size:11px;
   line-height:1.6;
-  margin:0 0 22px
+  margin:0 0 22px;
 }
 
 .auth-tabs{
   display:grid;
   grid-template-columns:1fr 1fr;
   border-bottom:1px solid var(--line);
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .auth-tab{
@@ -1047,25 +1157,45 @@ button{cursor:pointer}
   color:var(--dim);
   padding:11px;
   font-weight:700;
-  font-size:10px
+  font-size:10px;
 }
 
 .auth-tab.active{
   color:#fff;
-  border-bottom:2px solid var(--accent)
+  border-bottom:2px solid var(--accent);
 }
 
 .auth-error{
   color:#ff9ba4;
   font-size:9px;
-  min-height:16px;
-  margin-top:8px
+  min-height:18px;
+  margin-top:8px;
+  line-height:1.5;
 }
 
 .auth-note{
   font-size:8px!important;
   color:var(--dim)!important;
-  margin-top:16px!important
+  margin-top:16px!important;
+  margin-bottom:0!important;
+}
+
+.auth-forgot{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:-4px;
+  margin-bottom:10px;
+}
+
+.auth-forgot button{
+  border:0;
+  background:transparent;
+  color:#A999FF;
+  font-size:8px;
+}
+
+.auth-success{
+  color:#82E5AC;
 }
 
 .user-menu{
@@ -1079,10 +1209,12 @@ button{cursor:pointer}
   border-radius:12px;
   display:none;
   z-index:100;
-  box-shadow:0 15px 40px rgba(0,0,0,.35)
+  box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-.user-menu.show{display:block}
+.user-menu.show{
+  display:block;
+}
 
 .user-menu button{
   width:100%;
@@ -1092,32 +1224,74 @@ button{cursor:pointer}
   text-align:left;
   padding:9px;
   border-radius:8px;
-  font-size:9px
+  font-size:9px;
 }
 
 .user-menu button:hover{
   background:rgba(255,255,255,.05);
-  color:#fff
+  color:#fff;
 }
 
 @media(max-width:980px){
-  .side{width:205px}
-  .main{margin-left:205px}
-  .two,.focusgrid{grid-template-columns:1fr}
-  .content{padding:27px 22px 48px}
+  .side{
+    width:205px;
+  }
+
+  .main{
+    margin-left:205px;
+  }
+
+  .two,
+  .focusgrid{
+    grid-template-columns:1fr;
+  }
+
+  .content{
+    padding:27px 22px 48px;
+  }
 }
 
 @media(max-width:700px){
-  .side{display:none}
-  .main{margin-left:0}
-  .topbar{padding:0 14px}
-  .topsub{display:none}
-  .content{padding:20px 14px 92px}
-  .hero-row{display:block}
-  .hero-actions{margin-top:15px}
-  .next{padding:21px}
-  .nexttitle{font-size:31px}
-  .nextbuttons .btn{flex:1}
+  .side{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+  }
+
+  .topbar{
+    padding:0 14px;
+  }
+
+  .topsub{
+    display:none;
+  }
+
+  .content{
+    padding:20px 14px 92px;
+  }
+
+  .hero-row{
+    display:block;
+  }
+
+  .hero-actions{
+    margin-top:15px;
+  }
+
+  .next{
+    padding:21px;
+  }
+
+  .nexttitle{
+    font-size:31px;
+  }
+
+  .nextbuttons .btn{
+    flex:1;
+  }
+
   .bottom{
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -1129,8 +1303,9 @@ button{cursor:pointer}
     background:rgba(10,14,21,.94);
     backdrop-filter:blur(15px);
     border-top:1px solid var(--line);
-    padding:7px 7px env(safe-area-inset-bottom)
+    padding:7px 7px env(safe-area-inset-bottom);
   }
+
   .bottom button{
     border:0;
     background:transparent;
@@ -1139,17 +1314,42 @@ button{cursor:pointer}
     place-items:center;
     gap:4px;
     padding:6px 2px;
-    font-size:7px
+    font-size:7px;
   }
-  .bottom button.active{color:#fff}
-  .bottom i{width:16px}
-  .question{font-size:30px}
-  .ontop{margin-bottom:26px}
-  .search,.search input{width:100%}
+
+  .bottom button.active{
+    color:#fff;
+  }
+
+  .bottom i{
+    width:16px;
+  }
+
+  .question{
+    font-size:30px;
+  }
+
+  .ontop{
+    margin-bottom:26px;
+  }
+
+  .search,
+  .search input{
+    width:100%;
+  }
+
   .table{
     display:block;
     overflow:auto;
-    white-space:nowrap
+    white-space:nowrap;
+  }
+
+  .authbox{
+    padding:24px;
+  }
+
+  .user-menu{
+    right:12px;
   }
 }
 </style>
@@ -1163,14 +1363,13 @@ button{cursor:pointer}
   <div class="authbox">
 
     <div id="cloudHint"
-         style="display:none;color:#FFB84D;font-size:9px;line-height:1.5;margin-bottom:12px">
-      Cloud authentication is not connected.
+      style="display:none;color:#FFB84D;font-size:9px;line-height:1.5;margin-bottom:12px">
+      Cloud authentication is not connected. Check your Supabase settings in index.html.
     </div>
 
     <div class="authbrand">
       <svg class="logo" viewBox="0 0 32 32" fill="none">
-        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
-              fill="#7C5CFF"/>
+        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z" fill="#7C5CFF"/>
       </svg>
 
       <div>
@@ -1180,8 +1379,8 @@ button{cursor:pointer}
     </div>
 
     <div class="auth-tabs">
-      <button class="auth-tab active" id="loginTab">Log in</button>
-      <button class="auth-tab" id="signupTab">Sign up</button>
+      <button class="auth-tab active" id="loginTab" type="button">Log in</button>
+      <button class="auth-tab" id="signupTab" type="button">Sign up</button>
     </div>
 
     <h1 id="authTitle">Welcome back.</h1>
@@ -1190,38 +1389,55 @@ button{cursor:pointer}
       Log in with your email or mobile number.
     </p>
 
-    <form id="authForm">
+    <!-- novalidate is IMPORTANT:
+         browser must NOT force email when mobile is used -->
+    <form id="authForm" novalidate>
 
+      <!-- EMAIL -->
       <div class="field">
-        <label>Email address</label>
+        <label>
+          Email address
+          <span style="color:var(--dim)">
+            (optional — skip if using mobile)
+          </span>
+        </label>
 
-        <!-- IMPORTANT: NO required attribute -->
         <input
           class="control"
           id="authEmail"
           type="email"
-          autocomplete="email"
-          placeholder="you@example.com">
+          autocomplete="off"
+          placeholder="you@example.com"
+        >
       </div>
 
+      <!-- OR -->
       <div style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;color:#687385;font-size:9px">
         <span style="height:1px;background:var(--line);flex:1"></span>
         <span>OR</span>
         <span style="height:1px;background:var(--line);flex:1"></span>
       </div>
 
+      <!-- MOBILE -->
       <div class="field">
-        <label>Mobile number</label>
+        <label>
+          Mobile number
+          <span style="color:var(--dim)">
+            (optional — skip if using email)
+          </span>
+        </label>
 
         <input
           class="control"
           id="authPhone"
           type="tel"
-          autocomplete="tel"
+          autocomplete="off"
           inputmode="tel"
-          placeholder="+91 98765 43210">
+          placeholder="+91 98765 43210"
+        >
       </div>
 
+      <!-- NAME -->
       <div class="field" id="authNameWrap" style="display:none">
         <label>Your name</label>
 
@@ -1229,9 +1445,11 @@ button{cursor:pointer}
           class="control"
           id="authName"
           autocomplete="name"
-          placeholder="Your name">
+          placeholder="Your name"
+        >
       </div>
 
+      <!-- PASSWORD -->
       <div class="field">
         <label>Password</label>
 
@@ -1239,18 +1457,23 @@ button{cursor:pointer}
           class="control"
           id="authPassword"
           type="password"
-          minlength="6"
           autocomplete="current-password"
-          required
-          placeholder="At least 6 characters">
+          minlength="6"
+          placeholder="At least 6 characters"
+        >
       </div>
 
-      <!-- MOBILE OTP -->
-      <div id="authOtpWrap"
-           style="display:none;margin-top:10px">
+      <!-- FORGOT PASSWORD -->
+      <div class="auth-forgot">
+        <button type="button" id="forgotPassword">
+          Forgot password?
+        </button>
+      </div>
+
+      <!-- OTP -->
+      <div id="authOtpWrap" style="display:none;margin-top:10px">
 
         <div class="field">
-
           <label>Mobile verification code</label>
 
           <input
@@ -1258,7 +1481,8 @@ button{cursor:pointer}
             id="authOtp"
             inputmode="numeric"
             maxlength="6"
-            placeholder="6-digit code">
+            placeholder="6-digit code"
+          >
         </div>
 
         <div style="display:flex;gap:8px">
@@ -1266,14 +1490,16 @@ button{cursor:pointer}
           <button
             type="button"
             class="btn primary"
-            id="verifyOtpBtn">
-            Verify code
+            id="verifyOtpBtn"
+          >
+            Verify mobile
           </button>
 
           <button
             type="button"
             class="btn"
-            id="resendOtpBtn">
+            id="resendOtpBtn"
+          >
             Resend
           </button>
 
@@ -1283,9 +1509,11 @@ button{cursor:pointer}
       <div class="auth-error" id="authError"></div>
 
       <button
+        type="submit"
         class="btn primary"
         style="width:100%;margin-top:4px"
-        id="authSubmit">
+        id="authSubmit"
+      >
         Log in
       </button>
 
@@ -1293,60 +1521,75 @@ button{cursor:pointer}
 
     <p class="auth-note">
       Use your email OR mobile number.
-      Your NEXA workspace is connected to your account.
+      Your NEXA workspace can sync with your Supabase account.
     </p>
 
   </div>
 </div>
 
 
-<!-- MAIN APP -->
+<!-- APP -->
 <div class="app">
 
+  <!-- SIDEBAR -->
   <aside class="side">
 
     <div class="brand">
+
       <svg class="logo" viewBox="0 0 32 32" fill="none">
-        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
-              fill="#7C5CFF"/>
+        <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z" fill="#7C5CFF"/>
       </svg>
 
       <div>
         <div class="brandname">NEXA</div>
         <div class="tag">KNOW WHAT'S NEXT.</div>
       </div>
+
     </div>
 
     <div class="navtitle">Workspace</div>
 
     <div class="nav">
+
       <button class="active" data-view="home">
-        <i data-lucide="house"></i>Home
+        <i data-lucide="house"></i>
+        Home
       </button>
 
       <button data-view="tasks">
-        <i data-lucide="check-square"></i>Tasks
+        <i data-lucide="check-square"></i>
+        Tasks
       </button>
 
       <button data-view="schedule">
-        <i data-lucide="calendar-days"></i>Schedule
+        <i data-lucide="calendar-days"></i>
+        Schedule
       </button>
 
       <button data-view="focus">
-        <i data-lucide="timer"></i>Focus
+        <i data-lucide="timer"></i>
+        Focus
       </button>
 
       <button data-view="insights">
-        <i data-lucide="sparkles"></i>Insights
+        <i data-lucide="sparkles"></i>
+        Insights
       </button>
+
     </div>
 
     <div class="sidefoot">
 
+      <div class="demobadge" id="sideDemo">
+        <i data-lucide="flask-conical" width="13"></i>
+        Demo mode
+      </div>
+
       <button
         class="profile"
         id="profileBtn"
-        style="width:100%;text-align:left;color:inherit">
+        style="width:100%;text-align:left;color:inherit"
+      >
 
         <div class="avatar" id="avatar">?</div>
 
@@ -1362,6 +1605,7 @@ button{cursor:pointer}
   </aside>
 
 
+  <!-- MAIN -->
   <main class="main">
 
     <header class="topbar">
@@ -1372,6 +1616,14 @@ button{cursor:pointer}
       </div>
 
       <div class="actions">
+
+        <button
+          class="btn"
+          id="themeBtn"
+          title="Toggle light/dark"
+        >
+          <i data-lucide="sun-moon" width="14"></i>
+        </button>
 
         <button class="btn" id="quickAdd">
           <i data-lucide="plus" width="14"></i>
@@ -1386,19 +1638,23 @@ button{cursor:pointer}
     <section class="content">
 
       <div class="demo" id="demoBanner">
+
         <span>
-          <b>Demo mode</b> — examples are isolated from your real workspace.
+          <b>Demo mode</b>
+          — examples are isolated from your real workspace.
         </span>
 
         <button class="btn" id="exitDemo">
           Exit demo
         </button>
+
       </div>
 
 
       <!-- HOME -->
       <div class="view active" id="view-home">
 
+        <!-- EMPTY -->
         <div class="empty" id="homeEmpty">
 
           <div class="emptyicon">
@@ -1409,12 +1665,16 @@ button{cursor:pointer}
 
           <p>
             Let's build your day around what actually matters.
-            Add one real task and NEXA will help you decide what comes next.
+            Add your first real task and NEXA will help decide
+            what comes next.
           </p>
 
           <div class="emptyactions">
 
-            <button class="btn primary" id="createFirst">
+            <button
+              class="btn primary"
+              id="createFirst"
+            >
               <i data-lucide="plus" width="14"></i>
               Create my first task
             </button>
@@ -1429,6 +1689,7 @@ button{cursor:pointer}
         </div>
 
 
+        <!-- HOME CONTENT -->
         <div id="homeContent" style="display:none">
 
           <div class="hero-row">
@@ -1463,7 +1724,6 @@ button{cursor:pointer}
             Your next action
           </div>
 
-
           <section class="next">
 
             <div class="nexttop">
@@ -1478,11 +1738,17 @@ button{cursor:pointer}
 
             </div>
 
-            <div class="nexttitle" id="nextTitle">
+            <div
+              class="nexttitle"
+              id="nextTitle"
+            >
               Nothing urgent right now.
             </div>
 
-            <div class="metas" id="nextMeta"></div>
+            <div
+              class="metas"
+              id="nextMeta"
+            ></div>
 
             <div class="why">
 
@@ -1498,12 +1764,18 @@ button{cursor:pointer}
 
             <div class="nextbuttons">
 
-              <button class="btn primary" id="startFocus">
+              <button
+                class="btn primary"
+                id="startFocus"
+              >
                 <i data-lucide="play" width="13"></i>
                 Start focus
               </button>
 
-              <button class="btn" id="chooseAnother">
+              <button
+                class="btn"
+                id="chooseAnother"
+              >
                 <i data-lucide="shuffle" width="13"></i>
                 Choose another
               </button>
@@ -1517,7 +1789,6 @@ button{cursor:pointer}
             Today
           </div>
 
-
           <div class="two">
 
             <section class="panel">
@@ -1525,13 +1796,19 @@ button{cursor:pointer}
               <div class="ph">
 
                 <div>
-                  <div class="pt">What matters today</div>
+                  <div class="pt">
+                    What matters today
+                  </div>
+
                   <div class="ps">
                     Only the three strongest open tasks.
                   </div>
                 </div>
 
-                <button class="link" id="allTasks">
+                <button
+                  class="link"
+                  id="allTasks"
+                >
                   View all tasks
                 </button>
 
@@ -1539,7 +1816,10 @@ button{cursor:pointer}
 
               <div class="pb">
 
-                <div class="tasklist" id="todayTasks"></div>
+                <div
+                  class="tasklist"
+                  id="todayTasks"
+                ></div>
 
               </div>
 
@@ -1551,7 +1831,10 @@ button{cursor:pointer}
               <div class="ph">
 
                 <div>
-                  <div class="pt">Your day</div>
+                  <div class="pt">
+                    Your day
+                  </div>
+
                   <div class="ps">
                     Keep the shape simple.
                   </div>
@@ -1561,7 +1844,10 @@ button{cursor:pointer}
 
               <div class="pb">
 
-                <div class="timeline" id="todayTimeline"></div>
+                <div
+                  class="timeline"
+                  id="todayTimeline"
+                ></div>
 
               </div>
 
@@ -1581,17 +1867,33 @@ button{cursor:pointer}
               <div class="progress">
 
                 <div class="pbox">
-                  <div class="pnum" id="doneToday">0/0</div>
+
+                  <div
+                    class="pnum"
+                    id="doneToday"
+                  >
+                    0/0
+                  </div>
+
                   <div class="plabel">
                     Tasks completed today
                   </div>
+
                 </div>
 
                 <div class="pbox">
-                  <div class="pnum" id="focusToday">0m</div>
+
+                  <div
+                    class="pnum"
+                    id="focusToday"
+                  >
+                    0m
+                  </div>
+
                   <div class="plabel">
                     Focus time today
                   </div>
+
                 </div>
 
               </div>
@@ -1607,10 +1909,15 @@ button{cursor:pointer}
 
           <section class="panel">
 
-            <div class="pb"
-                 style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+            <div
+              class="pb"
+              style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap"
+            >
 
-              <div class="insight" style="flex:1">
+              <div
+                class="insight"
+                style="flex:1"
+              >
 
                 <div class="iicon">
                   <i data-lucide="sparkles" width="14"></i>
@@ -1631,7 +1938,10 @@ button{cursor:pointer}
 
               </div>
 
-              <button class="btn" id="seeInsights">
+              <button
+                class="btn"
+                id="seeInsights"
+              >
                 View insights
               </button>
 
@@ -1651,17 +1961,25 @@ button{cursor:pointer}
 
           <div class="hero">
 
-            <div class="eyebrow">Work</div>
+            <div class="eyebrow">
+              Work
+            </div>
 
-            <h1>Your tasks.</h1>
+            <h1>
+              Your tasks.
+            </h1>
 
             <p>
-              NEXA keeps task entry simple and handles the prioritizing.
+              NEXA keeps task entry simple
+              and handles the prioritizing.
             </p>
 
           </div>
 
-          <button class="btn primary" id="taskAdd">
+          <button
+            class="btn primary"
+            id="taskAdd"
+          >
             <i data-lucide="plus" width="13"></i>
             Add task
           </button>
@@ -1675,9 +1993,14 @@ button{cursor:pointer}
 
             <div>
 
-              <div class="pt">Task list</div>
+              <div class="pt">
+                Task list
+              </div>
 
-              <div class="ps" id="taskSummary">
+              <div
+                class="ps"
+                id="taskSummary"
+              >
                 0 open
               </div>
 
@@ -1689,17 +2012,29 @@ button{cursor:pointer}
 
             <div class="toolbar">
 
-              <div class="filters">
+              <div
+                class="filters"
+                id="filters"
+              >
 
-                <button class="filter active" data-filter="all">
+                <button
+                  class="filter active"
+                  data-filter="all"
+                >
                   All
                 </button>
 
-                <button class="filter" data-filter="open">
+                <button
+                  class="filter"
+                  data-filter="open"
+                >
                   Open
                 </button>
 
-                <button class="filter" data-filter="done">
+                <button
+                  class="filter"
+                  data-filter="done"
+                >
                   Completed
                 </button>
 
@@ -1707,11 +2042,15 @@ button{cursor:pointer}
 
               <div class="search">
 
-                <i data-lucide="search" width="12"></i>
+                <i
+                  data-lucide="search"
+                  width="12"
+                ></i>
 
                 <input
                   id="search"
-                  placeholder="Find a task">
+                  placeholder="Find a task"
+                >
 
               </div>
 
@@ -1751,17 +2090,25 @@ button{cursor:pointer}
 
           <div class="hero">
 
-            <div class="eyebrow">Schedule</div>
+            <div class="eyebrow">
+              Schedule
+            </div>
 
-            <h1>Shape the week.</h1>
+            <h1>
+              Shape the week.
+            </h1>
 
             <p>
-              Keep planned time visible without turning NEXA into a rigid timetable.
+              Keep planned time visible without
+              turning NEXA into a rigid timetable.
             </p>
 
           </div>
 
-          <button class="btn primary" id="eventAdd">
+          <button
+            class="btn primary"
+            id="eventAdd"
+          >
             <i data-lucide="plus" width="13"></i>
             Add block
           </button>
@@ -1775,7 +2122,9 @@ button{cursor:pointer}
 
             <div>
 
-              <div class="pt">Week</div>
+              <div class="pt">
+                Week
+              </div>
 
               <div class="ps">
                 Simple planned time.
@@ -1787,7 +2136,10 @@ button{cursor:pointer}
 
           <div class="pb">
 
-            <div class="schedule" id="schedule"></div>
+            <div
+              class="schedule"
+              id="schedule"
+            ></div>
 
           </div>
 
@@ -1803,12 +2155,17 @@ button{cursor:pointer}
 
           <div class="hero">
 
-            <div class="eyebrow">Focus</div>
+            <div class="eyebrow">
+              Focus
+            </div>
 
-            <h1>One thing. For now.</h1>
+            <h1>
+              One thing. For now.
+            </h1>
 
             <p>
-              Protect your attention around the task NEXA thinks matters most.
+              Protect your attention around the task
+              NEXA thinks matters most.
             </p>
 
           </div>
@@ -1820,34 +2177,55 @@ button{cursor:pointer}
 
           <section class="focuscard">
 
-            <div class="status" id="fstatus">
+            <div
+              class="status"
+              id="fstatus"
+            >
               Ready
             </div>
 
-            <div class="focustitle" id="ftitle">
+            <div
+              class="focustitle"
+              id="ftitle"
+            >
               Choose a task
             </div>
 
-            <div class="focuscourse" id="fcourse">
+            <div
+              class="focuscourse"
+              id="fcourse"
+            >
               Your next action will appear here.
             </div>
 
-            <div class="timer" id="timer">
+            <div
+              class="timer"
+              id="timer"
+            >
               25:00
             </div>
 
             <div class="focusbuttons">
 
-              <button class="btn primary" id="timerStart">
+              <button
+                class="btn primary"
+                id="timerStart"
+              >
                 <i data-lucide="play" width="13"></i>
                 Start
               </button>
 
-              <button class="btn" id="timerPause">
+              <button
+                class="btn"
+                id="timerPause"
+              >
                 Pause
               </button>
 
-              <button class="btn" id="timerReset">
+              <button
+                class="btn"
+                id="timerReset"
+              >
                 Reset
               </button>
 
@@ -1867,7 +2245,9 @@ button{cursor:pointer}
 
               <div>
 
-                <div class="pt">Next up</div>
+                <div class="pt">
+                  Next up
+                </div>
 
                 <div class="ps">
                   NEXA's current queue.
@@ -1877,7 +2257,10 @@ button{cursor:pointer}
 
             </div>
 
-            <div class="pb" id="queue"></div>
+            <div
+              class="pb"
+              id="queue"
+            ></div>
 
           </section>
 
@@ -1893,12 +2276,17 @@ button{cursor:pointer}
 
           <div class="hero">
 
-            <div class="eyebrow">Insights</div>
+            <div class="eyebrow">
+              Insights
+            </div>
 
-            <h1>Patterns, not pressure.</h1>
+            <h1>
+              Patterns, not pressure.
+            </h1>
 
             <p>
-              Statistics live here so your Home screen can stay focused on your next move.
+              Statistics live here so your Home screen
+              can stay focused on your next move.
             </p>
 
           </div>
@@ -1914,7 +2302,9 @@ button{cursor:pointer}
 
               <div>
 
-                <div class="pt">Progress</div>
+                <div class="pt">
+                  Progress
+                </div>
 
                 <div class="ps">
                   Simple numbers for the week.
@@ -1929,24 +2319,43 @@ button{cursor:pointer}
               <div class="progress">
 
                 <div class="pbox">
-                  <div class="pnum" id="weekDone">0</div>
+
+                  <div
+                    class="pnum"
+                    id="weekDone"
+                  >
+                    0
+                  </div>
+
                   <div class="plabel">
                     Tasks completed this week
                   </div>
+
                 </div>
 
                 <div class="pbox">
-                  <div class="pnum" id="weekFocus">0m</div>
+
+                  <div
+                    class="pnum"
+                    id="weekFocus"
+                  >
+                    0m
+                  </div>
+
                   <div class="plabel">
                     Focus time this week
                   </div>
+
                 </div>
 
               </div>
 
               <div style="height:14px"></div>
 
-              <canvas id="chart" height="160"></canvas>
+              <canvas
+                id="chart"
+                height="160"
+              ></canvas>
 
             </div>
 
@@ -1959,7 +2368,9 @@ button{cursor:pointer}
 
               <div>
 
-                <div class="pt">One useful pattern</div>
+                <div class="pt">
+                  One useful pattern
+                </div>
 
                 <div class="ps">
                   Based on local history.
@@ -1984,7 +2395,9 @@ button{cursor:pointer}
                   </h3>
 
                   <p id="patternBody">
-                    Complete a few tasks and NEXA can tell you something useful about how you work.
+                    Complete a few tasks and NEXA
+                    can tell you something useful
+                    about how you work.
                   </p>
 
                 </div>
@@ -2007,7 +2420,10 @@ button{cursor:pointer}
   <!-- MOBILE NAV -->
   <nav class="bottom">
 
-    <button class="active" data-view="home">
+    <button
+      class="active"
+      data-view="home"
+    >
       <i data-lucide="house"></i>
       <span>Home</span>
     </button>
@@ -2035,8 +2451,11 @@ button{cursor:pointer}
   </nav>
 
 
-  <div class="user-menu" id="userMenu">
-
+  <!-- USER MENU -->
+  <div
+    class="user-menu"
+    id="userMenu"
+  >
     <button id="accountEmail">
       Account
     </button>
@@ -2044,24 +2463,35 @@ button{cursor:pointer}
     <button id="logoutBtn">
       Log out
     </button>
-
   </div>
 
 </div>
 
 
 <!-- ONBOARDING -->
-<div class="onboard" id="onboard">
+<div
+  class="onboard"
+  id="onboard"
+>
 
   <div class="onwrap">
 
     <div class="ontop">
 
-      <div class="brand" style="padding:0">
+      <div
+        class="brand"
+        style="padding:0"
+      >
 
-        <svg class="logo" viewBox="0 0 32 32" fill="none">
-          <path d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
-                fill="#7C5CFF"/>
+        <svg
+          class="logo"
+          viewBox="0 0 32 32"
+          fill="none"
+        >
+          <path
+            d="M4.5 27V5h5l13 15.1V5h5v22h-5L9.5 11.9V27h-5Z"
+            fill="#7C5CFF"
+          />
         </svg>
 
         <div class="brandname">
@@ -2070,7 +2500,10 @@ button{cursor:pointer}
 
       </div>
 
-      <div class="onstep" id="onstep">
+      <div
+        class="onstep"
+        id="onstep"
+      >
         1 / 5
       </div>
 
@@ -2088,7 +2521,10 @@ button{cursor:pointer}
 
 
 <!-- TASK MODAL -->
-<div class="modalbg" id="taskModal">
+<div
+  class="modalbg"
+  id="taskModal"
+>
 
   <div class="modal">
 
@@ -2098,7 +2534,11 @@ button{cursor:pointer}
         What do you need to get done?
       </h2>
 
-      <button class="x" id="taskClose">
+      <button
+        class="x"
+        id="taskClose"
+        type="button"
+      >
         <i data-lucide="x"></i>
       </button>
 
@@ -2113,37 +2553,49 @@ button{cursor:pointer}
           class="control"
           id="ttitle"
           required
-          placeholder="e.g. Finish Mathematics assignment">
+          placeholder="e.g. Finish Mathematics assignment"
+        >
 
       </div>
 
       <div class="field">
 
-        <label>Optional context</label>
+        <label>
+          Optional context
+        </label>
 
         <input
           class="control"
           id="tcourse"
-          placeholder="Course or project">
+          placeholder="Course or project"
+        >
 
       </div>
 
       <div class="field">
 
-        <label>When is it due?</label>
+        <label>
+          When is it due?
+        </label>
 
         <input
           class="control"
           id="tdue"
-          type="date">
+          type="date"
+        >
 
       </div>
 
       <div class="field">
 
-        <label>How long will it take?</label>
+        <label>
+          How long will it take?
+        </label>
 
-        <div class="quick" id="effort">
+        <div
+          class="quick"
+          id="effort"
+        >
 
           <button type="button" class="qbtn" data-v="15">
             15 min
@@ -2168,9 +2620,14 @@ button{cursor:pointer}
 
       <div class="field">
 
-        <label>How important is it?</label>
+        <label>
+          How important is it?
+        </label>
 
-        <div class="quick" id="priority">
+        <div
+          class="quick"
+          id="priority"
+        >
 
           <button type="button" class="qbtn" data-v="high">
             Important
@@ -2191,9 +2648,14 @@ button{cursor:pointer}
 
       <div class="field">
 
-        <label>How difficult does it feel?</label>
+        <label>
+          How difficult does it feel?
+        </label>
 
-        <div class="quick" id="energy">
+        <div
+          class="quick"
+          id="energy"
+        >
 
           <button type="button" class="qbtn" data-v="low">
             Light
@@ -2214,11 +2676,18 @@ button{cursor:pointer}
 
       <div class="modalfoot">
 
-        <button type="button" class="btn" id="taskCancel">
+        <button
+          type="button"
+          class="btn"
+          id="taskCancel"
+        >
           Cancel
         </button>
 
-        <button class="btn primary">
+        <button
+          class="btn primary"
+          type="submit"
+        >
           Add task
         </button>
 
@@ -2232,7 +2701,10 @@ button{cursor:pointer}
 
 
 <!-- EVENT MODAL -->
-<div class="modalbg" id="eventModal">
+<div
+  class="modalbg"
+  id="eventModal"
+>
 
   <div class="modal">
 
@@ -2242,7 +2714,11 @@ button{cursor:pointer}
         Add a time block
       </h2>
 
-      <button class="x" id="eventClose">
+      <button
+        class="x"
+        id="eventClose"
+        type="button"
+      >
         <i data-lucide="x"></i>
       </button>
 
@@ -2253,47 +2729,66 @@ button{cursor:pointer}
 
       <div class="field">
 
-        <label>What is this block for?</label>
+        <label>
+          What is this block for?
+        </label>
 
         <input
           class="control"
           id="etitle"
           required
-          placeholder="Deep work, class, gym...">
+          placeholder="Deep work, class, gym..."
+        >
 
       </div>
 
+
       <div class="field">
 
-        <label>Date</label>
+        <label>
+          Date
+        </label>
 
         <input
           class="control"
           id="edate"
           type="date"
-          required>
+          required
+        >
 
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+
+      <div
+        style="display:grid;grid-template-columns:1fr 1fr;gap:8px"
+      >
 
         <div class="field">
 
-          <label>Start</label>
+          <label>
+            Start
+          </label>
 
           <input
             class="control"
             id="etime"
             type="time"
-            value="10:00">
+            value="10:00"
+          >
 
         </div>
 
+
         <div class="field">
 
-          <label>Duration</label>
+          <label>
+            Duration
+          </label>
 
-          <select class="control" id="edur">
+          <select
+            class="control"
+            id="edur"
+          >
 
             <option value="30">
               30 min
@@ -2320,11 +2815,18 @@ button{cursor:pointer}
 
       <div class="modalfoot">
 
-        <button type="button" class="btn" id="eventCancel">
+        <button
+          type="button"
+          class="btn"
+          id="eventCancel"
+        >
           Cancel
         </button>
 
-        <button class="btn primary">
+        <button
+          class="btn primary"
+          type="submit"
+        >
           Add block
         </button>
 
@@ -2337,7 +2839,10 @@ button{cursor:pointer}
 </div>
 
 
-<div class="toast" id="toast"></div>
+<div
+  class="toast"
+  id="toast"
+></div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -2345,20 +2850,48 @@ button{cursor:pointer}
 <script>
 
 /* =========================================================
-   NEXA SUPABASE CONFIGURATION
+   NEXA CONFIGURATION
    ========================================================= */
+
+/*
+  IMPORTANT:
+  Supabase JS needs the PROJECT URL itself.
+
+  Correct:
+  https://qcoujplmocfldmqzwfiq.supabase.co
+
+  NOT:
+  https://qcoujplmocfldmqzwfiq.supabase.co/rest/v1/
+*/
 
 const SUPABASE_URL =
   'https://qcoujplmocfldmqzwfiq.supabase.co';
 
+/*
+  This is your public/publishable key.
+  Never put a service_role key in this file.
+*/
 const SUPABASE_KEY =
   'sb_publishable_OfE8ammeYnzjkDCkf9th8A_md1L3VbQ';
 
-const NEXA_SITE_URL =
+
+/*
+  Your GitHub Pages website.
+
+  This is used for email confirmation and password reset.
+*/
+const SITE_URL =
   'https://siddarthturpu-dot.github.io/nexa/';
 
+
+/* =========================================================
+   SUPABASE
+   ========================================================= */
+
 const CLOUD_READY =
-  Boolean(SUPABASE_URL && SUPABASE_KEY);
+  SUPABASE_URL.startsWith('https://') &&
+  SUPABASE_KEY &&
+  !SUPABASE_KEY.startsWith('YOUR_');
 
 const sb =
   CLOUD_READY
@@ -2377,25 +2910,114 @@ const sb =
 
 
 /* =========================================================
-   STORAGE / STATE
+   STORAGE
    ========================================================= */
 
 const REAL = 'nexa-real-v4';
 const DEMO = 'nexa-demo-v4';
 const ON = 'nexa-onboarding-v4';
 
-let demoMode = location.hash === '#demo';
+let demoMode =
+  location.hash === '#demo';
+
+let currentUser = null;
 let selected = null;
 let chart = null;
+
 let timer = null;
 let tsec = 1500;
-let currentUser = null;
-let pendingPhone = null;
-let authMode = 'login';
+
 let cloudSaveTimer = null;
 
 
+/* =========================================================
+   BASIC HELPERS
+   ========================================================= */
+
+function uid(){
+  return Math.random()
+    .toString(36)
+    .slice(2,10);
+}
+
+function today(){
+  return new Date()
+    .toISOString()
+    .slice(0,10);
+}
+
+function add(n){
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+
+  return d.toISOString().slice(0,10);
+}
+
+function days(s){
+
+  if(!s){
+    return 999;
+  }
+
+  return Math.round(
+    (
+      new Date(s + 'T12:00:00') -
+      new Date(today() + 'T12:00:00')
+    ) / 86400000
+  );
+}
+
+function fmt(s){
+
+  if(!s){
+    return '—';
+  }
+
+  return new Intl.DateTimeFormat(
+    undefined,
+    {
+      month:'short',
+      day:'numeric'
+    }
+  ).format(
+    new Date(s + 'T12:00:00')
+  );
+}
+
+function esc(s){
+
+  return String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      m => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m])
+    );
+}
+
+function load(k){
+
+  try{
+    return JSON.parse(
+      localStorage.getItem(k)
+    );
+  }catch{
+    return null;
+  }
+
+}
+
+
+/* =========================================================
+   EMPTY USER STATE
+   ========================================================= */
+
 function blank(){
+
   return {
     onboarded:false,
 
@@ -2412,96 +3034,18 @@ function blank(){
     focusLog:[],
     history:[]
   };
-}
 
-
-function uid(){
-  return Math.random()
-    .toString(36)
-    .slice(2,10);
-}
-
-
-function today(){
-  return new Date()
-    .toISOString()
-    .slice(0,10);
-}
-
-
-function add(n){
-  const d = new Date();
-
-  d.setDate(
-    d.getDate()+n
-  );
-
-  return d
-    .toISOString()
-    .slice(0,10);
-}
-
-
-function days(date){
-  if(!date) return 999;
-
-  return Math.round(
-    (
-      new Date(date+'T12:00:00') -
-      new Date(today()+'T12:00:00')
-    ) / 86400000
-  );
-}
-
-
-function fmt(date){
-  if(!date) return '—';
-
-  return new Intl.DateTimeFormat(
-    undefined,
-    {
-      month:'short',
-      day:'numeric'
-    }
-  ).format(
-    new Date(date+'T12:00:00')
-  );
-}
-
-
-function esc(value){
-  return String(value ?? '')
-    .replace(
-      /[&<>"']/g,
-      m => ({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-      }[m])
-    );
-}
-
-
-function load(key){
-  try{
-    return JSON.parse(
-      localStorage.getItem(key)
-    );
-  }catch{
-    return null;
-  }
 }
 
 
 /* =========================================================
-   DEMO
+   DEMO DATA
    ========================================================= */
 
 function demoData(){
 
   return {
+
     onboarded:true,
 
     profile:{
@@ -2513,6 +3057,7 @@ function demoData(){
     },
 
     tasks:[
+
       {
         id:uid(),
         title:'Finish Mathematics Assignment',
@@ -2550,10 +3095,25 @@ function demoData(){
         postponed:0,
         done:false,
         created:today()
+      },
+
+      {
+        id:uid(),
+        title:'Read Distributed Systems chapter',
+        course:'Distributed Systems',
+        due:add(5),
+        effort:30,
+        priority:'low',
+        energy:'low',
+        postponed:0,
+        done:false,
+        created:today()
       }
+
     ],
 
     events:[
+
       {
         id:uid(),
         title:'Mathematics',
@@ -2568,603 +3128,27 @@ function demoData(){
         date:today(),
         time:'16:30',
         duration:60
+      },
+
+      {
+        id:uid(),
+        title:'Operating Systems',
+        date:add(1),
+        time:'10:00',
+        duration:60
       }
+
     ],
 
     focusLog:[],
     history:[]
   };
-}
 
-
-let state =
-  demoMode
-    ? (load(DEMO) || demoData())
-    : blank();
-
-
-/* =========================================================
-   AUTH UI
-   ========================================================= */
-
-function showAuth(){
-  document
-    .getElementById('authScreen')
-    .classList.remove('hide');
-}
-
-
-function hideAuth(){
-  document
-    .getElementById('authScreen')
-    .classList.add('hide');
-}
-
-
-function authMessage(
-  message,
-  error = true
-){
-
-  const el =
-    document.getElementById('authError');
-
-  el.textContent =
-    message || '';
-
-  el.style.color =
-    error
-      ? '#FF9BA4'
-      : '#82E5AC';
-}
-
-
-function setAuthMode(mode){
-
-  authMode = mode;
-
-  document
-    .getElementById('loginTab')
-    .classList
-    .toggle('active',mode === 'login');
-
-  document
-    .getElementById('signupTab')
-    .classList
-    .toggle('active',mode === 'signup');
-
-  document
-    .getElementById('authTitle')
-    .textContent =
-      mode === 'login'
-        ? 'Welcome back.'
-        : 'Create your NEXA.';
-
-  document
-    .getElementById('authSubtitle')
-    .textContent =
-      mode === 'login'
-        ? 'Log in with your email or mobile number.'
-        : 'Create your account with email or mobile number.';
-
-  document
-    .getElementById('authNameWrap')
-    .style.display =
-      mode === 'signup'
-        ? 'block'
-        : 'none';
-
-  document
-    .getElementById('authSubmit')
-    .textContent =
-      mode === 'login'
-        ? 'Log in'
-        : 'Create account';
-
-  document
-    .getElementById('authOtpWrap')
-    .style.display =
-      'none';
-
-  authMessage('');
-}
-
-
-document
-  .getElementById('loginTab')
-  .onclick =
-    () => setAuthMode('login');
-
-
-document
-  .getElementById('signupTab')
-  .onclick =
-    () => setAuthMode('signup');
-
-
-/* =========================================================
-   IDENTIFIER VALIDATION
-   ========================================================= */
-
-function normalizePhone(value){
-
-  let phone =
-    value
-      .trim()
-      .replace(/[\s().-]/g,'');
-
-  if(phone.startsWith('00')){
-    phone =
-      '+' + phone.slice(2);
-  }
-
-  if(!phone.startsWith('+')){
-    phone = '+' + phone;
-  }
-
-  return phone;
-}
-
-
-function validPhone(value){
-
-  const phone =
-    normalizePhone(value);
-
-  return /^\+[0-9]{8,15}$/.test(phone);
 }
 
 
 /* =========================================================
-   AUTH SUBMIT
-   ========================================================= */
-
-document
-  .getElementById('authForm')
-  .onsubmit = async function(e){
-
-    e.preventDefault();
-
-    if(!CLOUD_READY){
-
-      authMessage(
-        'Supabase is not connected.'
-      );
-
-      return;
-    }
-
-
-    const email =
-      document
-        .getElementById('authEmail')
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    const phoneInput =
-      document
-        .getElementById('authPhone')
-        .value
-        .trim();
-
-
-    const password =
-      document
-        .getElementById('authPassword')
-        .value;
-
-
-    const name =
-      document
-        .getElementById('authName')
-        .value
-        .trim();
-
-
-    /*
-      IMPORTANT:
-
-      Email is NOT required.
-
-      Mobile is NOT required.
-
-      Exactly one must be entered.
-    */
-
-    if(!email && !phoneInput){
-
-      authMessage(
-        'Enter your email OR mobile number.'
-      );
-
-      return;
-    }
-
-
-    if(email && phoneInput){
-
-      authMessage(
-        'Please use either email or mobile number, not both.'
-      );
-
-      return;
-    }
-
-
-    if(
-      email &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ){
-
-      authMessage(
-        'Enter a valid email address.'
-      );
-
-      return;
-    }
-
-
-    if(
-      phoneInput &&
-      !validPhone(phoneInput)
-    ){
-
-      authMessage(
-        'Enter a valid mobile number with country code, for example +919876543210.'
-      );
-
-      return;
-    }
-
-
-    if(password.length < 6){
-
-      authMessage(
-        'Password must be at least 6 characters.'
-      );
-
-      return;
-    }
-
-
-    if(
-      authMode === 'signup' &&
-      !name
-    ){
-
-      authMessage(
-        'Please enter your name.'
-      );
-
-      return;
-    }
-
-
-    const submit =
-      document.getElementById('authSubmit');
-
-    submit.disabled = true;
-
-    authMessage(
-      'Working…',
-      false
-    );
-
-
-    try{
-
-      /* =========================
-         SIGN UP
-         ========================= */
-
-      if(authMode === 'signup'){
-
-        if(email){
-
-          /*
-            EMAIL SIGNUP
-
-            The confirmation link will
-            return to GitHub Pages.
-          */
-
-          const {data,error} =
-            await sb.auth.signUp({
-
-              email:email,
-
-              password:password,
-
-              options:{
-                emailRedirectTo:NEXA_SITE_URL,
-
-                data:{
-                  name:name
-                }
-              }
-
-            });
-
-
-          if(error) throw error;
-
-
-          if(data.session){
-
-            await loadCloudUser(
-              data.user
-            );
-
-            toast(
-              'Account created'
-            );
-
-          }else{
-
-            authMessage(
-              'Account created. Check your email and click Confirm Email. You will return to NEXA.',
-              false
-            );
-
-          }
-
-        }else{
-
-          /*
-            PHONE SIGNUP
-
-            Supabase sends the SMS OTP
-            when Phone Auth is enabled.
-          */
-
-          const phone =
-            normalizePhone(phoneInput);
-
-
-          const {data,error} =
-            await sb.auth.signUp({
-
-              phone:phone,
-
-              password:password,
-
-              options:{
-                data:{
-                  name:name
-                }
-              }
-
-            });
-
-
-          if(error) throw error;
-
-
-          pendingPhone = phone;
-
-
-          document
-            .getElementById('authOtpWrap')
-            .style.display = 'block';
-
-
-          authMessage(
-            'A verification code was sent to your mobile number.',
-            false
-          );
-
-        }
-
-      }
-
-      /* =========================
-         LOGIN
-         ========================= */
-
-      else{
-
-        let data;
-        let error;
-
-
-        if(email){
-
-          ({
-            data,
-            error
-          } =
-            await sb.auth.signInWithPassword({
-
-              email:email,
-              password:password
-
-            }));
-
-        }else{
-
-          const phone =
-            normalizePhone(phoneInput);
-
-
-          ({
-            data,
-            error
-          } =
-            await sb.auth.signInWithPassword({
-
-              phone:phone,
-              password:password
-
-            }));
-
-        }
-
-
-        if(error) throw error;
-
-
-        await loadCloudUser(
-          data.user
-        );
-
-
-        toast(
-          'Welcome back'
-        );
-
-      }
-
-    }catch(err){
-
-      console.error(err);
-
-      authMessage(
-        err.message ||
-        'Authentication failed.'
-      );
-
-    }finally{
-
-      submit.disabled = false;
-
-    }
-
-  };
-
-
-/* =========================================================
-   PHONE OTP VERIFY
-   ========================================================= */
-
-document
-  .getElementById('verifyOtpBtn')
-  .onclick = async function(){
-
-    if(!sb || !pendingPhone){
-
-      authMessage(
-        'Enter your mobile number first.'
-      );
-
-      return;
-    }
-
-
-    const token =
-      document
-        .getElementById('authOtp')
-        .value
-        .trim();
-
-
-    if(!/^\d{6}$/.test(token)){
-
-      authMessage(
-        'Enter the 6-digit verification code.'
-      );
-
-      return;
-    }
-
-
-    try{
-
-      const {data,error} =
-        await sb.auth.verifyOtp({
-
-          phone:pendingPhone,
-
-          token:token,
-
-          type:'sms'
-
-        });
-
-
-      if(error) throw error;
-
-
-      await loadCloudUser(
-        data.user
-      );
-
-
-      toast(
-        'Mobile number verified'
-      );
-
-
-    }catch(err){
-
-      console.error(err);
-
-      authMessage(
-        err.message ||
-        'Could not verify the code.'
-      );
-
-    }
-
-  };
-
-
-/* =========================================================
-   RESEND SMS
-   ========================================================= */
-
-document
-  .getElementById('resendOtpBtn')
-  .onclick = async function(){
-
-    if(!sb || !pendingPhone){
-
-      authMessage(
-        'Enter your mobile number first.'
-      );
-
-      return;
-    }
-
-
-    try{
-
-      const {error} =
-        await sb.auth.resend({
-
-          type:'sms',
-
-          phone:pendingPhone
-
-        });
-
-
-      if(error) throw error;
-
-
-      authMessage(
-        'A new verification code was sent.',
-        false
-      );
-
-
-    }catch(err){
-
-      console.error(err);
-
-      authMessage(
-        err.message ||
-        'Could not resend the code.'
-      );
-
-    }
-
-  };
-
-
-/* =========================================================
-   CLOUD DATA
+   SAVE / CLOUD
    ========================================================= */
 
 async function cloudLoad(){
@@ -3173,7 +3157,6 @@ async function cloudLoad(){
     return blank();
   }
 
-
   const {data,error} =
     await sb
       .from('nexa_user_data')
@@ -3181,15 +3164,15 @@ async function cloudLoad(){
       .eq('user_id',currentUser.id)
       .maybeSingle();
 
-
-  if(error) throw error;
-
+  if(error){
+    throw error;
+  }
 
   return data?.data || blank();
 }
 
 
-async function cloudSave(){
+async function cloudSaveNow(){
 
   if(
     !sb ||
@@ -3199,143 +3182,48 @@ async function cloudSave(){
     return;
   }
 
-
-  clearTimeout(
-    cloudSaveTimer
-  );
-
-
-  cloudSaveTimer =
-    setTimeout(
-      async function(){
-
-        const {error} =
-          await sb
-            .from('nexa_user_data')
-            .upsert(
-              {
-                user_id:currentUser.id,
-                data:state,
-                updated_at:new Date().toISOString()
-              },
-              {
-                onConflict:'user_id'
-              }
-            );
-
-
-        if(error){
-
-          console.error(
-            'NEXA cloud save:',
-            error
-          );
-
+  const {error} =
+    await sb
+      .from('nexa_user_data')
+      .upsert(
+        {
+          user_id:currentUser.id,
+          data:state,
+          updated_at:new Date().toISOString()
+        },
+        {
+          onConflict:'user_id'
         }
+      );
 
-      },
-      300
+  if(error){
+    console.error(
+      'NEXA cloud save:',
+      error
     );
-}
-
-
-async function loadCloudUser(user){
-
-  currentUser = user;
-
-
-  try{
-
-    state =
-      await cloudLoad();
-
-
-    state.profile =
-      state.profile ||
-      blank().profile;
-
-
-    if(
-      !state.profile.name &&
-      user.user_metadata?.name
-    ){
-
-      state.profile.name =
-        user.user_metadata.name;
-
-      await cloudSave();
-
-    }
-
-
-  }catch(err){
-
-    console.error(err);
-
-    state = blank();
-
-    toast(
-      'Cloud data could not be loaded. Make sure the NEXA database table exists.'
-    );
-
   }
-
-
-  hideAuth();
-
-  onboard();
-
-  renderAll();
 }
 
 
-async function logout(){
+function cloudSave(){
 
-  if(demoMode){
-
-    demoMode = false;
-
-    localStorage.removeItem(DEMO);
-
-    history.replaceState(
-      null,
-      '',
-      location.pathname +
-      location.search
-    );
-
-    state = blank();
-
-    renderAll();
-
+  if(
+    !sb ||
+    !currentUser ||
+    demoMode
+  ){
     return;
   }
 
+  clearTimeout(cloudSaveTimer);
 
-  if(sb){
-    await sb.auth.signOut();
-  }
-
-
-  currentUser = null;
-
-  state = blank();
-
-  showAuth();
-
-  document
-    .getElementById('authForm')
-    .reset();
-
-  setAuthMode('login');
-
-  toast('Logged out');
+  cloudSaveTimer =
+    setTimeout(
+      cloudSaveNow,
+      500
+    );
 }
 
-
-/* =========================================================
-   SAVE
-   ========================================================= */
 
 function save(){
 
@@ -3357,28 +3245,300 @@ function save(){
 
 
 /* =========================================================
-   UI HELPERS
+   STATE
    ========================================================= */
 
-function toast(message){
+let state =
+  demoMode
+    ? (load(DEMO) || demoData())
+    : blank();
+
+
+/* =========================================================
+   AUTH UI
+   ========================================================= */
+
+function showAuth(){
+
+  document
+    .getElementById('authScreen')
+    .classList.remove('hide');
+
+}
+
+function hideAuth(){
+
+  document
+    .getElementById('authScreen')
+    .classList.add('hide');
+
+}
+
+function authMessage(
+  msg,
+  isError = true
+){
 
   const el =
-    document.getElementById('toast');
+    document.getElementById(
+      'authError'
+    );
 
   el.textContent =
-    message;
+    msg || '';
 
-  el.classList.add('show');
+  el.style.color =
+    isError
+      ? '#FF9BA4'
+      : '#82E5AC';
+}
 
-  clearTimeout(
-    toast.timer
+
+/* =========================================================
+   EMAIL / PHONE SWITCH
+   ========================================================= */
+
+const authEmailEl =
+  document.getElementById(
+    'authEmail'
   );
 
-  toast.timer =
+const authPhoneEl =
+  document.getElementById(
+    'authPhone'
+  );
+
+
+authEmailEl.addEventListener(
+  'input',
+  () => {
+
+    if(authEmailEl.value.trim()){
+
+      authPhoneEl.value = '';
+      authPhoneEl.disabled = true;
+
+    }else{
+
+      authPhoneEl.disabled = false;
+
+    }
+
+  }
+);
+
+
+authPhoneEl.addEventListener(
+  'input',
+  () => {
+
+    if(authPhoneEl.value.trim()){
+
+      authEmailEl.value = '';
+      authEmailEl.disabled = true;
+
+    }else{
+
+      authEmailEl.disabled = false;
+
+    }
+
+  }
+);
+
+
+/* Never let browser validation force email. */
+authEmailEl.required = false;
+authPhoneEl.required = false;
+
+
+/* =========================================================
+   IDENTIFIER NORMALIZATION
+   ========================================================= */
+
+function normalizeIdentifier(v){
+
+  const raw =
+    v.trim();
+
+  if(raw.includes('@')){
+
+    return {
+      type:'email',
+      value:raw.toLowerCase()
+    };
+
+  }
+
+  const digits =
+    raw.replace(
+      /[\s().-]/g,
+      ''
+    );
+
+  if(
+    /^\+?[0-9]{8,15}$/.test(
+      digits
+    )
+  ){
+
+    return {
+      type:'phone',
+      value:
+        digits.startsWith('+')
+          ? digits
+          : '+' + digits
+    };
+
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   LOAD USER
+   ========================================================= */
+
+async function loadCloudUser(user){
+
+  currentUser =
+    user;
+
+  try{
+
+    state =
+      await cloudLoad();
+
+    state =
+      state || blank();
+
+    state.profile =
+      state.profile ||
+      blank().profile;
+
+    if(
+      !state.profile.name &&
+      user.user_metadata?.name
+    ){
+
+      state.profile.name =
+        user.user_metadata.name;
+
+      await cloudSaveNow();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    state =
+      blank();
+
+    toast(
+      'Could not load cloud data.'
+    );
+
+  }
+
+  hideAuth();
+
+  onboard();
+
+  renderAll();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+async function logout(){
+
+  if(demoMode){
+
+    demoMode = false;
+
+    localStorage.removeItem(
+      DEMO
+    );
+
+    history.replaceState(
+      null,
+      '',
+      location.pathname +
+      location.search
+    );
+
+    state =
+      blank();
+
+    currentUser =
+      null;
+
+    renderAll();
+
+    showAuth();
+
+    return;
+  }
+
+  if(sb){
+
+    await sb.auth.signOut();
+
+  }
+
+  currentUser =
+    null;
+
+  state =
+    blank();
+
+  showAuth();
+
+  document
+    .getElementById('authForm')
+    .reset();
+
+  authEmailEl.disabled = false;
+  authPhoneEl.disabled = false;
+
+  toast(
+    'Logged out'
+  );
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function toast(m){
+
+  const x =
+    document.getElementById(
+      'toast'
+    );
+
+  x.textContent =
+    m;
+
+  x.classList.add('show');
+
+  clearTimeout(
+    toast.t
+  );
+
+  toast.t =
     setTimeout(
-      () => el.classList.remove('show'),
+      () => x.classList.remove('show'),
       2200
     );
+
 }
 
 
@@ -3386,44 +3546,44 @@ function toast(message){
    NAVIGATION
    ========================================================= */
 
-function nav(view){
+function nav(v){
 
   document
     .querySelectorAll('.view')
     .forEach(
-      el =>
-        el.classList.toggle(
+      x =>
+        x.classList.toggle(
           'active',
-          el.id === 'view-' + view
+          x.id === 'view-' + v
         )
     );
-
 
   document
     .querySelectorAll('[data-view]')
     .forEach(
-      el =>
-        el.classList.toggle(
+      x =>
+        x.classList.toggle(
           'active',
-          el.dataset.view === view
+          x.dataset.view === v
         )
     );
 
-
   document
-    .getElementById('topTitle')
+    .getElementById(
+      'topTitle'
+    )
     .textContent =
-      view.charAt(0).toUpperCase() +
-      view.slice(1);
+      v[0].toUpperCase() +
+      v.slice(1);
 
+  if(v === 'insights'){
 
-  if(view === 'insights'){
     setTimeout(
       renderInsights,
-      20
+      10
     );
-  }
 
+  }
 
   window.scrollTo({
     top:0,
@@ -3435,15 +3595,17 @@ function nav(view){
 
 document.addEventListener(
   'click',
-  function(e){
+  e => {
 
-    const button =
-      e.target.closest('[data-view]');
+    const b =
+      e.target.closest(
+        '[data-view]'
+      );
 
-    if(button){
+    if(b){
 
       nav(
-        button.dataset.view
+        b.dataset.view
       );
 
     }
@@ -3456,75 +3618,68 @@ document.addEventListener(
    NEXT ACTION ENGINE
    ========================================================= */
 
-function rank(task,available=60){
+function rank(
+  t,
+  available = 60
+){
 
-  if(task.done){
+  if(t.done){
     return -1;
   }
 
-
   const d =
-    days(task.due);
+    days(t.due);
 
+  let s =
+    d < 0
+      ? 110
+      : d === 0
+        ? 95
+        : d === 1
+          ? 80
+          : d === 2
+            ? 62
+            : d <= 4
+              ? 40
+              : 18;
 
-  let score;
-
-
-  if(d < 0){
-    score = 110;
-  }else if(d === 0){
-    score = 95;
-  }else if(d === 1){
-    score = 80;
-  }else if(d === 2){
-    score = 62;
-  }else if(d <= 4){
-    score = 40;
-  }else{
-    score = 18;
-  }
-
-
-  score +=
-    ({
+  s +=
+    {
       high:35,
       medium:20,
       low:7
-    }[task.priority] || 0);
+    }[t.priority] || 0;
 
-
-  score +=
+  s +=
     Math.max(
       0,
-      13 - (task.effort || 30) / 8
+      13 -
+      (t.effort || 30) / 8
     );
 
-
-  score +=
-    ({
+  s +=
+    {
       high:8,
       medium:4,
       low:1
-    }[task.energy] || 0);
+    }[t.energy] || 0;
 
-
-  score +=
+  s +=
     Math.min(
       15,
-      (task.postponed || 0) * 6
+      (t.postponed || 0) * 6
     );
 
-
   if(
-    (task.effort || 30) <= available
+    (t.effort || 30) <= available
   ){
 
-    score += 6;
+    s += 6;
 
   }
 
+  return s;
 
-  return score;
 }
 
 
@@ -3532,11 +3687,12 @@ function openTasks(){
 
   return state.tasks
     .filter(
-      task => !task.done
+      t => !t.done
     )
     .sort(
       (a,b) =>
-        rank(b) - rank(a)
+        rank(b) -
+        rank(a)
     );
 
 }
@@ -3549,62 +3705,80 @@ function nextTask(){
 }
 
 
-function why(task){
+function why(t){
 
-  if(!task){
+  if(!t){
 
     return 'Add something you want to accomplish.';
 
   }
 
-
   const reasons = [];
 
+  if(
+    t.priority === 'high'
+  ){
 
-  if(task.priority === 'high'){
-    reasons.push('high priority');
+    reasons.push(
+      'high priority'
+    );
+
   }
-
 
   const d =
-    days(task.due);
-
+    days(t.due);
 
   if(d < 0){
-    reasons.push('overdue');
-  }else if(d === 0){
-    reasons.push('due today');
-  }else if(d === 1){
-    reasons.push('due tomorrow');
-  }else if(d <= 2){
-    reasons.push('due soon');
-  }
 
-
-  if(
-    (task.postponed || 0) > 0
-  ){
     reasons.push(
-      'you postponed it before'
+      'overdue'
     );
+
+  }else if(d === 0){
+
+    reasons.push(
+      'due today'
+    );
+
+  }else if(d === 1){
+
+    reasons.push(
+      'due tomorrow'
+    );
+
+  }else if(d <= 2){
+
+    reasons.push(
+      'due soon'
+    );
+
   }
 
+  if(
+    (t.postponed || 0) > 0
+  ){
+
+    reasons.push(
+      'you have postponed it before'
+    );
+
+  }
 
   if(
-    task.effort <= 30
+    t.effort <= 30
   ){
+
     reasons.push(
       'it fits a short focus block'
     );
-  }
 
+  }
 
   if(!reasons.length){
 
     return 'Recommended because it is the strongest next step from your current queue.';
 
   }
-
 
   return (
     'Recommended because it is ' +
@@ -3625,19 +3799,16 @@ function renderShell(){
     state.profile.name ||
     'Welcome';
 
-
   document
     .getElementById('pname')
     .textContent =
       name;
-
 
   document
     .getElementById('pfocus')
     .textContent =
       state.profile.goal ||
       'New workspace';
-
 
   document
     .getElementById('avatar')
@@ -3646,16 +3817,23 @@ function renderShell(){
         ? '?'
         : name
             .split(/\s+/)
-            .map(x => x[0])
+            .map(
+              x => x[0]
+            )
             .slice(0,2)
             .join('')
             .toUpperCase();
 
-
   document
     .getElementById('demoBanner')
-    .classList
-    .toggle(
+    .classList.toggle(
+      'show',
+      demoMode
+    );
+
+  document
+    .getElementById('sideDemo')
+    .classList.toggle(
       'show',
       demoMode
     );
@@ -3667,58 +3845,61 @@ function renderShell(){
    TASK HTML
    ========================================================= */
 
-function taskHTML(task){
+function taskHTML(t){
 
   const d =
-    days(task.due);
+    days(t.due);
 
-
-  const deadline =
+  const dl =
     d < 0
       ? 'Overdue'
       : d === 0
         ? 'Today'
         : d === 1
           ? 'Tomorrow'
-          : fmt(task.due);
-
+          : fmt(t.due);
 
   return `
     <div class="taskrow">
 
       <button
-        class="check ${task.done ? 'done' : ''}"
-        data-tog="${task.id}">
-
+        class="check ${t.done ? 'done' : ''}"
+        data-tog="${t.id}"
+      >
         ${
-          task.done
+          t.done
             ? '<i data-lucide="check" width="11"></i>'
             : ''
         }
-
       </button>
 
       <div>
 
-        <strong>
-          ${esc(task.title)}
+        <strong
+          style="${
+            t.done
+              ? 'text-decoration:line-through;opacity:.5'
+              : ''
+          }"
+        >
+          ${esc(t.title)}
         </strong>
 
         <small>
-          ${task.effort} min ·
-          ${esc(task.course || 'General')}
+          ${t.effort} min ·
+          ${esc(t.course || 'General')}
         </small>
 
       </div>
 
       <div class="rmeta">
 
-        ${deadline}
+        ${dl}
 
         <br>
 
-        <span class="prio ${task.priority}">
-          ${task.priority}
+        <span class="prio ${t.priority}">
+          ${t.priority}
         </span>
 
       </div>
@@ -3737,11 +3918,10 @@ function insight(){
 
   const done =
     state.tasks.filter(
-      task =>
-        task.done &&
-        task.completedAt
+      t =>
+        t.done &&
+        t.completedAt
     ).length;
-
 
   if(done < 3){
 
@@ -3752,13 +3932,10 @@ function insight(){
 
   }
 
-
   const early =
     state.history.filter(
-      item =>
-        item.hour < 11
+      h => h.hour < 11
     ).length;
-
 
   if(early >= 2){
 
@@ -3769,10 +3946,9 @@ function insight(){
 
   }
 
-
   return [
     'Consistency is building.',
-    'You are completing meaningful work. Keep the next action small enough to start without debate.'
+    'You’re completing meaningful work. Keep the next action small enough to start without debate.'
   ];
 
 }
@@ -3789,7 +3965,6 @@ function renderHome(){
       'homeEmpty'
     );
 
-
   const content =
     document.getElementById(
       'homeContent'
@@ -3797,8 +3972,8 @@ function renderHome(){
 
 
   /*
-    Brand-new users do not get
-    fake tasks.
+    Brand-new users with no tasks
+    never see fictional tasks.
   */
 
   if(
@@ -3827,7 +4002,6 @@ function renderHome(){
   const hour =
     new Date().getHours();
 
-
   const greeting =
     hour < 12
       ? 'Good morning'
@@ -3839,72 +4013,72 @@ function renderHome(){
   document
     .getElementById('greeting')
     .textContent =
-      `${greeting}, ${state.profile.name || 'there'}.`;
+      greeting +
+      ', ' +
+      state.profile.name +
+      '.';
 
 
-  const task =
+  const t =
     nextTask();
 
-
   selected =
-    task?.id || null;
+    t?.id || null;
 
 
   document
     .getElementById('nextTitle')
     .textContent =
-      task
-        ? task.title
+      t
+        ? t.title
         : 'Nothing urgent right now.';
 
 
-  if(task){
+  if(t){
 
     const d =
-      days(task.due);
+      days(t.due);
 
-
-    const deadline =
+    const dueText =
       d < 0
         ? 'Overdue'
         : d === 0
           ? 'Due today'
           : d === 1
             ? 'Due tomorrow'
-            : `Due ${fmt(task.due)}`;
-
+            : 'Due ' + fmt(t.due);
 
     document
       .getElementById('nextMeta')
       .innerHTML = `
-
         <span class="meta">
-          ${deadline}
+          ${dueText}
         </span>
 
         <span class="meta">
-          ${task.effort} minutes
+          ${t.effort} minutes
         </span>
 
         <span class="meta">
           ${
-            task.priority === 'high'
+            t.priority === 'high'
               ? 'High priority'
-              : task.priority === 'medium'
+              : t.priority === 'medium'
                 ? 'Medium priority'
                 : 'Low priority'
           }
         </span>
-
       `;
-
 
   }else{
 
     document
       .getElementById('nextMeta')
-      .innerHTML =
-        '<span class="meta">Your queue is clear</span>';
+      .innerHTML = `
+        <span class="meta">
+          Your queue is clear
+        </span>
+      `;
 
   }
 
@@ -3912,7 +4086,7 @@ function renderHome(){
   document
     .getElementById('whyText')
     .textContent =
-      why(task);
+      why(t);
 
 
   document
@@ -3923,43 +4097,45 @@ function renderHome(){
         .map(taskHTML)
         .join('') ||
       `
-        <div style="font-size:10px;color:var(--muted);padding:10px 2px">
+        <div
+          style="font-size:10px;color:var(--muted);padding:10px 2px"
+        >
           Nothing is waiting for you.
         </div>
       `;
 
 
-  const events =
+  const es =
     state.events
       .filter(
-        event =>
-          event.date === today()
+        e => e.date === today()
       )
       .sort(
         (a,b) =>
-          a.time.localeCompare(b.time)
+          a.time.localeCompare(
+            b.time
+          )
       );
 
 
   document
     .getElementById('todayTimeline')
     .innerHTML =
-      events
-        .slice(0,4)
+      es.slice(0,4)
         .map(
-          event => `
+          e => `
             <div class="titem">
 
               <div class="ttime">
-                ${event.time}
+                ${e.time}
               </div>
 
               <div class="etitle">
-                ${esc(event.title)}
+                ${esc(e.title)}
               </div>
 
               <div class="emeta">
-                ${event.duration} min
+                ${e.duration} min
               </div>
 
             </div>
@@ -3975,9 +4151,9 @@ function renderHome(){
 
   const done =
     state.tasks.filter(
-      task =>
-        task.done &&
-        task.completedAt === today()
+      x =>
+        x.done &&
+        x.completedAt === today()
     ).length;
 
 
@@ -3985,9 +4161,9 @@ function renderHome(){
     Math.max(
       done,
       state.tasks.filter(
-        task =>
-          task.created === today() ||
-          task.due === today()
+        x =>
+          x.created === today() ||
+          x.due === today()
       ).length
     );
 
@@ -3998,15 +4174,14 @@ function renderHome(){
       `${done}/${target}`;
 
 
-  const focusMinutes =
+  const mins =
     state.focusLog
       .filter(
-        item =>
-          item.date === today()
+        x => x.date === today()
       )
       .reduce(
-        (sum,item) =>
-          sum + item.minutes,
+        (a,x) =>
+          a + x.minutes,
         0
       );
 
@@ -4014,7 +4189,9 @@ function renderHome(){
   document
     .getElementById('focusToday')
     .textContent =
-      formatMinutes(focusMinutes);
+      mins >= 60
+        ? `${Math.floor(mins/60)}h ${mins%60 ? mins%60+'m' : ''}`
+        : `${mins}m`;
 
 
   const i =
@@ -4026,36 +4203,10 @@ function renderHome(){
     .textContent =
       i[0];
 
-
   document
     .getElementById('insightBody')
     .textContent =
       i[1];
-
-}
-
-
-/* =========================================================
-   FORMAT MINUTES
-   ========================================================= */
-
-function formatMinutes(minutes){
-
-  if(minutes >= 60){
-
-    const hours =
-      Math.floor(minutes / 60);
-
-    const rest =
-      minutes % 60;
-
-    return rest
-      ? `${hours}h ${rest}m`
-      : `${hours}h`;
-
-  }
-
-  return `${minutes}m`;
 
 }
 
@@ -4066,130 +4217,123 @@ function formatMinutes(minutes){
 
 function renderTasks(){
 
-  let tasks =
+  let arr =
     [...state.tasks];
 
-
-  const activeFilter =
+  const filter =
     document
-      .querySelector('.filter.active')
+      .querySelector(
+        '.filter.active'
+      )
       ?.dataset.filter ||
     'all';
 
+  const q =
+    (
+      document
+        .getElementById('search')
+        ?.value ||
+      ''
+    ).toLowerCase();
 
-  const query =
-    document
-      .getElementById('search')
-      ?.value
-      .toLowerCase() ||
-    '';
 
+  if(filter === 'open'){
 
-  if(activeFilter === 'open'){
+    arr =
+      arr.filter(
+        t => !t.done
+      );
 
-    tasks =
-      tasks.filter(
-        task => !task.done
+  }
+
+  if(filter === 'done'){
+
+    arr =
+      arr.filter(
+        t => t.done
       );
 
   }
 
 
-  if(activeFilter === 'done'){
+  if(q){
 
-    tasks =
-      tasks.filter(
-        task => task.done
-      );
-
-  }
-
-
-  if(query){
-
-    tasks =
-      tasks.filter(
-        task =>
+    arr =
+      arr.filter(
+        t =>
           (
-            task.title +
+            t.title +
             ' ' +
-            (task.course || '')
+            (t.course || '')
           )
-          .toLowerCase()
-          .includes(query)
+            .toLowerCase()
+            .includes(q)
       );
 
   }
 
 
-  tasks.sort(
+  arr.sort(
     (a,b) =>
       (a.done - b.done) ||
-      (rank(b) - rank(a))
+      rank(b) -
+      rank(a)
   );
-
-
-  const openCount =
-    state.tasks.filter(
-      task => !task.done
-    ).length;
-
-
-  const doneCount =
-    state.tasks.filter(
-      task => task.done
-    ).length;
 
 
   document
     .getElementById('taskSummary')
     .textContent =
-      `${openCount} open · ${doneCount} completed`;
+      `${state.tasks.filter(t => !t.done).length} open · ${state.tasks.filter(t => t.done).length} completed`;
 
 
   document
     .getElementById('taskBody')
     .innerHTML =
-      tasks.map(
-        task => `
-
+      arr.map(
+        t => `
           <tr>
 
             <td>
 
-              <div style="display:flex;align-items:center;gap:8px">
+              <div
+                style="display:flex;align-items:center;gap:8px"
+              >
 
                 <button
-                  class="check ${task.done ? 'done' : ''}"
-                  data-tog="${task.id}">
-
+                  class="check ${t.done ? 'done' : ''}"
+                  data-tog="${t.id}"
+                >
                   ${
-                    task.done
+                    t.done
                       ? '<i data-lucide="check" width="11"></i>'
                       : ''
                   }
-
                 </button>
 
                 <div>
 
-                  <b style="
-                    font-size:9px;
-                    ${
-                      task.done
-                        ? 'text-decoration:line-through;opacity:.5'
-                        : ''
-                    }
-                  ">
-                    ${esc(task.title)}
+                  <b
+                    style="
+                      font-size:9px;
+                      ${
+                        t.done
+                          ? 'text-decoration:line-through;opacity:.5'
+                          : ''
+                      }
+                    "
+                  >
+                    ${esc(t.title)}
                   </b>
 
-                  <div style="
-                    font-size:7px;
-                    color:var(--dim);
-                    margin-top:3px
-                  ">
-                    ${esc(task.course || 'General')}
+                  <div
+                    style="
+                      font-size:7px;
+                      color:var(--dim);
+                      margin-top:3px
+                    "
+                  >
+                    ${esc(t.course || 'General')}
                   </div>
 
                 </div>
@@ -4199,21 +4343,21 @@ function renderTasks(){
             </td>
 
             <td>
-              ${fmt(task.due)}
+              ${fmt(t.due)}
             </td>
 
             <td>
-              <span class="prio ${task.priority}">
-                ${task.priority}
+              <span class="prio ${t.priority}">
+                ${t.priority}
               </span>
             </td>
 
             <td>
-              ${task.effort} min
+              ${t.effort} min
             </td>
 
             <td>
-              ${task.energy}
+              ${t.energy}
             </td>
 
             <td>
@@ -4221,32 +4365,33 @@ function renderTasks(){
               <button
                 class="btn"
                 style="padding:6px"
-                data-del="${task.id}">
-
-                <i data-lucide="trash-2" width="11"></i>
-
+                data-del="${t.id}"
+              >
+                <i
+                  data-lucide="trash-2"
+                  width="11"
+                ></i>
               </button>
 
             </td>
 
           </tr>
-
         `
       )
       .join('') ||
       `
         <tr>
           <td colspan="6">
-
-            <div style="
-              text-align:center;
-              padding:30px;
-              color:var(--dim);
-              font-size:9px
-            ">
+            <div
+              style="
+                text-align:center;
+                padding:30px;
+                color:var(--dim);
+                font-size:9px
+              "
+            >
               No tasks here.
             </div>
-
           </td>
         </tr>
       `;
@@ -4263,30 +4408,27 @@ function renderSchedule(){
   const base =
     new Date();
 
-
   base.setDate(
     base.getDate() -
     ((base.getDay()+6)%7)
   );
 
 
-  const dates =
+  const ds =
     Array.from(
       {length:7},
-      (_,index)=>{
+      (_,i) => {
 
         const d =
           new Date(base);
 
         d.setDate(
-          base.getDate()+index
+          base.getDate()+i
         );
 
         return {
-          date:d,
-          value:d
-            .toISOString()
-            .slice(0,10)
+          d,
+          s:d.toISOString().slice(0,10)
         };
 
       }
@@ -4303,7 +4445,7 @@ function renderSchedule(){
   ];
 
 
-  let html =
+  let h =
     `
       <div class="cell headcell">
         <div class="timecell">
@@ -4313,67 +4455,72 @@ function renderSchedule(){
     `;
 
 
-  html +=
-    dates
-      .map(
-        item => `
-          <div class="cell headcell">
+  h +=
+    ds.map(
+      x => `
+        <div class="cell headcell">
 
-            <div class="day">
+          <div class="day">
 
-              ${new Intl.DateTimeFormat(
+            ${
+              new Intl.DateTimeFormat(
                 undefined,
                 {weekday:'short'}
-              ).format(item.date)}
+              ).format(x.d)
+            }
 
-              <small>
-                ${item.date.getDate()}
-              </small>
-
-            </div>
+            <small>
+              ${x.d.getDate()}
+            </small>
 
           </div>
-        `
-      )
-      .join('');
+
+        </div>
+      `
+    ).join('');
 
 
-  for(const time of times){
+  for(const tm of times){
 
-    html += `
+    h += `
       <div class="cell">
         <div class="timecell">
-          ${time}
+          ${tm}
         </div>
       </div>
     `;
 
 
-    for(const day of dates){
+    for(const d of ds){
 
       const items =
         state.events.filter(
-          event =>
-            event.date === day.value &&
-            event.time.slice(0,2) === time.slice(0,2)
+          e =>
+            e.date === d.s &&
+            Math.abs(
+              parseInt(
+                e.time
+              ) -
+              parseInt(tm)
+            ) < 2
         );
 
 
-      html += `
+      h += `
         <div class="cell">
 
           ${
             items
               .map(
-                event => `
+                e => `
                   <div class="eblock">
 
                     <b>
-                      ${esc(event.title)}
+                      ${esc(e.title)}
                     </b>
 
                     <small>
-                      ${event.time} · ${event.duration}m
+                      ${e.time} · ${e.duration}m
                     </small>
 
                   </div>
@@ -4393,7 +4540,7 @@ function renderSchedule(){
   document
     .getElementById('schedule')
     .innerHTML =
-      html;
+      h;
 
 }
 
@@ -4404,10 +4551,9 @@ function renderSchedule(){
 
 function renderFocus(){
 
-  const task =
+  const t =
     state.tasks.find(
-      item =>
-        item.id === selected
+      x => x.id === selected
     ) ||
     nextTask();
 
@@ -4415,16 +4561,16 @@ function renderFocus(){
   document
     .getElementById('ftitle')
     .textContent =
-      task
-        ? task.title
+      t
+        ? t.title
         : 'Choose a task';
 
 
   document
     .getElementById('fcourse')
     .textContent =
-      task
-        ? `${task.course || 'General'} · ${task.effort} min · ${task.energy} energy`
+      t
+        ? `${t.course || 'General'} · ${t.effort} min · ${t.energy} energy`
         : 'Your next action will appear here.';
 
 
@@ -4442,38 +4588,36 @@ function renderFocus(){
       openTasks()
         .slice(0,5)
         .map(
-          task => `
-
+          x => `
             <div class="queueitem">
 
               <div>
 
                 <div class="qtitle">
-                  ${esc(task.title)}
+                  ${esc(x.title)}
                 </div>
 
                 <div class="qmeta">
-                  ${task.effort} min · ${task.priority}
+                  ${x.effort} min · ${x.priority}
                 </div>
 
               </div>
 
               <button
                 class="link"
-                data-pick="${task.id}">
+                data-pick="${x.id}"
+              >
                 Choose
               </button>
 
             </div>
-
           `
         )
         .join('') ||
       `
-        <div style="
-          font-size:9px;
-          color:var(--muted)
-        ">
+        <div
+          style="font-size:9px;color:var(--muted)"
+        >
           No open tasks.
         </div>
       `;
@@ -4487,23 +4631,22 @@ function renderFocus(){
 
 function renderInsights(){
 
-  const weekDone =
+  const done =
     state.tasks.filter(
-      task =>
-        task.done &&
-        task.completedAt >= add(-6)
+      t =>
+        t.done &&
+        t.completedAt >= add(-6)
     ).length;
 
 
-  const weekFocus =
+  const mins =
     state.focusLog
       .filter(
-        item =>
-          item.date >= add(-6)
+        x => x.date >= add(-6)
       )
       .reduce(
-        (sum,item) =>
-          sum + item.minutes,
+        (a,x) =>
+          a+x.minutes,
         0
       );
 
@@ -4511,13 +4654,15 @@ function renderInsights(){
   document
     .getElementById('weekDone')
     .textContent =
-      weekDone;
+      done;
 
 
   document
     .getElementById('weekFocus')
     .textContent =
-      formatMinutes(weekFocus);
+      mins >= 60
+        ? `${Math.floor(mins/60)}h ${mins%60 ? mins%60+'m' : ''}`
+        : `${mins}m`;
 
 
   const i =
@@ -4529,7 +4674,6 @@ function renderInsights(){
     .textContent =
       i[0];
 
-
   document
     .getElementById('patternBody')
     .textContent =
@@ -4539,14 +4683,17 @@ function renderInsights(){
   if(window.Chart){
 
     const labels = [];
-    const values = [];
+    const vals = [];
 
 
-    for(let n=6;n>=0;n--){
+    for(
+      let n=6;
+      n>=0;
+      n--
+    ){
 
-      const date =
+      const d =
         add(-n);
-
 
       labels.push(
         new Intl.DateTimeFormat(
@@ -4554,24 +4701,28 @@ function renderInsights(){
           {weekday:'short'}
         ).format(
           new Date(
-            date+'T12:00:00'
+            d+'T12:00:00'
           )
         )
       );
 
 
-      values.push(
+      vals.push(
         state.tasks.filter(
-          task =>
-            task.done &&
-            task.completedAt === date
+          t =>
+            t.done &&
+            t.completedAt === d
         ).length
       );
 
     }
 
 
-    chart?.destroy();
+    if(chart){
+
+      chart.destroy();
+
+    }
 
 
     chart =
@@ -4581,11 +4732,11 @@ function renderInsights(){
           type:'line',
 
           data:{
-            labels:labels,
+            labels,
 
             datasets:[
               {
-                data:values,
+                data:vals,
                 borderColor:'#7C5CFF',
                 backgroundColor:'rgba(124,92,255,.08)',
                 fill:true,
@@ -4609,7 +4760,6 @@ function renderInsights(){
                 grid:{
                   display:false
                 },
-
                 ticks:{
                   color:'#697486',
                   font:{
@@ -4635,7 +4785,6 @@ function renderInsights(){
               }
             }
           }
-
         }
       );
 
@@ -4672,15 +4821,12 @@ function openTask(){
 
   document
     .getElementById('taskModal')
-    .classList
-    .add('show');
-
+    .classList.add('show');
 
   document
     .getElementById('tdue')
     .value =
       today();
-
 
   setTimeout(
     () =>
@@ -4697,24 +4843,33 @@ function closeTask(){
 
   document
     .getElementById('taskModal')
-    .classList
-    .remove('show');
+    .classList.remove('show');
 
 }
 
+
+/* =========================================================
+   EVENT MODAL
+   ========================================================= */
 
 function openEvent(){
 
   document
     .getElementById('eventModal')
-    .classList
-    .add('show');
-
+    .classList.add('show');
 
   document
     .getElementById('edate')
     .value =
       today();
+
+  setTimeout(
+    () =>
+      document
+        .getElementById('etitle')
+        .focus(),
+    40
+  );
 
 }
 
@@ -4723,8 +4878,7 @@ function closeEvent(){
 
   document
     .getElementById('eventModal')
-    .classList
-    .remove('show');
+    .classList.remove('show');
 
 }
 
@@ -4740,9 +4894,8 @@ function bindQuick(id){
       '#' + id + ' .qbtn'
     )
     .forEach(
-      button => {
-
-        button.onclick =
+      b =>
+        b.onclick =
           () => {
 
             document
@@ -4750,19 +4903,17 @@ function bindQuick(id){
                 '#' + id + ' .qbtn'
               )
               .forEach(
-                item =>
-                  item.classList
-                    .remove('active')
+                x =>
+                  x.classList.remove(
+                    'active'
+                  )
               );
 
+            b.classList.add(
+              'active'
+            );
 
-            button
-              .classList
-              .add('active');
-
-          };
-
-      }
+          }
     );
 
 }
@@ -4782,60 +4933,50 @@ document
   .onclick =
     openTask;
 
-
 document
   .getElementById('homeAdd')
   .onclick =
     openTask;
-
 
 document
   .getElementById('taskAdd')
   .onclick =
     openTask;
 
-
 document
   .getElementById('createFirst')
   .onclick =
     openTask;
-
 
 document
   .getElementById('taskClose')
   .onclick =
     closeTask;
 
-
 document
   .getElementById('taskCancel')
   .onclick =
     closeTask;
-
 
 document
   .getElementById('eventAdd')
   .onclick =
     openEvent;
 
-
 document
   .getElementById('eventClose')
   .onclick =
     closeEvent;
-
 
 document
   .getElementById('eventCancel')
   .onclick =
     closeEvent;
 
-
 document
   .getElementById('allTasks')
   .onclick =
     () => nav('tasks');
-
 
 document
   .getElementById('seeInsights')
@@ -4855,6 +4996,7 @@ document
         );
 
         return;
+
       }
 
       nav('focus');
@@ -4871,64 +5013,74 @@ document
 document
   .querySelectorAll('.filter')
   .forEach(
-    button => {
-
-      button.onclick =
+    b =>
+      b.onclick =
         () => {
 
           document
             .querySelectorAll('.filter')
             .forEach(
-              item =>
-                item.classList
-                  .remove('active')
+              x =>
+                x.classList.remove(
+                  'active'
+                )
             );
 
-
-          button
-            .classList
-            .add('active');
-
+          b.classList.add(
+            'active'
+          );
 
           renderTasks();
 
-        };
-
-    }
+        }
   );
 
 
 /* =========================================================
-   CREATE TASK
+   TASK CREATE
    ========================================================= */
 
 document
   .getElementById('taskForm')
   .onsubmit =
-    function(e){
+    e => {
 
       e.preventDefault();
+
+
+      const title =
+        document
+          .getElementById('ttitle')
+          .value
+          .trim();
+
+
+      if(!title){
+
+        toast(
+          'Tell NEXA what you need to get done.'
+        );
+
+        return;
+
+      }
 
 
       const pick =
         id =>
           document
             .querySelector(
-              '#' + id + ' .qbtn.active'
+              '#' + id +
+              ' .qbtn.active'
             )
-            ?.dataset
-            .v;
+            ?.dataset.v;
 
 
       state.tasks.push({
 
         id:uid(),
 
-        title:
-          document
-            .getElementById('ttitle')
-            .value
-            .trim(),
+        title,
 
         course:
           document
@@ -4942,10 +5094,7 @@ document
             .value,
 
         effort:
-          Number(
-            pick('effort') ||
-            30
-          ),
+          +(pick('effort') || 30),
 
         priority:
           pick('priority') ||
@@ -4964,7 +5113,9 @@ document
       });
 
 
-      state.onboarded = true;
+      document
+        .getElementById('taskForm')
+        .reset();
 
 
       closeTask();
@@ -4981,26 +5132,40 @@ document
 
 
 /* =========================================================
-   CREATE EVENT
+   EVENT CREATE
    ========================================================= */
 
 document
   .getElementById('eventForm')
   .onsubmit =
-    function(e){
+    e => {
 
       e.preventDefault();
+
+
+      const title =
+        document
+          .getElementById('etitle')
+          .value
+          .trim();
+
+
+      if(!title){
+
+        toast(
+          'Enter a block name.'
+        );
+
+        return;
+
+      }
 
 
       state.events.push({
 
         id:uid(),
 
-        title:
-          document
-            .getElementById('etitle')
-            .value
-            .trim(),
+        title,
 
         date:
           document
@@ -5013,13 +5178,16 @@ document
             .value,
 
         duration:
-          Number(
-            document
-              .getElementById('edur')
-              .value
-          )
+          +document
+            .getElementById('edur')
+            .value
 
       });
+
+
+      document
+        .getElementById('eventForm')
+        .reset();
 
 
       closeEvent();
@@ -5034,43 +5202,47 @@ document
 
 
 /* =========================================================
-   TASK COMPLETE / DELETE / CHOOSE
+   TASK COMPLETE / DELETE
    ========================================================= */
 
 document.addEventListener(
   'click',
-  function(e){
+  e => {
 
-    const toggle =
-      e.target.closest('[data-tog]');
+    const b =
+      e.target.closest(
+        '[data-tog]'
+      );
 
 
-    if(toggle){
+    if(b){
 
-      const task =
+      const t =
         state.tasks.find(
-          item =>
-            item.id === toggle.dataset.tog
+          x =>
+            x.id === b.dataset.tog
         );
 
 
-      if(!task) return;
+      if(!t){
+        return;
+      }
 
 
-      task.done =
-        !task.done;
+      t.done =
+        !t.done;
 
 
-      task.completedAt =
-        task.done
+      t.completedAt =
+        t.done
           ? today()
           : null;
 
 
-      if(task.done){
+      if(t.done){
 
         state.history.push({
-          taskId:task.id,
+          taskId:t.id,
           hour:new Date().getHours()
         });
 
@@ -5081,7 +5253,7 @@ document.addEventListener(
 
 
       toast(
-        task.done
+        t.done
           ? 'Task completed'
           : 'Task reopened'
       );
@@ -5089,21 +5261,21 @@ document.addEventListener(
 
       nav('home');
 
-      return;
-
     }
 
 
-    const del =
-      e.target.closest('[data-del]');
+    const d =
+      e.target.closest(
+        '[data-del]'
+      );
 
 
-    if(del){
+    if(d){
 
       state.tasks =
         state.tasks.filter(
-          task =>
-            task.id !== del.dataset.del
+          x =>
+            x.id !== d.dataset.del
         );
 
 
@@ -5113,19 +5285,19 @@ document.addEventListener(
         'Task deleted'
       );
 
-      return;
-
     }
 
 
-    const pick =
-      e.target.closest('[data-pick]');
+    const p =
+      e.target.closest(
+        '[data-pick]'
+      );
 
 
-    if(pick){
+    if(p){
 
       selected =
-        pick.dataset.pick;
+        p.dataset.pick;
 
       renderFocus();
 
@@ -5144,41 +5316,43 @@ document.addEventListener(
 document
   .getElementById('chooseAnother')
   .onclick =
-    function(){
+    () => {
 
-      const tasks =
+      const a =
         openTasks();
 
 
-      if(tasks.length < 2){
+      if(a.length < 2){
 
         toast(
-          'There is only one open task'
+          'There is only one open task.'
         );
 
         return;
+
       }
 
 
       const current =
         state.tasks.find(
-          task =>
-            task.id === selected
+          x =>
+            x.id === selected
         );
 
 
       if(current){
 
         current.postponed =
-          (current.postponed || 0) + 1;
+          (current.postponed || 0) +
+          1;
 
       }
 
 
       const next =
-        tasks.find(
-          task =>
-            task.id !== selected
+        a.find(
+          x =>
+            x.id !== selected
         );
 
 
@@ -5202,22 +5376,14 @@ document
 
 function updateTimer(){
 
-  const minutes =
-    String(
-      Math.floor(tsec / 60)
-    ).padStart(2,'0');
-
-
-  const seconds =
-    String(
-      tsec % 60
-    ).padStart(2,'0');
-
-
   document
     .getElementById('timer')
     .textContent =
-      `${minutes}:${seconds}`;
+      `${String(
+        Math.floor(tsec/60)
+      ).padStart(2,'0')}:${String(
+        tsec%60
+      ).padStart(2,'0')}`;
 
 }
 
@@ -5225,17 +5391,17 @@ function updateTimer(){
 document
   .getElementById('timerStart')
   .onclick =
-    function(){
+    () => {
 
-      const task =
+      const t =
         state.tasks.find(
-          item =>
-            item.id === selected
+          x =>
+            x.id === selected
         ) ||
         nextTask();
 
 
-      if(!task){
+      if(!t){
 
         toast(
           'Add a task first'
@@ -5249,10 +5415,12 @@ document
 
 
       selected =
-        task.id;
+        t.id;
 
 
-      if(timer) return;
+      if(timer){
+        return;
+      }
 
 
       timer =
@@ -5266,29 +5434,22 @@ document
 
             if(tsec <= 0){
 
-              clearInterval(timer);
+              clearInterval(
+                timer
+              );
 
-              timer = null;
+              timer =
+                null;
 
 
               const minutes =
-                Math.max(
-                  1,
-                  Math.min(
-                    25,
-                    task.effort || 25
-                  )
-                );
+                25;
 
 
               state.focusLog.push({
-
                 date:today(),
-
-                minutes:minutes,
-
-                taskId:task.id
-
+                minutes,
+                taskId:t.id
               });
 
 
@@ -5314,13 +5475,16 @@ document
 document
   .getElementById('timerPause')
   .onclick =
-    function(){
+    () => {
 
       if(timer){
 
-        clearInterval(timer);
+        clearInterval(
+          timer
+        );
 
-        timer = null;
+        timer =
+          null;
 
         renderFocus();
 
@@ -5332,17 +5496,21 @@ document
 document
   .getElementById('timerReset')
   .onclick =
-    function(){
+    () => {
 
-      clearInterval(timer);
+      clearInterval(
+        timer
+      );
 
-      timer = null;
+      timer =
+        null;
 
-      tsec = 1500;
-
-      updateTimer();
+      tsec =
+        1500;
 
       renderFocus();
+
+      updateTimer();
 
     };
 
@@ -5354,9 +5522,10 @@ document
 document
   .getElementById('tryDemo')
   .onclick =
-    function(){
+    () => {
 
-      demoMode = true;
+      demoMode =
+        true;
 
       state =
         demoData();
@@ -5372,8 +5541,6 @@ document
         'demo';
 
 
-      hideAuth();
-
       renderAll();
 
       toast(
@@ -5386,9 +5553,10 @@ document
 document
   .getElementById('exitDemo')
   .onclick =
-    function(){
+    () => {
 
-      demoMode = false;
+      demoMode =
+        false;
 
       localStorage.removeItem(
         DEMO
@@ -5403,15 +5571,40 @@ document
       );
 
 
+      /*
+        IMPORTANT:
+        Demo data is discarded.
+        Real user cloud data is loaded again.
+      */
+
       state =
         blank();
 
 
-      currentUser = null;
-
       renderAll();
 
-      showAuth();
+      nav('home');
+
+
+      if(sb){
+
+        sb.auth.getSession()
+          .then(
+            async ({data}) => {
+
+              if(data.session){
+
+                await loadCloudUser(
+                  data.session.user
+                );
+
+              }
+
+            }
+          );
+
+      }
+
 
       toast(
         'Demo mode exited'
@@ -5421,43 +5614,80 @@ document
 
 
 /* =========================================================
-   PROFILE MENU
+   THEME
    ========================================================= */
 
 document
-  .getElementById('profileBtn')
+  .getElementById('themeBtn')
   .onclick =
-    () =>
-      document
-        .getElementById('userMenu')
-        .classList
-        .toggle('show');
+    () => {
+
+      const light =
+        document.documentElement
+          .dataset.theme === 'light';
 
 
-document
-  .getElementById('logoutBtn')
-  .onclick =
-    logout;
+      document.documentElement
+        .dataset.theme =
+          light
+            ? 'dark'
+            : 'light';
 
 
-document.addEventListener(
-  'click',
-  function(e){
+      let s =
+        document.getElementById(
+          'light'
+        );
 
-    if(
-      !e.target.closest('#profileBtn') &&
-      !e.target.closest('#userMenu')
-    ){
 
-      document
-        .getElementById('userMenu')
-        .classList
-        .remove('show');
+      if(!s){
 
-    }
+        s =
+          document.createElement(
+            'style'
+          );
 
-  }
-);
+        s.id =
+          'light';
+
+        document.head.appendChild(
+          s
+        );
+
+      }
+
+
+      s.textContent =
+        light
+          ? ''
+          : `
+            :root[data-theme="light"]{
+              --bg:#F5F7FB;
+              --surface:#fff;
+              --text:#161B27;
+              --muted:#5F697A;
+              --dim:#7C8694;
+              --line:rgba(20,25,38,.10);
+            }
+
+            :root[data-theme="light"] .side{
+              background:#FBFCFF;
+            }
+
+            :root[data-theme="light"] .topbar{
+              background:rgba(245,247,251,.9);
+            }
+
+            :root[data-theme="light"] .modal{
+              background:#fff;
+            }
+
+            :root[data-theme="light"] .control{
+              background:#fff;
+            }
+          `;
+
+    };
 
 
 /* =========================================================
@@ -5473,8 +5703,9 @@ function onboard(){
 
     document
       .getElementById('onboard')
-      .classList
-      .remove('show');
+      .classList.remove(
+        'show'
+      );
 
     return;
 
@@ -5483,8 +5714,9 @@ function onboard(){
 
   document
     .getElementById('onboard')
-    .classList
-    .add('show');
+    .classList.add(
+      'show'
+    );
 
 
   const saved =
@@ -5498,148 +5730,148 @@ function onboard(){
   const steps = [
 
     [
-      "What's your name?",
-      "Just first name is enough.",
-      "input",
-      "name",
-      "e.g. Siddarth"
+      'What’s your name?',
+      'Just first name is enough.',
+      'input',
+      'name',
+      'e.g. Siddarth'
     ],
 
     [
-      "What are you working toward?",
-      "A broad goal is perfect.",
-      "input",
-      "goal",
-      "e.g. Do well this semester"
+      'What are you working toward?',
+      'A broad goal is perfect.',
+      'input',
+      'goal',
+      'e.g. Do well this semester'
     ],
 
     [
-      "What does your typical day look like?",
-      "Pick the rhythm that feels closest.",
-      "choices",
-      "day",
+      'What does your typical day look like?',
+      'Pick the rhythm that feels closest.',
+      'choices',
+      'day',
       [
-        "Structured",
-        "Balanced",
-        "Flexible"
+        'Structured',
+        'Balanced',
+        'Flexible'
       ]
     ],
 
     [
-      "How long can you usually focus?",
-      "This helps NEXA recommend realistic work.",
-      "choices",
-      "focus",
+      'How long can you usually focus?',
+      'This helps NEXA recommend realistic work.',
+      'choices',
+      'focus',
       [
-        "15 minutes",
-        "30 minutes",
-        "60 minutes",
-        "90+ minutes"
+        '15 minutes',
+        '30 minutes',
+        '60 minutes',
+        '90+ minutes'
       ]
     ],
 
     [
-      "What's the most important thing you want to accomplish?",
-      "This becomes your first north star.",
-      "input",
-      "mainGoal",
-      "e.g. Finish my core coursework"
+      'What’s the most important thing you want to accomplish?',
+      'This becomes your first north star.',
+      'input',
+      'mainGoal',
+      'e.g. Finish my core coursework'
     ]
 
   ];
 
 
   const step =
-    steps[
-      saved.step - 1
-    ];
+    Math.min(
+      5,
+      Math.max(
+        1,
+        saved.step
+      )
+    );
 
 
-  const q = step[0];
-  const sub = step[1];
-  const type = step[2];
-  const key = step[3];
-  const options = step[4];
+  const [
+    q,
+    sub,
+    type,
+    key,
+    opt
+  ] =
+    steps[step-1];
 
 
   document
     .getElementById('onstep')
     .textContent =
-      `${saved.step} / 5`;
+      `${step} / 5`;
 
 
   document
     .getElementById('onfill')
     .style.width =
-      `${saved.step / 5 * 100}%`;
+      `${step / 5 * 100}%`;
 
 
-  let html = `
-
+  let h = `
     <h1 class="question">
-      ${q}
+      ${esc(q)}
     </h1>
 
     <div class="qsub">
-      ${sub}
+      ${esc(sub)}
     </div>
-
   `;
 
 
   if(type === 'input'){
 
-    html += `
-
+    h += `
       <input
         autofocus
         id="oninput"
         class="answer"
         value="${esc(saved.a[key] || '')}"
-        placeholder="${esc(options)}">
-
+        placeholder="${esc(opt)}"
+      >
     `;
 
   }else{
 
-    html += `
-
+    h += `
       <div class="choices">
 
-        ${options
-          .map(
-            option => `
-
-              <button
-                class="choice ${
-                  saved.a[key] === option
-                    ? 'active'
-                    : ''
-                }"
-                data-choice="${esc(option)}">
-
-                ${esc(option)}
-
-              </button>
-
-            `
-          )
-          .join('')}
+        ${
+          opt.map(
+            x =>
+              `
+                <button
+                  type="button"
+                  class="choice ${
+                    saved.a[key] === x
+                      ? 'active'
+                      : ''
+                  }"
+                  data-choice="${esc(x)}"
+                >
+                  ${esc(x)}
+                </button>
+              `
+          ).join('')
+        }
 
       </div>
-
     `;
 
   }
 
 
-  html += `
-
+  h += `
     <div class="onbottom">
 
       <span class="mutedtiny">
         ${
-          saved.step === 1
+          step === 1
             ? 'You can change this later.'
             : ''
         }
@@ -5648,88 +5880,95 @@ function onboard(){
       <div style="display:flex;gap:7px">
 
         ${
-          saved.step > 1
-            ? '<button class="btn" id="back">Back</button>'
+          step > 1
+            ? `
+              <button
+                class="btn"
+                id="back"
+                type="button"
+              >
+                Back
+              </button>
+            `
             : ''
         }
 
         <button
           class="btn primary"
-          id="next">
-
+          id="next"
+          type="button"
+        >
           ${
-            saved.step === 5
+            step === 5
               ? 'Finish'
               : 'Continue'
           }
 
           <i
             data-lucide="arrow-right"
-            width="13">
-          </i>
+            width="13"
+          ></i>
 
         </button>
 
       </div>
 
     </div>
-
   `;
 
 
   document
     .getElementById('onbody')
     .innerHTML =
-      html;
+      h;
 
 
   lucide.createIcons();
 
 
   document
-    .querySelectorAll('[data-choice]')
+    .querySelectorAll(
+      '[data-choice]'
+    )
     .forEach(
-      button => {
-
-        button.onclick =
+      b =>
+        b.onclick =
           () => {
 
             saved.a[key] =
-              button.dataset.choice;
-
+              b.dataset.choice;
 
             localStorage.setItem(
               ON,
               JSON.stringify(saved)
             );
 
-
             onboard();
 
-          };
-
-      }
+          }
     );
 
 
   document
     .getElementById('next')
     .onclick =
-      function(){
+      () => {
 
         if(type === 'input'){
 
-          const value =
+          const v =
             document
-              .getElementById('oninput')
+              .getElementById(
+                'oninput'
+              )
               .value
               .trim();
 
 
-          if(!value){
+          if(!v){
 
             toast(
-              'A quick answer is enough'
+              'A quick answer is enough.'
             );
 
             return;
@@ -5738,16 +5977,15 @@ function onboard(){
 
 
           saved.a[key] =
-            value;
+            v;
 
         }
 
 
-        if(saved.step === 5){
+        if(step === 5){
 
           state.onboarded =
             true;
-
 
           state.profile =
             {
@@ -5766,21 +6004,22 @@ function onboard(){
 
           document
             .getElementById('onboard')
-            .classList
-            .remove('show');
+            .classList.remove(
+              'show'
+            );
 
 
           toast(
             'Your NEXA is ready'
           );
 
-
           return;
 
         }
 
 
-        saved.step++;
+        saved.step =
+          step + 1;
 
 
         localStorage.setItem(
@@ -5795,7 +6034,9 @@ function onboard(){
 
 
   const back =
-    document.getElementById('back');
+    document.getElementById(
+      'back'
+    );
 
 
   if(back){
@@ -5803,7 +6044,11 @@ function onboard(){
     back.onclick =
       () => {
 
-        saved.step--;
+        saved.step =
+          Math.max(
+            1,
+            step - 1
+          );
 
         localStorage.setItem(
           ON,
@@ -5820,8 +6065,780 @@ function onboard(){
 
 
 /* =========================================================
-   INITIAL AUTH SESSION
+   AUTH MODE
    ========================================================= */
+
+let authMode =
+  'login';
+
+let pendingPhone =
+  null;
+
+
+function setAuthMode(mode){
+
+  authMode =
+    mode;
+
+
+  document
+    .getElementById('loginTab')
+    .classList.toggle(
+      'active',
+      mode === 'login'
+    );
+
+
+  document
+    .getElementById('signupTab')
+    .classList.toggle(
+      'active',
+      mode === 'signup'
+    );
+
+
+  document
+    .getElementById('authTitle')
+    .textContent =
+      mode === 'login'
+        ? 'Welcome back.'
+        : 'Create your NEXA.';
+
+
+  document
+    .getElementById('authSubtitle')
+    .textContent =
+      mode === 'login'
+        ? 'Log in with your email or mobile number.'
+        : 'Create your account with email or mobile number.';
+
+
+  document
+    .getElementById('authNameWrap')
+    .style.display =
+      mode === 'signup'
+        ? 'block'
+        : 'none';
+
+
+  document
+    .getElementById('authSubmit')
+    .textContent =
+      mode === 'login'
+        ? 'Log in'
+        : 'Create account';
+
+
+  document
+    .getElementById('authError')
+    .textContent =
+      '';
+
+
+  document
+    .getElementById('authOtpWrap')
+    .style.display =
+      'none';
+
+
+  authEmailEl.disabled =
+    false;
+
+  authPhoneEl.disabled =
+    false;
+
+}
+
+
+document
+  .getElementById('loginTab')
+  .onclick =
+    () =>
+      setAuthMode(
+        'login'
+      );
+
+
+document
+  .getElementById('signupTab')
+  .onclick =
+    () =>
+      setAuthMode(
+        'signup'
+      );
+
+
+/* =========================================================
+   SIGN UP / LOGIN
+   ========================================================= */
+
+document
+  .getElementById('authForm')
+  .onsubmit =
+    async e => {
+
+      e.preventDefault();
+
+
+      if(!CLOUD_READY){
+
+        authMessage(
+          'Supabase is not connected. Check SUPABASE_URL and SUPABASE_KEY in index.html.'
+        );
+
+        return;
+
+      }
+
+
+      const rawEmail =
+        document
+          .getElementById('authEmail')
+          .value
+          .trim();
+
+
+      const rawPhone =
+        document
+          .getElementById('authPhone')
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById('authPassword')
+          .value;
+
+
+      const name =
+        document
+          .getElementById('authName')
+          .value
+          .trim();
+
+
+      /*
+        IMPORTANT:
+        Exactly ONE identifier is required.
+      */
+
+      if(
+        !rawEmail &&
+        !rawPhone
+      ){
+
+        authMessage(
+          'Enter your email or mobile number.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        rawEmail &&
+        rawPhone
+      ){
+
+        authMessage(
+          'Please use either email or mobile number, not both.'
+        );
+
+        return;
+
+      }
+
+
+      const identifier =
+        normalizeIdentifier(
+          rawEmail ||
+          rawPhone
+        );
+
+
+      if(!identifier){
+
+        authMessage(
+          'Enter a valid email address or mobile number.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        identifier.type === 'email' &&
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          identifier.value
+        )
+      ){
+
+        authMessage(
+          'Enter a valid email address.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        identifier.type === 'phone' &&
+        !/^\+?[0-9]{8,15}$/.test(
+          identifier.value
+        )
+      ){
+
+        authMessage(
+          'Enter a valid mobile number with country code, for example +919876543210.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        password.length < 6
+      ){
+
+        authMessage(
+          'Password must be at least 6 characters.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        authMode === 'signup' &&
+        !name
+      ){
+
+        authMessage(
+          'Please enter your name.'
+        );
+
+        return;
+
+      }
+
+
+      const submit =
+        document
+          .getElementById(
+            'authSubmit'
+          );
+
+
+      submit.disabled =
+        true;
+
+
+      authMessage(
+        'Working…',
+        false
+      );
+
+
+      try{
+
+        if(
+          authMode === 'signup'
+        ){
+
+          if(
+            identifier.type === 'email'
+          ){
+
+            /*
+              EMAIL SIGNUP
+
+              emailRedirectTo sends the student
+              back to your GitHub Pages website
+              instead of a Supabase 404 page.
+            */
+
+            const {data,error} =
+              await sb.auth.signUp({
+
+                email:
+                  identifier.value,
+
+                password,
+
+                options:{
+                  emailRedirectTo:
+                    SITE_URL,
+
+                  data:{
+                    name
+                  }
+                }
+
+              });
+
+
+            if(error){
+              throw error;
+            }
+
+
+            if(data.session){
+
+              await loadCloudUser(
+                data.user
+              );
+
+              toast(
+                'Account created'
+              );
+
+            }else{
+
+              authMessage(
+                'Account created. Check your email and click the confirmation link to continue.',
+                false
+              );
+
+            }
+
+          }else{
+
+            /*
+              PHONE SIGNUP
+
+              Supabase sends the SMS OTP.
+            */
+
+            const {data,error} =
+              await sb.auth.signUp({
+
+                phone:
+                  identifier.value,
+
+                password,
+
+                options:{
+                  channel:'sms',
+
+                  data:{
+                    name
+                  }
+                }
+
+              });
+
+
+            if(error){
+              throw error;
+            }
+
+
+            pendingPhone =
+              identifier.value;
+
+
+            document
+              .getElementById(
+                'authOtpWrap'
+              )
+              .style.display =
+                'block';
+
+
+            authMessage(
+              'We sent a verification code to your mobile number.',
+              false
+            );
+
+          }
+
+        }else{
+
+          /*
+            LOGIN
+          */
+
+          let data;
+          let error;
+
+
+          if(
+            identifier.type === 'email'
+          ){
+
+            ({
+              data,
+              error
+            } =
+              await sb.auth.signInWithPassword({
+
+                email:
+                  identifier.value,
+
+                password
+
+              }));
+
+          }else{
+
+            ({
+              data,
+              error
+            } =
+              await sb.auth.signInWithPassword({
+
+                phone:
+                  identifier.value,
+
+                password
+
+              }));
+
+          }
+
+
+          if(error){
+            throw error;
+          }
+
+
+          await loadCloudUser(
+            data.user
+          );
+
+
+          toast(
+            'Welcome back'
+          );
+
+        }
+
+      }catch(err){
+
+        console.error(
+          err
+        );
+
+        authMessage(
+          err.message ||
+          'Authentication failed.'
+        );
+
+      }finally{
+
+        submit.disabled =
+          false;
+
+      }
+
+    };
+
+
+/* =========================================================
+   VERIFY PHONE OTP
+   ========================================================= */
+
+document
+  .getElementById(
+    'verifyOtpBtn'
+  )
+  .onclick =
+    async () => {
+
+      if(
+        !sb ||
+        !pendingPhone
+      ){
+
+        return;
+
+      }
+
+
+      const token =
+        document
+          .getElementById(
+            'authOtp'
+          )
+          .value
+          .trim();
+
+
+      if(
+        !/^\d{6}$/.test(
+          token
+        )
+      ){
+
+        authMessage(
+          'Enter the 6-digit verification code.'
+        );
+
+        return;
+
+      }
+
+
+      try{
+
+        const {data,error} =
+          await sb.auth.verifyOtp({
+
+            phone:
+              pendingPhone,
+
+            token,
+
+            type:'sms'
+
+          });
+
+
+        if(error){
+          throw error;
+        }
+
+
+        await loadCloudUser(
+          data.user
+        );
+
+
+        toast(
+          'Mobile number verified'
+        );
+
+      }catch(err){
+
+        authMessage(
+          err.message ||
+          'Could not verify the mobile number.'
+        );
+
+      }
+
+    };
+
+
+/* =========================================================
+   RESEND PHONE OTP
+   ========================================================= */
+
+document
+  .getElementById(
+    'resendOtpBtn'
+  )
+  .onclick =
+    async () => {
+
+      if(
+        !sb ||
+        !pendingPhone
+      ){
+
+        return;
+
+      }
+
+
+      try{
+
+        const {error} =
+          await sb.auth.signInWithOtp({
+
+            phone:
+              pendingPhone
+
+          });
+
+
+        if(error){
+          throw error;
+        }
+
+
+        authMessage(
+          'A new verification code was sent.',
+          false
+        );
+
+      }catch(err){
+
+        authMessage(
+          err.message ||
+          'Could not resend the code.'
+        );
+
+      }
+
+    };
+
+
+/* =========================================================
+   FORGOT PASSWORD
+   ========================================================= */
+
+document
+  .getElementById(
+    'forgotPassword'
+  )
+  .onclick =
+    async () => {
+
+      if(!CLOUD_READY){
+
+        authMessage(
+          'Supabase is not connected.'
+        );
+
+        return;
+
+      }
+
+
+      const email =
+        authEmailEl
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      if(!email){
+
+        authMessage(
+          'For password reset, enter your email address first.'
+        );
+
+        return;
+
+      }
+
+
+      if(
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          email
+        )
+      ){
+
+        authMessage(
+          'Enter a valid email address.'
+        );
+
+        return;
+
+      }
+
+
+      try{
+
+        const {error} =
+          await sb.auth.resetPasswordForEmail(
+            email,
+            {
+              redirectTo:
+                SITE_URL
+            }
+          );
+
+
+        if(error){
+          throw error;
+        }
+
+
+        authMessage(
+          'Password reset link sent. Check your email.',
+          false
+        );
+
+      }catch(err){
+
+        authMessage(
+          err.message ||
+          'Could not send the password reset email.'
+        );
+
+      }
+
+    };
+
+
+/* =========================================================
+   PROFILE / LOGOUT
+   ========================================================= */
+
+document
+  .getElementById('profileBtn')
+  .onclick =
+    () =>
+      document
+        .getElementById('userMenu')
+        .classList.toggle(
+          'show'
+        );
+
+
+document
+  .getElementById('logoutBtn')
+  .onclick =
+    logout;
+
+
+document.addEventListener(
+  'click',
+  e => {
+
+    if(
+      !e.target.closest(
+        '#profileBtn'
+      ) &&
+      !e.target.closest(
+        '#userMenu'
+      )
+    ){
+
+      document
+        .getElementById('userMenu')
+        .classList.remove(
+          'show'
+        );
+
+    }
+
+  }
+);
+
+
+document
+  .getElementById('accountEmail')
+  .onclick =
+    () =>
+      toast(
+        currentUser?.email ||
+        currentUser?.phone ||
+        'Cloud account'
+      );
+
+
+/* =========================================================
+   INITIAL AUTH
+   ========================================================= */
+
+if(!CLOUD_READY){
+
+  document
+    .getElementById('cloudHint')
+    .style.display =
+      'block';
+
+}
+
 
 if(demoMode){
 
@@ -5829,14 +6846,23 @@ if(demoMode){
 
   renderAll();
 
+  onboard();
+
 }else if(sb){
+
+  /*
+    Supabase checks whether the student
+    already has a saved session.
+  */
 
   sb.auth
     .getSession()
     .then(
       async ({data}) => {
 
-        if(data.session){
+        if(
+          data.session
+        ){
 
           await loadCloudUser(
             data.session.user
@@ -5851,11 +6877,38 @@ if(demoMode){
         }
 
       }
+    )
+    .catch(
+      error => {
+
+        console.error(
+          error
+        );
+
+        showAuth();
+
+        renderAll();
+
+      }
     );
 
 
+  /*
+    Handles email confirmation,
+    login, logout and session changes.
+  */
+
   sb.auth.onAuthStateChange(
-    async (event,session) => {
+    async (
+      event,
+      session
+    ) => {
+
+      console.log(
+        'Supabase auth:',
+        event
+      );
+
 
       if(
         session &&
@@ -5874,9 +6927,11 @@ if(demoMode){
         !demoMode
       ){
 
-        currentUser = null;
+        currentUser =
+          null;
 
-        state = blank();
+        state =
+          blank();
 
         showAuth();
 
@@ -5901,8 +6956,6 @@ if(demoMode){
    ========================================================= */
 
 lucide.createIcons();
-
-updateTimer();
 
 </script>
 
